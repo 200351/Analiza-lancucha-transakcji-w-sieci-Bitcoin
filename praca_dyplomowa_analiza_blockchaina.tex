@@ -1,0 +1,122 @@
+\documentclass[printmode,oneside]{mgr}
+\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage{polski}      
+\usepackage[UTF8]{inputenc}
+\usepackage{lmodern}
+
+%pakiety do grafiki
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{psfrag}
+
+%pakiety dodające dużo dodatkowych poleceń matematycznych
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%pakiety wspomagające i poprawiające składanie tabel
+\usepackage{supertabular}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hhline}
+
+%pakiet wypisujący na marginesie etykiety równań i rysunków
+%zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
+%dokumentu wystarczy usunąć poniższą linię
+\usepackage{showlabels}
+
+%definicje własnych poleceń
+\newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, działa tylko w
+                        %trybie matematycznym
+\newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do
+                                           %składania twierdzeń
+
+%dane do złożenia strony tytułowej
+\title{Analiza łańcucha transakcji w sieci Bitcoin}
+\engtitle{The analysis of Bitcoin transactions blockchain}
+\author{Bartosz Zychal}
+\supervisor{dr inż. Radosław Michaliski} %\Prof. PWr, I-6
+%\guardian{dr hab. inż. Imię Nazwisko Prof. PWr, I-6} %nie używać
+%jeśli opiekun jest tą samą osobą co prowadzący pracę
+
+\date{2018} %standardowo u dołu strony tytułowej umieszczany jest
+%bieżący rok, to polecenie pozwala wstawić dowolny rok
+
+%poniżej jest lista kierunków i specjalności na wydziale elektroniki,
+%należy wybrać właściwe lub dopisać jeśli nie ma odpowiednich
+\field{Informatyka (INF)}
+\specialisation{Systemy Baz Danych (SBD)}
+
+%tutaj zaczyna się właściwa treść dokumentu
+\begin{document}
+\def\listtablename{Spis tabel}
+\def\tablename{Tabela. }
+
+\maketitle %polecenie generujące stronę tytułową 
+
+\tableofcontents{2} %spis treści
+\chapter{Wprowadzenie}
+Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy. 
+
+\chapter{Kryptowaluty - wprowadzenie}
+
+\indent Krypotowaluta to cyfrowy zasób mogący odpowiadać pewnej wartości środków finansowych. Zasób ten został zaprojektowany w sposób pozwalający określać go jako medium wymiany przy użyciu kryptografii, z którą jest ściśle powiązany. Kryptografia pozwala na zabezpieczenie transakcji, kontrolowanie tworzenia nowych jednostek kryptowaluty oraz weryfikację ilości posiadanych jej jednostek. Aktualnie krypotwaluty klasyfikowane są do trzech grup: walut cyfrowych, walut alternatywnych oraz walut wirtualnych. 
+
+\indent Wszystkie waluty muszą być w jakiś sposób kontrolowane i podlegać różnego rodzaju zabezpieczeniom, tak by zapobiegać oszustwom. W przypadku walut fiducjarnych, tj. walut nie mających pokrycia w dobrach materialnych, organizacje takie jak banki kontrolują podaż pieniądza oraz oznaczają fizycznie walutę, w celu uniemożliwienia jej podrobienia. Takie zabezpieczenia w pewnym stopniu ograniczają możliwości fałszerstwa, jednakże nie dają stuprocentowej pewności. Kryptowaluty podobnie jak tradycyjne waluty muszą posiadać miary zabezpieczeń w celu uniemożliwienia wpływania na stan systemu i tworzenia niekonsystentnych danych. Dodatkowo muszą one posiadać zabezpieczenia niepozwalające na wielokrotne użycie tych samych środków. W przeciwieństwie do walut fiducjarnych  
+zasady bezpieczeństwa kryptowalut muszą być tworzone wyłącznie na podstawie dostępnych technologi i nie mogą polegać na kontroli ze strony jakiejkolwiek centralnej instytucji. 
+
+\indent Kryptowaluty bardzo silnie bazują na kryptografii, która oferuje mechanizm bezpiecznego kodowania zasad ich systemu. Kryptografia pozwala nie tylko bronić system przed manipulacjami i matactwami, ale równie dobrze może zostać użyta w celu kodowania zasad tworzenia nowych jednostek kryptowaluty przy pomocy określonego matematycznego protokołu. Kryptografię można sklasyfikować jako dziedzinę wiedzy o zabezpieczeniach przed nieautoryzowanym dostępem do informacji. W dzisiejszych czasach uważa się ją nie tylko za gałąź matematyki, ale i informatyki. Kryptografię można podzielić na:
+\begin{itemize}
+\item symetrczyną - polega na możliwości odczytania wiadomości przy pomocy tego samego klucza, którą została podpisana. Znaczącym problemem bezpieczeństwa w tym podejściu jest przekazanie odbiorcy klucza. 
+\item niesymetrczyną - polega na istnieniu co najmniej dwóch kluczy:
+\begin{itemize}
+\item prywatny - nazwa klucza pochodzi od faktu, iż klucz ten nie powinien być nigdy nikomu udostępniony. Przy pomocy klucza prywatnego można odczytać wiadomość podpisaną kluczem publicznym. Pozwala również na podpisanie wiadomości, która może być później zweryfikowana za pomocą klucza publicznego.
+\item publiczny - nazwa klucza pochodzi od faktu, iż klucz ten może został bezpiecznie upubliczniony. Klucz publiczny tworzy się na podstawie klucza prywatnego, jednakże odtworzenie klucza prywatnego z klucza publicznego jest bardzo trudne. Klucz publiczny używany jest do szyfrowania wiadomości oraz weryfikacji wiadomości podpisanej kluczem prywatnym.
+\end{itemize}
+\end{itemize} 
+Kryptografia oparta na kluczu publicznym została opracowana w latach 70. XX wieku i cały czas stanowi solidną podstawę bezpieczeństwa komputerowego i informacyjnego. Od czasu jej powstania odkryto matematyczne funkcje, które są praktycznie nieodwracalne, np. potęgowanie liczby pierwszej i mnożenie krzywych eliptycznych. Oznacza to że łatwo obliczyć je w jednym kierunku, jednakże operacja odwrotna jest praktycznie niewykonywalna. Bitcoin korzysta z mnożenia krzywej eliptycznej jako podstawy przy wyliczaniu klucza publicznego. 
+
+\indent Aktualnie na rynku dostępne jest ponad tysiąc różnych kryptowalut, a wraz z rosnącym zainteresowaniem oraz zaufaniem społecznym ilość walut cyfrowych cały czas rośnie. Niepodważalny jest fakt, że jedną z najbardziej powszechnych i popularnych kryptowalut jest Bitcoin. Bitcoin jest całkowicie zdecentralizowaną zdigitalizowaną walutą bez globalnego emitenta, który miałby nią zarządzać oraz ją rozpowszechniać. Bazując na specjalistycznym otwartym oprogramowaniu pewna ilość bitcoinów przekazywana jest użytkownikom w zamian za działania pozwalające na działanie systemu Bitcoin. Użytkownicy Ci zwani są kopaczami, a operacje przez nich wykonywane, w celu podtrzymania systemu zwane są kopaniem. Kopanie bitcoinów poza zyskiem ze strony kopaczy, daje olbrzymi zysk dla systemu, pozwalając weryfikować zlecone transakcje.
+
+\indent Właściciele bitcoinów ustalani są na podstawie kluczy cyfrowych, adresów bitcoin oraz podpisów cyfrowych. Klucze cyfrowe nie są przechowywane w sieci, jednakże są tworzone przez użytkowników oraz przetrzymywane w ich portfelach w plikach lub bazie danych. Klucz cyfrowy jest całkowicie niezależny od protokołu sieci Bitcoin, dlatego też może być tworzony przez różnie oprogramowania. Oprogramowanie to musi zapewniać użycie bezpiecznego źródła entropii w celu wygenerowania klucza w celu zapewnienia jego klucza. Wygenerowanie istniejącego lub zbyt słabego klucza może spowodować, iż w przyszłości użytkownik utraci zebrane środki. Klucze zapewniają w sieci bitcoin:
+\begin{itemize}
+\item zdecentralizowane zaufanie
+\item zaświadczenie o własności
+\item odporny na kryptografię model bezpieczeństwa
+\end{itemize}
+Transakcje w sieci Bitcoin wymagają dodania prawidłowego podpisu do łańcucha bloków. Podpis ten może być wygenerowany przy pomocy ważnych kluczy cyfrowych. Każdy kto posiada kopię tych kluczy może kontrolować środki dostępne na koncie. Protokół sieci Bitcoin korzysta z szyfrowania asymetrycznego, a co za tym idzie w transakcji klucz publiczny odbiorcy jest prezentowy przez jego odcisk palca, zwany adresem bitcoin. Adresy te są ogólnodostępne i widoczne przez wszystkich. 
+
+\indent Z klucza publicznego korzysta się w celu odebrania bitcoinów, natomiast klucz prywatny wymagany jest do wydawania bitcoinów. Osoba wydająca Bitcoiny musi zaprezentować swój klucz publiczny oraz podpis w transakcji. Podpis za każdym razem jest inny, lecz tworzony z jednego klucza prywatnego, co pozwala na udaną weryfikację. Poprzez załączenie obu tych informacji każdy w sieci może zweryfikować oraz oraz zaakceptować transakcję jako poprawną lub ją odrzucić, w przypadku stwierdzenia, braku środków na adresie nadawcy. 
+
+\indent Klucz prywatny w sieci Bitcoin powiązany jest ścisłe z adresem, dlatego też jego utrata powoduje nieodwracalną utratę środków. Pomimo iż są one cały czas dostępne nie mogą zostać użyte bez prawidłowego podpisu generowanego z klucza prywatnego.
+
+\indent Jak już wcześniej wspomniano klucz publiczny obliczany jest z klucza prywatnego przy pomocy  \textit{mnożenia krzywej eliptycznej}, który jest niedwracalny: $$K=k*G$$ gdzie $k$ jest wartością klucza prywatnego, $G$ jest stałym punktem zwanym punktem generującym, $K$ wynikowy klucz publiczny. Operacją odwrotną do mnożenia krzywej eliptycznej jest \textit{odnalezienie logarytmu dyskretnego} i wymaga zastosowania wyszukiwania algorytmu typu \textit{brute-force}, czyli przeglądu wszystkich możliwych kombinacji.  
+
+\chapter{Blockchain - rejest transakcji}
+
+
+\chapter{Przegląd metod analiz sieci złożonych (też temporalnych) oraz analiz blockchaina}
+
+\chapter{Część eksperymentalna}
+\section{Plan badań}
+\section{Analiza blockchaina Bitcoin}
+\section{Wnioski}
+
+
+\chapter{Podsumowanie}
+
+
+\addcontentsline{toc}{chapter}{Bibliografia} %utworzenie w
+                                             %spisietreści pozycji
+                                             %Bibliografia
+
+\bibliography{bibliografia} % wstawia bibliografię korzystajšc z pliku
+                            % bibliografia.bib - dotyczy BibTeXa,
+                            % jeżeli nie korzystamy z BibTeXa należy
+                            % użyć otoczenia thebibliography
+
+%opcjonalnie może się tu pojawić spis rysunków i tabel
+% \listoffigures
+% \listoftables
+\end{document}
+
