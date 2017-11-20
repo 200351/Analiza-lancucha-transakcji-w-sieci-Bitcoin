@@ -21,7 +21,7 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{hhline}
-
+\usepackage{float}
 %pakiet wypisujący na marginesie etykiety równań i rysunków
 %zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
 %dokumentu wystarczy usunąć poniższą linię
@@ -58,11 +58,17 @@
 
 \maketitle %polecenie generujące stronę tytułową 
 
-\tableofcontents{2} %spis treści
+\tableofcontents{2} 
+%spis treści
 \chapter*{Wprowadzenie}
+\addcontentsline{toc}{chapter}{Wprowadzenie}  
 Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy. 
 
 \chapter{Kryptowaluty - wprowadzenie}
+
+\section{Wprowadzenie} 
+\label{sec:KryptowalutyWprowadzenie}
+\indent Rolą niniejszego rozdziału jest wyjaśnienie istoty oraz sposobu działania kryptowalut. Przedstawiono w nim, czym są kryptowaluty oraz kryptografia, w jaki sposób kryptowaluty korespondują z kryptografią oraz w jaki sposób kryptografia pozwala zapewnić wysokie bezpieczeństwo kryptowaluty. Na przykładzie jednej z najpopularniejszych walut cyfrowych tj. Bitcoina, zaprezentowano zastosowanie kryptografii na potrzeby jej zabezpieczenia.
 
 \section{Definicja} \label{sec:definicjaKryptowaluty}
 \indent Krypotowaluta to cyfrowy zasób mogący odpowiadać pewnej wartości środków finansowych. Zasób ten został zaprojektowany w sposób pozwalający określać go jako medium wymiany przy użyciu kryptografii, z którą jest ściśle powiązany. Kryptografia pozwala na zabezpieczenie transakcji, kontrolowanie tworzenia nowych jednostek kryptowaluty oraz weryfikację ilości posiadanych jej jednostek. Aktualnie krypotwaluty klasyfikowane są do trzech grup:
@@ -133,7 +139,7 @@ lub:
 Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako znajdującej się nad skończonym polem pierwszego rzędu p. Można ją również zapisać jako funkcję $F_p$, gdzie $p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$ jest olbrzymią liczbą pierwszą. Oznacza to, że od pewnego momentu krzywa zdefiniowana jest przy pomocy liczb zespolonych, a nie rzeczywistych. Utrudnia to jej wizualizację, gdyż wykres takiej funkcji musiałby zostać przedstawiony w dwóch wymiarach i składał by się z wielu pojedynczych punktów w przestrzeni. Na potrzeby graficznego przedstawienia  uproszczono wykres \ref{fig:krzywaEliptyczna} funkcji ~\ref{eq:2} przedstawiając go tylko w świecie liczb rzeczywistych. Wykres ten został podzielony na dwa obszary przy pomocy pionowej kreski, która nie jest częścią wykresu funkcji. Lewy obszar obejmuje wartości funkcji w świecie liczb zespolonych, który pominięto, natomiast prawa strona wykresu przedstawia funkcję \ref{eq:2}, w świecie liczb rzeczywistych. 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.9\linewidth]{pictures/elliptic.png}
+\includegraphics[width=0.6\linewidth]{pictures/elliptic.png}
 \caption{Krzywa eliptyczna zastosowana do wyznaczenia wartości G w protokole Bitcoin}
 \label{fig:krzywaEliptyczna}
 \end{figure}
@@ -147,16 +153,28 @@ Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej 
 \chapter{Blockchain - rejest transakcji}
 \label{blockchain}
 
-\section{Definicja. Czym jest łańcuch bloków?}
+\section{Wprowadzenie}
 
-\section{Definicja bloku}
 
-\section{Struktura bloku}
+\section{Definicja Blockchain'a. Czym jest łańcuch bloków?}
+\indent Łancuch bloków (ang. Blockchain) jest uporządkowaną strukturą zwaną jednokierunkową listą składającą się z bloków transakcji. Listę tę charakteryzuje połączenie wsteczne co oznacza, że blok następny wskazuje na blok poprzedni. Każdy kolejny blok ma przypisaną swoją wysokość w łańcuchu bloków. Wysokość ta ustalana jest na podstawie odległości bloku od pierwszego bloku w łańcuchu. Blok ten, zwany blokiem genezy, stanowi pierwszego \textit{rodzica} oraz wspólnego przodka dla wszystkich bloków w całym łańcuchu. 
+
+\indent Pierwszy blok łańcucha bloków w sieci Bitcoin został wygenerowany w 2009 roku i jako jedyny z bloków zapisany jest w kodzie źródłowym oprogramowania - zapewnienia to zaufanego wspólnego przodka dla wszystkich bloków łańcucha.
+
+\indent Bloki rozpoznaje się na podstawie unikalnego hash'a. Hash ten generowany jest przy użyciu algorytmu kryptograficznego SHA256. Każdy blok musi zawierać swój hash w nagłówku, tak by być łatwo identyfikowalnym. Dodatkowo w nagłowku blok zawiera informację o rodzicu, tzn. przechowuje hash rodzica. Poruszając się wstecz przy pomocy tych hash'y powróci się do pierwszego bloku - bloku genezy. 
+
+\indent Hash bloku powstaje na podstawie jego zawartości włączając w to nagłówek bloku, w którym znajduje się wspomniany hash poprzednika. Powoduje to, iż ingerencja w dane znajdujące się w blokach staje się niemożliwa ze względu na ilość obliczeń jakie należałoby wykonać, aby je zmienić. Jakakolwiek zmiana w bloku rodzica wymusza zmianę w bloku dziecka, dlatego im blok jest starszy tym jest bezpieczniejszy. Taka struktura stanowi podstawę bezpieczeństwa w sieci Bitcoin.
+
+\indent Im blok znajduje się dalej w łańcuchu tym jest stabilniejszy i pewniejszy, natomiast ostatnie bloki, tzn. najświeższe, mogą ulegać zmianom w wyścigu prowadzonym przez kopaczy. W tym samym momencie na ostatni blok może wskazywać wiele nowych bloków, wyprodukowanych w trakcie kopania. Taka sytuacja prowadzi do rozgałęzienia się łańcucha bloków. Jest to nieakceptowalne w opisywanej strukturze, dlatego ostatecznie do łańcucha bloków dołączany zostaje jeden z wygenerowanych bloków, a reszta bloków zostaje odrzucona. Bardziej szczegółowo problem ten został opisany w podrozdziale \ref{dolaczanieNowegoBloku}. \cite{AFirstCourseIn Network Theory}
+
+\section{Struktura i zawartość bloku}
 
 \section{Transakcje i opłaty}
 
 \section{Proces tworzenia kolejnego bloku z transakcjami i dołączania go do łańcucha bloków}
+\label{dolaczanieNowegoBloku}
 
+\section{Podsumowanie}
 
 \chapter{Przegląd metod analiz sieci złożonych (też temporalnych) oraz analiz blockchaina}
 
@@ -167,6 +185,7 @@ Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej 
 
 
 \chapter*{Podsumowanie}
+\addcontentsline{toc}{chapter}{Podsumowanie}  
 
 
 \addcontentsline{toc}{chapter}{Bibliografia} %utworzenie w
