@@ -1,11 +1,9 @@
 \documentclass[12pt, twoside, final, openany]{mgr}
-\usepackage{indentfirst}
 \usepackage[T1]{fontenc}
-\usepackage{polski}      
+\usepackage[polish]{babel}     
 \usepackage[UTF8]{inputenc}
 \usepackage{lmodern}
-\usepackage[nolabel]{showlabels}
-
+\usepackage{indentfirst}
 
 %pakiety do grafiki
 \usepackage{graphicx}
@@ -23,18 +21,14 @@
 \usepackage{hhline}
 \usepackage{float}
 %pakiet wypisujący na marginesie etykiety równań i rysunków
-%zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
-%dokumentu wystarczy usunąć poniższą linię
-\usepackage{showlabels}
+%\usepackage{showlabels}
 
 %definicje własnych poleceń
-\newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, działa tylko w
-                        %trybie matematycznym
+\newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, działa tylko w trybie matematycznym
 \renewcommand*\descriptionlabel[1]{\hspace\leftmargin$#1$}
 
 \newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do
                                            %składania twierdzeń
-
 %dane do złożenia strony tytułowej
 \title{Analiza łańcucha transakcji w sieci Bitcoin}
 \engtitle{The analysis of Bitcoin transactions blockchain}
@@ -53,9 +47,8 @@
 
 %tutaj zaczyna się właściwa treść dokumentu
 \begin{document}
-\def\listtablename{Spis tabel}
+\def\listtablename{Spis tabel. }
 \def\tablename{Tabela. }
-
 \maketitle %polecenie generujące stronę tytułową 
 
 \tableofcontents{2} 
@@ -63,6 +56,7 @@
 \chapter*{Wprowadzenie}
 \addcontentsline{toc}{chapter}{Wprowadzenie}  
 Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy. 
+
 
 \chapter{Kryptowaluty - wprowadzenie}
 
@@ -79,14 +73,14 @@ Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy.
 \end{itemize}
 
 \section{Bezpieczeństwo w walutach i kryptowalutach} \label{sec:bezpieczenstwoWwalutach}
-\indent Wszystkie waluty muszą być w jakiś sposób kontrolowane i podlegać różnego rodzaju zabezpieczeniom, tak aby zapobiegać oszustwom. W przypadku walut fiducjarnych, tj. walut nie mających pokrycia w dobrach materialnych, organizacje takie jak banki kontrolują podaż pieniądza oraz oznaczają fizycznie walutę, w celu uniemożliwienia jej podrobienia. Takie zabezpieczenia w pewnym stopniu ograniczają możliwości fałszerstwa, jednakże nie dają stuprocentowej pewności. Kryptowaluty podobnie jak tradycyjne waluty muszą posiadać miary zabezpieczeń w celu uniemożliwienia wpływania na stan systemu i tworzenia niekonsystentnych danych. Dodatkowo muszą one posiadać zabezpieczenia niepozwalające na wielokrotne użycie tych samych środków. W przeciwieństwie do walut fiducjarnych zasady bezpieczeństwa kryptowalut mogą bazować wyłącznie na istniejących  technologiach i nie mogą podlegać kontroli ze strony jakiejkolwiek centralnej instytucji. 
+\indent Wszystkie waluty muszą być w jakiś sposób kontrolowane i podlegać różnego rodzaju zabezpieczeniom, tak aby zapobiegać oszustwom. W przypadku walut fiducjarnych, tj. walut nie mających pokrycia w dobrach materialnych, organizacje takie jak banki kontrolują podaż pieniądza oraz oznaczają fizycznie walutę, w celu uniemożliwienia jej podrobienia. Takie zabezpieczenia w pewnym stopniu ograniczają możliwości fałszerstwa, jednakże nie dają stuprocentowej pewności. Kryptowaluty podobnie jak tradycyjne waluty muszą posiadać miary zabezpieczeń w celu uniemożliwienia wpływania na stan systemu i tworzenia niekonsystentnych danych. Dodatkowo muszą one posiadać zabezpieczenia niepozwalające na wielokrotne użycie tych samych środków. W przeciwieństwie do walut fiducjarnych zasady bezpieczeństwa kryptowalut mogą bazować wyłącznie na istniejących  technologiach i nie mogą podlegać kontroli ze strony jakiejkolwiek centralnej instytucji \cite{elektrInstruBezEmitenta}.
 
 \section{Kryptografia} \label{sec:kryptografia}
-\indent Kryptowaluty bardzo silnie bazują na kryptografii, która oferuje mechanizm bezpiecznego kodowania zasad ich systemu. Kryptografia pozwala nie tylko bronić system przed manipulacjami i matactwami, ale równie dobrze może zostać użyta w celu kodowania zasad tworzenia nowych jednostek kryptowaluty przy pomocy określonego matematycznego protokołu. 
+\indent Kryptowaluty bardzo silnie bazują na kryptografii, która oferuje mechanizm bezpiecznego kodowania zasad ich systemu. Kryptografia pozwala nie tylko bronić system przed manipulacjami i matactwami, ale równie dobrze może zostać użyta w celu kodowania zasad tworzenia nowych jednostek kryptowaluty przy pomocy określonego matematycznego protokołu\cite{Cryptocurrency}. 
 
 \indent Kryptografię można sklasyfikować jako dziedzinę wiedzy o zabezpieczeniach przed nieautoryzowanym dostępem do informacji. W dzisiejszych czasach uważa się ją nie tylko za gałąź matematyki, ale i informatyki. Kryptografię można podzielić na:
 \begin{itemize}
-\item symetryczną - polega na możliwości odczytania wiadomości przy pomocy tego samego klucza, którym została podpisana. Znaczącym problemem bezpieczeństwa w tym podejściu jest przekazanie odbiorcy klucza. 
+\item symetryczną - polega na możliwości odczytania wiadomości przy pomocy tego samego klucza, którym została podpisana. Znaczącym problemem bezpieczeństwa w~tym podejściu jest przekazanie odbiorcy klucza. 
 \item niesymetryczną - polega na istnieniu co najmniej dwóch kluczy:
 \begin{itemize}
 \item prywatny - nazwa klucza pochodzi od faktu, iż klucz ten nie powinien być nigdy nikomu udostępniony. Przy pomocy klucza prywatnego można odszyfrować wiadomość podpisaną kluczem publicznym. Pozwala również na podpisanie wiadomości, która może być później zweryfikowana za pomocą klucza publicznego.
@@ -97,22 +91,24 @@ Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy.
 \indent Kryptografia oparta na kluczu publicznym została opracowana w latach 70. XX wieku i cały czas stanowi solidną podstawę bezpieczeństwa komputerowego i informacyjnego. Od czasu jej powstania odkryto matematyczne funkcje, które są praktycznie nieodwracalne, np. \textit{potęgowanie liczby pierwszej} i \textit{mnożenie krzywych eliptycznych}. Oznacza to, że łatwo obliczyć je w jednym kierunku, jednakże operacja odwrotna jest praktycznie niewykonywalna. Bitcoin korzysta z mnożenia krzywej eliptycznej jako podstawy przy wyliczaniu klucza publicznego. Sposób użycia tej funkcji został przedstawiony w podrozdziale ~\ref{sec:tworzenieKluczyPublicznych}.
 
 \section{Zastosowanie kryptografii w sieci Bitcoin} \label{sec:zastosowanieKryptografii}
-\indent Aktualnie na rynku dostępne jest ponad tysiąc różnych kryptowalut, a wraz z rosnącym zainteresowaniem oraz zaufaniem społecznym ilość walut cyfrowych cały czas rośnie. Niepodważalny jest fakt, że jedną z najbardziej powszechnych i popularnych kryptowalut jest Bitcoin. Bitcoin jest całkowicie zdecentralizowaną, zdigitalizowaną walutą bez globalnego emitenta, który miałby nią zarządzać oraz ją rozpowszechniać. Bazując na specjalistycznym otwartym oprogramowaniu pewna ilość Bitcoinów przekazywana jest użytkownikom w zamian za działania pozwalające na działanie systemu Bitcoin. Użytkownicy Ci zwani są kopaczami, a operacje przez nich wykonywane, w celu podtrzymania systemu zwane są kopaniem. Kopanie Bitcoinów poza zyskiem ze strony kopaczy, daje olbrzymi zysk dla systemu, pozwalając weryfikować zlecone transakcje.
+\indent Aktualnie na rynku dostępne jest ponad tysiąc różnych kryptowalut, a wraz z rosnącym zainteresowaniem oraz zaufaniem społecznym ilość walut cyfrowych cały czas rośnie\cite{Zcoinmarketcap}. Niepodważalny jest fakt, że jedną z najbardziej powszechnych i popularnych kryptowalut jest Bitcoin. Bitcoin jest całkowicie zdecentralizowaną, zdigitalizowaną walutą bez globalnego emitenta, który miałby nią zarządzać oraz ją rozpowszechniać. Bazując na specjalistycznym otwartym oprogramowaniu pewna ilość Bitcoinów przekazywana jest użytkownikom w zamian za działania pozwalające na działanie systemu Bitcoin. Użytkownicy Ci zwani są kopaczami, a operacje przez nich wykonywane, w celu podtrzymania systemu zwane są kopaniem. Kopanie Bitcoinów poza zyskiem ze strony kopaczy, daje olbrzymi zysk dla systemu, pozwalając weryfikować zlecone transakcje.
 
-\indent Właściciele Bitcoinów ustalani są na podstawie kluczy cyfrowych, adresów Bitcoin oraz podpisów cyfrowych. Klucze cyfrowe nie są przechowywane w sieci, jednakże są tworzone przez użytkowników oraz przetrzymywane w ich portfelach w plikach lub bazie danych. Klucz cyfrowy jest całkowicie niezależny od protokołu sieci Bitcoin, dlatego też może być tworzony przez różnie oprogramowania. Oprogramowanie to musi zapewniać użycie bezpiecznego źródła entropii w celu wygenerowania unikalnego klucza. Wygenerowanie istniejącego lub zbyt słabego klucza może spowodować, iż w przyszłości użytkownik utraci zebrane środki. Klucze zapewniają w sieci Bitcoin:
+\indent Właściciele Bitcoinów ustalani są na podstawie kluczy cyfrowych, adresów Bitcoin oraz podpisów cyfrowych. Klucze cyfrowe nie są przechowywane w sieci, jednakże są tworzone przez użytkowników oraz przetrzymywane w ich portfelach w plikach lub bazie danych. Klucz cyfrowy jest całkowicie niezależny od protokołu sieci Bitcoin, dlatego też może być tworzony przez różnie oprogramowania. Oprogramowanie to musi zapewniać użycie bezpiecznego źródła entropii w celu wygenerowania unikalnego klucza\cite{Mastering}. Wygenerowanie istniejącego lub zbyt słabego klucza może spowodować, iż w przyszłości użytkownik utraci zebrane środki. Klucze zapewniają w sieci Bitcoin:
 \begin{itemize}
 \item zdecentralizowane zaufanie
 \item zaświadczenie o własności
 \item odporny na kryptografię model bezpieczeństwa
 \end{itemize}
-Transakcje w sieci Bitcoin wymagają dodania prawidłowego podpisu do łańcucha bloków, co dokładniej zostało opisane w rozdziale ~\ref{blockchain}. Podpis ten może być wygenerowany przy pomocy ważnych kluczy cyfrowych. Każdy kto posiada kopię tych kluczy może kontrolować środki dostępne na koncie. Protokół sieci Bitcoin korzysta z szyfrowania asymetrycznego, a co za tym idzie w transakcji klucz publiczny odbiorcy jest prezentowy przez jego odcisk palca, zwany adresem Bitcoin. Adresy te są ogólnodostępne i widoczne przez wszystkich. 
+Transakcje w sieci Bitcoin wymagają dodania prawidłowego podpisu do łańcucha bloków, co dokładniej zostało opisane w rozdziale ~\ref{blockchain}. Podpis ten może być wygenerowany przy pomocy ważnych kluczy cyfrowych. Każdy kto posiada kopię tych kluczy może kontrolować środki dostępne na koncie. Protokół sieci Bitcoin korzysta z szyfrowania asymetrycznego, a co za tym idzie w transakcji klucz publiczny odbiorcy jest prezentowy przez jego odcisk palca, zwany adresem Bitcoin. Adresy te są ogólnodostępne i widoczne przez wszystkich\cite{blockchaininfo}. 
 
 \indent Z klucza publicznego korzysta się w celu odebrania Bitcoinów, natomiast klucz prywatny wymagany jest do wydawania Bitcoinów. Osoba wydająca Bitcoiny musi zaprezentować swój klucz publiczny oraz podpis w transakcji. Podpis za każdym razem jest inny, lecz tworzony z jednego klucza prywatnego, co pozwala na udaną weryfikację przy pomocy dołączonego klucza publicznego. Poprzez załączenie obu tych informacji każdy w sieci może zweryfikować oraz zaakceptować transakcję jako poprawną lub ją odrzucić, w przypadku stwierdzenia, braku środków na adresie nadawcy. 
 
 \indent Klucz prywatny w sieci Bitcoin powiązany jest ścisłe z adresem, dlatego też jego utrata powoduje nieodwracalną utratę środków. Pomimo iż środki są cały czas dostępne, nie mogą zostać użyte bez prawidłowego podpisu generowanego z klucza prywatnego.
 
 \section{Metoda tworzenia kluczy publicznych na przykładzie sieci Bitcoin} \label{sec:tworzenieKluczyPublicznych}
-\indent Jak już wcześniej wspomniano klucz publiczny obliczany jest z klucza prywatnego przy pomocy  \textit{mnożenia krzywej eliptycznej}, Jest on praktycznie nieodwracalny i można go zapisać jako:
+\indent Jak już wcześniej wspomniano klucz publiczny obliczany jest z klucza prywatnego przy pomocy  \textit{mnożenia krzywej eliptycznej}. Metoda ta została szczegółowo opisana przez \textit{Andreas M. Antonopoulos}\cite{Mastering}, jednakże w celu przedstawienia siły zabezpieczenia, jakie daje szyfrowanie asymteryczne, przedstawiono ją poniżej w skróconej formie. 
+
+\indent Klucz publiczny jest praktycznie nieodwracalny i sposób jego wyliczania można zapisać jako:
 \begin{equation}  
 \label{eq:1}
   K = k*G, 
@@ -136,15 +132,18 @@ lub:
 \label{eq:3}
   y2 \mod p = (x^3 + 7) \mod p
 \end{equation}
-Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako znajdującej się nad skończonym polem pierwszego rzędu p. Można ją również zapisać jako funkcję $F_p$, gdzie $p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$ jest olbrzymią liczbą pierwszą. Oznacza to, że od pewnego momentu krzywa zdefiniowana jest przy pomocy liczb zespolonych, a nie rzeczywistych. Utrudnia to jej wizualizację, gdyż wykres takiej funkcji musiałby zostać przedstawiony w dwóch wymiarach i składał by się z wielu pojedynczych punktów w przestrzeni. Na potrzeby graficznego przedstawienia  uproszczono wykres \ref{fig:krzywaEliptyczna} funkcji ~\ref{eq:2} przedstawiając go tylko w świecie liczb rzeczywistych. Wykres ten został podzielony na dwa obszary przy pomocy pionowej kreski, która nie jest częścią wykresu funkcji. Lewy obszar obejmuje wartości funkcji w świecie liczb zespolonych, który pominięto, natomiast prawa strona wykresu przedstawia funkcję \ref{eq:2}, w świecie liczb rzeczywistych. 
-\begin{figure}[h]
+Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako znajdującej się nad skończonym polem pierwszego rzędu p. Można ją również zapisać jako funkcję $F_p$, gdzie $p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$ jest olbrzymią liczbą pierwszą. Oznacza to, że od pewnego momentu krzywa zdefiniowana jest przy pomocy liczb zespolonych, a nie rzeczywistych. Utrudnia to jej wizualizację, gdyż wykres takiej funkcji musiałby zostać przedstawiony w dwóch wymiarach i~składał by się z~wielu pojedynczych punktów w~przestrzeni. Na potrzeby graficznego przedstawienia  uproszczono wykres \ref{fig:krzywaEliptyczna} funkcji ~\ref{eq:2} przedstawiając go tylko w świecie liczb rzeczywistych. Wykres ten został podzielony na dwa obszary przy pomocy pionowej kreski, która nie jest częścią wykresu funkcji. Lewy obszar obejmuje wartości funkcji w świecie liczb zespolonych, który pominięto, natomiast prawa strona wykresu przedstawia funkcję \ref{eq:2}, w świecie liczb rzeczywistych.
+
+\indent Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej przez protokół Bitcoina przy użyciu standardu \textit{secp256k1}. Parametr ten jest przypisywany do wszystkich użytkowników sieci. Implikuje to wygenerowanie za każdym razem takiego samego klucza publicznego na podstawie tego samego klucza prywatnego. Klucz prywatny może mieć wartość od $1$ do prawie $2^{256}$, a zależność pomiędzy jego wartością \textit{k} i wartością klucza publicznego \textit{K} jest stała. Oznacza to, że aby przy znajomości stałej wartości \textit{G} odtworzyć wartość klucza publicznego \textit{K} wymagany jest przegląd wszystkich możliwych wartości klucza prywatnego \textit{k}. 
+
+\newpage
+\vfill
+\begin{figure}[!h]
 \centering
-\includegraphics[width=0.6\linewidth]{pictures/elliptic.png}
+\includegraphics[width=0.9\linewidth]{pictures/elliptic.png}
 \caption{Krzywa eliptyczna zastosowana do wyznaczenia wartości G w protokole Bitcoin}
 \label{fig:krzywaEliptyczna}
 \end{figure}
-
-Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej przez protokół Bitcoina przy użyciu standardu \textit{secp256k1}. Parametr ten jest przypisywany do wszystkich użytkowników sieci. Implikuje to wygenerowanie za każdym razem takiego samego klucza publicznego na podstawie tego samego klucza prywatnego. Klucz prywatny może mieć wartość od $1$ do prawie $2^{256}$, a zależność pomiędzy jego wartością \textit{k} i wartością klucza publicznego \textit{K} jest stała. Oznacza to, że aby przy znajomości stałej wartości \textit{G} odtworzyć wartość klucza publicznego \textit{k} wymagany jest przegląd wszystkich możliwych wartości klucza prywatnego \textit{k}. 
 
 \section{Podsumowanie} \label{sec:podsumowanieKryptowaluty}
 \indent Reasumując za każdą walutą musi stać określony system zabezpieczeń. W przypadku tradycyjnych walut są to centralne instytucje nadzorujące obrót i podaż określonego pieniądza. W przypadku kryptowalut bezpieczeństwo zapewnione jest poprzez zastosowanie prostej w użyciu, aczkolwiek skomplikowanej w budowie kryptografii. Zapewnia to możliwości bardzo szybkiej weryfikacji posiadanych środków, przy bardzo niskim nakładzie pracy. Dodatkowo kryptografia w porównaniu do tradycyjnych metod zabezpieczania pieniądza, nie pozwala na kontrolowanie przez jedną osobę, organizację czy instytucję poprawności danych. To zadanie wykonywane jest przez wszystkich kopaczy w sieci Bitcoin. 
@@ -157,19 +156,162 @@ Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej 
 
 
 \section{Definicja Blockchain'a. Czym jest łańcuch bloków?}
-\indent Łancuch bloków (ang. Blockchain) jest uporządkowaną strukturą zwaną jednokierunkową listą składającą się z bloków transakcji. Listę tę charakteryzuje połączenie wsteczne co oznacza, że blok następny wskazuje na blok poprzedni. Każdy kolejny blok ma przypisaną swoją wysokość w łańcuchu bloków. Wysokość ta ustalana jest na podstawie odległości bloku od pierwszego bloku w łańcuchu. Blok ten, zwany blokiem genezy, stanowi pierwszego \textit{rodzica} oraz wspólnego przodka dla wszystkich bloków w całym łańcuchu. 
+\indent Łancuch bloków (ang. Blockchain) jest uporządkowaną strukturą zwaną jednokierunkową listą składającą się z bloków transakcji. Listę tę charakteryzuje połączenie wsteczne co oznacza, że blok następny wskazuje na blok poprzedni. Każdy kolejny blok ma przypisaną swoją wysokość w łańcuchu bloków. Wysokość ta ustalana jest na podstawie odległości bloku od pierwszego bloku w łańcuchu. Blok ten, zwany blokiem genezy, stanowi pierwszego \textit{rodzica} oraz wspólnego przodka dla wszystkich bloków w całym łańcuchu\cite{BitcoinAndCryptocurrencyTechnologies}. Idea łańcucha bloków przedstawiona jest na ilustracji \ref{blockchain}.
 
-\indent Pierwszy blok łańcucha bloków w sieci Bitcoin został wygenerowany w 2009 roku i jako jedyny z bloków zapisany jest w kodzie źródłowym oprogramowania - zapewnienia to zaufanego wspólnego przodka dla wszystkich bloków łańcucha.
+\indent Pierwszy blok łańcucha bloków w sieci Bitcoin został wygenerowany w 2009 roku i~jako jedyny z bloków zapisany jest w kodzie źródłowym oprogramowania - zapewnienia to zaufanego wspólnego przodka dla wszystkich bloków łańcucha.
 
-\indent Bloki rozpoznaje się na podstawie unikalnego hash'a. Hash ten generowany jest przy użyciu algorytmu kryptograficznego SHA256. Każdy blok musi zawierać swój hash w nagłówku, tak by być łatwo identyfikowalnym. Dodatkowo w nagłowku blok zawiera informację o rodzicu, tzn. przechowuje hash rodzica. Poruszając się wstecz przy pomocy tych hash'y powróci się do pierwszego bloku - bloku genezy. 
+\indent Bloki rozpoznaje się na podstawie unikalnego hash'a, który generowany jest przy użyciu algorytmu kryptograficznego SHA256. Wynikowy hash ma 256 bitów i w celu ułatwienia jego odczytu prezentowany jest zazwyczaj w systemie heksadecymalnym. Blok nie zawierają swojego hasha w~nagłówku, co komplikuje szybkie odnajdowanie bloku. Tak by być szybko i łatwo identyfikowalnym, dane o bloku muszą być przetrzymywane w bazie danych zawierającej dodatkowe informacje o łańcuchu bloków. Każdy z węzłów sieci oblicza hash bloku w trakcie jego odbierania. W nagłówku blok zawiera informację tylko o rodzicu, tzn. przechowuje hash rodzica. Poruszając się wstecz przy pomocy tych hash'y powróci się do pierwszego bloku - bloku genezy. 
 
-\indent Hash bloku powstaje na podstawie jego zawartości włączając w to nagłówek bloku, w którym znajduje się wspomniany hash poprzednika. Powoduje to, iż ingerencja w dane znajdujące się w blokach staje się niemożliwa ze względu na ilość obliczeń jakie należałoby wykonać, aby je zmienić. Jakakolwiek zmiana w bloku rodzica wymusza zmianę w bloku dziecka, dlatego im blok jest starszy tym jest bezpieczniejszy. Taka struktura stanowi podstawę bezpieczeństwa w sieci Bitcoin.
+\indent Hash bloku powstaje na podstawie jego zawartości włączając w to nagłówek bloku, w~którym znajduje się wspomniany hash poprzednika. Powoduje to, iż ingerencja w dane znajdujące się w blokach staje się niemożliwa ze względu na ilość obliczeń jakie należałoby wykonać, aby je zmienić. Jakakolwiek zmiana w bloku rodzica wymusza zmianę w bloku dziecka, dlatego im blok jest starszy tym jest bezpieczniejszy. Taka struktura stanowi podstawę bezpieczeństwa w sieci Bitcoin.
 
-\indent Im blok znajduje się dalej w łańcuchu tym jest stabilniejszy i pewniejszy, natomiast ostatnie bloki, tzn. najświeższe, mogą ulegać zmianom w wyścigu prowadzonym przez kopaczy. W tym samym momencie na ostatni blok może wskazywać wiele nowych bloków, wyprodukowanych w trakcie kopania. Taka sytuacja prowadzi do rozgałęzienia się łańcucha bloków. Jest to nieakceptowalne w opisywanej strukturze, dlatego ostatecznie do łańcucha bloków dołączany zostaje jeden z wygenerowanych bloków, a reszta bloków zostaje odrzucona. Bardziej szczegółowo problem ten został opisany w podrozdziale \ref{dolaczanieNowegoBloku}. \cite{AFirstCourseIn Network Theory}
+\indent Im blok znajduje się dalej w łańcuchu tym jest stabilniejszy i pewniejszy, natomiast ostatnie bloki, tzn. najświeższe, mogą ulegać zmianom w wyścigu prowadzonym przez kopaczy. W tym samym momencie na ostatni blok może wskazywać wiele nowych bloków wyprodukowanych w trakcie kopania. Taka sytuacja prowadzi do rozgałęzienia się łańcucha bloków. Jest to nieakceptowalne~w opisywanej strukturze, dlatego ostatecznie do łańcucha bloków dołączany zostaje jeden~z wygenerowanych bloków, a reszta bloków zostaje odrzucona. Bardziej szczegółowo problem ten został opisany w podrozdziale \ref{dolaczanieNowegoBloku}.
+
+%\newpage
+%\vfill
+\begin{figure}[h]
+	\begin{center}
+  	\begin{tabular}{ | l  c | }
+		\hline    
+     	Hash bloku & 000000000000000000a7b47a1e58e456 \\
+    			    & fd54ae5a30cb92a35ca3e5acee065287 \\ 
+    	Wysokość bloku & 496201 \\ 
+    	Rozmiar: & 1071.607 kB \\
+   	 	Liczba transakcji: & 2032 \\ \hline
+		\textbf{Nagłówek bloku}  &  \\  	 	
+   	 	Wersja: & 0x20000000 \\   	 	
+   	 	Hash poprzedniego bloku: &  000000000000000000c6dd215947b569 \\
+    							 &  fa06de2cb856dec643daf5a7e8efc72e \\ 
+		Markle root: 			 & b96da6d09865e36e4862b5a612fb1893 \\
+								 & 275d889989feb5a7a217503fd84019e3 \\
+   		Czas wykopania: & 2017-11-26 13:51:02 \\
+   		Trudność: & 1,347,001,430,558.57\\
+   		\hline
+   		Transakcje &\\
+   		\hline 
+ 	\end{tabular}
+	\end{center}
+	
+	\begin{center}
+	\begin{tabular}{c} 
+		\big\Downarrow\
+	\end{tabular}
+	\end{center}
+	
+	\begin{center}	
+	\begin{tabular}{ | l  c | }
+		\hline    
+     	Hash bloku & 000000000000000000c6dd215947b569 \\
+    			    & fa06de2cb856dec643daf5a7e8efc72e \\ 
+    	Wysokość bloku & 496200 \\
+    	Rozmiar: & 1062.264 kB \\
+		Liczba transakcji: & 1036\\ \hline
+		\textbf{Nagłówek bloku} & \\
+   	 	Wersja: & 0x20000000 \\   	 
+   	 	Hash poprzedniego bloku: & 000000000000000000c645c295fbd91d\\
+   	 							 & f2f53e0346a4ecf8821abc8cc18fa4b1\\
+		Markle root: 			 & c6be2f384d7fa195dfac1ce367ee3a9f\\
+								 & 9ccfaf9cd337b261be1a0ff0e5d73bc4\\
+   		Czas wykopania: & 2017-11-26 13:43:52\\
+   		Trudność: & 1,347,001,430,558.57\\
+   		\hline
+   		Transakcje &\\
+   		\hline 
+ 	\end{tabular}
+ 	\end{center}
+
+	\begin{center}
+	\begin{tabular}{c}
+		\big\Downarrow
+	\end{tabular}
+	\end{center} 	
+
+ 	\begin{center}
+	\begin{tabular}{ | l  c | }
+		\hline   
+     	Hash bloku & 000000000000000000c645c295fbd91d \\
+    			    & f2f53e0346a4ecf8821abc8cc18fa4b1 \\ 
+    	Wysokość bloku & 496199 \\ 
+    	Rozmiar: & 1059.467 kB \\
+    	Liczba transakcji: & 1758 \\ \hline
+		\textbf{Nagłówek bloku} & \\
+		Wersja: & 0x20000000 \\
+   	 	Hash poprzedniego bloku: & 0000000000000000004f4c7ee2fad2a6\\
+   	 							 & 51b5bc1e7ce4254fe48490f7a1640dde\\
+		Markle root: 			 & 20e56ffedbf72d4d729d668037ac1a18 \\
+								 & 70ef937e4ae9491eb7ac7c69f7792447 \\
+   		Czas wykopania: & 2017-11-26 13:43:59 \\
+   		Trudność: & 1,347,001,430,558.57\\
+   		\hline
+   		Transakcje &\\
+   		\hline 
+ 	\end{tabular}
+ 	\end{center}
+  	\caption{Przykładowy łańcuch 3 bloków sieci Bitcoin.}
+	\label{fig:lancuchBlokow}
+\end{figure}	
 
 \section{Struktura i zawartość bloku}
+\label{zawartoscBloku}
+\indent Każdy blok ma ściśle określoną strukturę, która zawsze jest taka sama i składa się z:
+\begin{itemize}
+\item rozmiaru bloku
+\item nagłówka bloku
+\item licznika transakcji
+\item transakcji 
+\end{itemize}
 
+\indent Pierwsze trzy elementy maja stały lub ograniczony rozmiar. Rozmiar potrzebny na zapis transakcji w bloku zależy od ich ilości i jest zmienny. Poniżej przedstawiono bardziej szczegółowo każdy z elementów bloku. 
+
+\indent Rozmiar bloku zapisany jest jako podstawowa informacja na samym początku bloku. Pozwala to na odczytanie odpowiedniej ilości danych. 
+
+\indent Nagłówek bloku ma zawsze rozmiar 80 bajtów i zawiera informacje dotyczące:
+\begin{itemize}
+\item wersji protokołu sieci użytej do wygenerowania bloku - 4 bajty
+\item bloku poprzedniego, tzn. jego hash - 32 bajty
+\item podsumowania transakcji reprezentowanej przy pomocy drzewa Merkle - 32 bajty
+\item szacowany czas wykopania bloku - 4 bajty
+\item trudność wykopania bloku przy pomocy określonego algorytmu proof-of-work - 4 bajty
+\item licznik potrzebny dla algorytmu proof-of-work kopania bloku - 4 bajty
+\end{itemize} 
+
+\indent Licznik transakcji wskazuje na ilość transakcji zapisanych w rejestrze bloku i zajmuje od 1 do 9 bajtów.
+
+\indent Ostatnią, ale najważniejszą częścią bloku są transakcje. Zawartość transakcji zostały opisane w osobnym podrozdziale \ref{transakcje}.
+
+\indent Ilustracja \ref{fig:przykladowyBlok} przedstawia rzeczywiste dane jednego z bloków. Dane te zaczerpnięto ze strony blockchain.info pozwalającej na eksplorowanie Bitcoinowego Blockchaina\cite{blockchaininfo}.     
+
+\begin{figure}[!h]
+	\begin{center}	
+	\scalebox{1}{
+  	\begin{tabular}{ | l  c | }
+		\hline    
+     	Hash bloku & 000000000000000000a7b47a1e58e456 \\
+    			    & fd54ae5a30cb92a35ca3e5acee065287 \\ 
+    	Wysokość bloku & 496201 \\
+    	Rozmiar: & 1071.607 kB \\
+    	Liczba transakcji: & 2032 \\  \hline
+		\textbf{Nagłówek bloku}  &  \\ 
+   	 	Wersja: & 0x20000000 \\
+   	 	Hash poprzedniego bloku: & 000000000000000000c6dd215947b569 \\
+    							 & fa06de2cb856dec643daf5a7e8efc72e \\ 
+		Markle root: 			 & b96da6d09865e36e4862b5a612fb1893 \\
+								 & 275d889989feb5a7a217503fd84019e3 \\
+   		Czas wykopania: & 2017-11-26 13:51:02 \\
+   		Trudność: & 1,347,001,430,558.57\\
+   		\hline
+   		Transakcje &\\
+   		\hline 
+ 	\end{tabular}}
+	\end{center}
+	\caption{Przykładowa rzeczywista zawartość bloku sieci Bitcoin.}
+	\label{fig:przykladowyBlok}
+\end{figure}
 \section{Transakcje i opłaty}
+\label{transakcje}
+
+\indent Jednym z najważniejszych elementów w sieci Bitcoin są transakcje, które pozwalają na przekazywanie środków pomiędzy klientami sieci. Jak wspomniano w rozdziale \ref{zawartoscBloku} transakcje są zapisywane w blokach, w łańcuchu bloków. Łańcuch ten jest publicznie dostępny, co implikuje właściwość transakcji jako publicznych. 
+
+\indent Każda nowo powstała transakcja rozgłaszana jest w sieci, gdzie jest weryfikowana przez węzły, a w konsekwencji dodana do nowo tworzonego bloku, który zostaje dołączony do blockchaina. Proces ten jest bardzo pracochłonny i wymaga rozesłania informacji o nowej transakcji w całej sieci. Sieć Bitcoin oparta jest na modelu komunikacji typu P2P (peer-to-peer), oznacza to, że każdy z węzłów połączony jest z paroma innymi uczestnikami sieci, a z kolei Ci uczestnicy połączeni są z paroma kolejnymi uczestnikami. Powoduje to rozprzestrzenianie się informacji w sieci wykładniczo. Każdy z węzłów sieci po otrzymaniu transakcji weryfikuje ją pod kątem poprawności. W przypadku wykrycia niepoprawnej transakcji jest ona natychmiastowo odrzucana i dalej nierozpowszechniana. Komunikacja w sieci Bitcoin jest synchroniczna. Oznacza to, że węzeł, który rozgłosił transakcję dostaje informację zwrotną od węzłów z nim połączonymi o poprawności stworzonej transakcji. Kryptografia asymetryczna pozwala na anonimizację węzłów w sieci.  Nie muszą się one znać, ani sobie ufać. Wystarczy, że transakcja jest prawidłowo podpisana, a będzie przekazana dalej. Struktura transakcji oraz proces przekazywania Bitcoinów przy pomocy transakcji jest tak skonstruowany, że nie potrzebuje żadnych dodatkowych zabezpieczeń. Może być rozpowszechniany bez jakiegokolwiek szyfrowania, co w porównaniu z walutami fiducjarnymi jest ogromnym zyskiem\cite{Mastering}.
 
 \section{Proces tworzenia kolejnego bloku z transakcjami i dołączania go do łańcucha bloków}
 \label{dolaczanieNowegoBloku}
@@ -187,18 +329,11 @@ Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej 
 \chapter*{Podsumowanie}
 \addcontentsline{toc}{chapter}{Podsumowanie}  
 
+\bibliographystyle{unsrt}
+\addcontentsline{toc}{chapter}{Bibliografia}
+\bibliography{bibliografia2}
 
-\addcontentsline{toc}{chapter}{Bibliografia} %utworzenie w
-                                             %spisietreści pozycji
-                                             %Bibliografia
-
-\bibliography{bibliografia} % wstawia bibliografię korzystajšc z pliku
-                            % bibliografia.bib - dotyczy BibTeXa,
-                            % jeżeli nie korzystamy z BibTeXa należy
-                            % użyć otoczenia thebibliography
-
-%opcjonalnie może się tu pojawić spis rysunków i tabel
-% \listoffigures
-% \listoftables
+\listoffigures
+\listoftables
 \end{document}
 
