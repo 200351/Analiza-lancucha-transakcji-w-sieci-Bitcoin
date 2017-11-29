@@ -1,6 +1,6 @@
 \documentclass[12pt, twoside, final, openany]{mgr}
 \usepackage[T1]{fontenc}
-\usepackage[polish]{babel}     
+\usepackage[polish]{babel}
 \usepackage[UTF8]{inputenc}
 \usepackage{lmodern}
 \usepackage{indentfirst}
@@ -55,7 +55,7 @@
 \tableofcontents{2} 
 %spis treści
 \chapter*{Wprowadzenie}
-\addcontentsline{toc}{chapter}{Wprowadzenie}  
+\addcontentsline{toc}{chapter}{Wprowadzenie}
 Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy. 
 
 
@@ -74,7 +74,7 @@ Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy.
 \end{itemize}
 
 \section{Bezpieczeństwo w walutach i kryptowalutach} \label{sec:bezpieczenstwoWwalutach}
-\indent Wszystkie waluty muszą być w jakiś sposób kontrolowane i podlegać różnego rodzaju zabezpieczeniom, tak aby zapobiegać oszustwom. W przypadku walut fiducjarnych, tj. walut nie mających pokrycia w dobrach materialnych, organizacje takie jak banki kontrolują podaż pieniądza oraz oznaczają fizycznie walutę, w celu uniemożliwienia jej podrobienia. Takie zabezpieczenia w pewnym stopniu ograniczają możliwości fałszerstwa, jednakże nie dają stuprocentowej pewności. Kryptowaluty podobnie jak tradycyjne waluty muszą posiadać miary zabezpieczeń w celu uniemożliwienia wpływania na stan systemu i tworzenia niekonsystentnych danych. Dodatkowo muszą one posiadać zabezpieczenia niepozwalające na wielokrotne użycie tych samych środków. W przeciwieństwie do walut fiducjarnych zasady bezpieczeństwa kryptowalut mogą bazować wyłącznie na istniejących  technologiach i nie mogą podlegać kontroli ze strony jakiejkolwiek centralnej instytucji \cite{elektrInstruBezEmitenta}.
+\indent Wszystkie waluty muszą być w jakiś sposób kontrolowane i podlegać różnego rodzaju zabezpieczeniom, tak aby zapobiegać oszustwom. W przypadku walut fiducjarnych, tj. walut nie mających pokrycia w dobrach materialnych, organizacje takie jak banki kontrolują podaż pieniądza oraz oznaczają fizycznie walutę, w celu uniemożliwienia jej podrobienia. Takie zabezpieczenia w pewnym stopniu ograniczają możliwości fałszerstwa, jednakże nie dają stuprocentowej pewności. Kryptowaluty podobnie jak tradycyjne waluty muszą posiadać miary zabezpieczeń w celu uniemożliwienia wpływania na stan systemu i tworzenia niekonsystentnych danych. Dodatkowo muszą one posiadać zabezpieczenia niepozwalające na wielokrotne użycie tych samych środków. W przeciwieństwie do walut fiducjarnych zasady bezpieczeństwa kryptowalut mogą bazować wyłącznie na istniejących technologiach i nie mogą podlegać kontroli ze strony jakiejkolwiek centralnej instytucji \cite{elektrInstruBezEmitenta}.
 
 \section{Kryptografia} \label{sec:kryptografia}
 \indent Kryptowaluty bardzo silnie bazują na kryptografii, która oferuje mechanizm bezpiecznego kodowania zasad ich systemu. Kryptografia pozwala nie tylko bronić system przed manipulacjami i matactwami, ale równie dobrze może zostać użyta w celu kodowania zasad tworzenia nowych jednostek kryptowaluty przy pomocy określonego matematycznego protokołu\cite{Cryptocurrency}. 
@@ -107,10 +107,10 @@ Transakcje w sieci Bitcoin wymagają dodania prawidłowego podpisu do łańcucha
 \indent Klucz prywatny w sieci Bitcoin powiązany jest ścisłe z adresem, dlatego też jego utrata powoduje nieodwracalną utratę środków. Pomimo iż środki są cały czas dostępne, nie mogą zostać użyte bez prawidłowego podpisu generowanego z klucza prywatnego.
 
 \section{Metoda tworzenia kluczy publicznych na przykładzie sieci Bitcoin} \label{sec:tworzenieKluczyPublicznych}
-\indent Jak już wcześniej wspomniano klucz publiczny obliczany jest z klucza prywatnego przy pomocy  \textit{mnożenia krzywej eliptycznej}. Metoda ta została szczegółowo opisana przez \textit{Andreas M. Antonopoulos}\cite{Mastering}, jednakże w celu przedstawienia siły zabezpieczenia, jakie daje szyfrowanie asymteryczne, przedstawiono ją poniżej w skróconej formie. 
+\indent Jak już wcześniej wspomniano klucz publiczny obliczany jest z klucza prywatnego przy pomocy \textit{mnożenia krzywej eliptycznej}. Metoda ta została szczegółowo opisana przez \textit{Andreas M. Antonopoulos}\cite{Mastering}, jednakże w celu przedstawienia siły zabezpieczenia, jakie daje szyfrowanie asymteryczne, przedstawiono ją poniżej w skróconej formie. 
 
 \indent Klucz publiczny jest praktycznie nieodwracalny i sposób jego wyliczania można zapisać jako:
-\begin{equation}  
+\begin{equation}
 \label{eq:1}
   K = k*G, 
 \end{equation} 
@@ -121,9 +121,9 @@ gdzie:
 \item[K] jest wynikowym kluczem publicznym.
 \end{description}
 
-Kryptografia krzywej eliptycznej jest rodzajem kryptografi asymetrycznej bazującej na problemie logarytmu dyskretnego wyrażona jako sumy i iloczyny punktów na tej krzywej eliptycznej. Dlatego też, operacją odwrotną do mnożenia krzywej eliptycznej jest \textit{odnalezienie logarytmu dyskretnego} i wymaga zastosowania wyszukiwania przy pomocy algorytmu typu \textit{brute-force}, czyli przeglądu zupełnego.  
+Kryptografia krzywej eliptycznej jest rodzajem kryptografi asymetrycznej bazującej na problemie logarytmu dyskretnego wyrażona jako sumy i iloczyny punktów na tej krzywej eliptycznej. Dlatego też, operacją odwrotną do mnożenia krzywej eliptycznej jest \textit{odnalezienie logarytmu dyskretnego} i wymaga zastosowania wyszukiwania przy pomocy algorytmu typu \textit{brute-force}, czyli przeglądu zupełnego.
 
-\indent W przypadku Bitcoina parametry krzywej eliptycznej są ściśle określone i zdefiniowane przy pomocy standardu zwanego \textit{secp256k1}. Standard ten został ustalony przez amerykańską Narodową Instytucję Standaryzacji i Technologii. Zastosowana w tej kryptowalucie  krzywa eliptyczna tworzona jest na podstawie określonego zbioru stałych matematycznych i jest wyrażana przy pomocy funkcji:
+\indent W przypadku Bitcoina parametry krzywej eliptycznej są ściśle określone i zdefiniowane przy pomocy standardu zwanego \textit{secp256k1}. Standard ten został ustalony przez amerykańską Narodową Instytucję Standaryzacji i Technologii. Zastosowana w tej kryptowalucie krzywa eliptyczna tworzona jest na podstawie określonego zbioru stałych matematycznych i jest wyrażana przy pomocy funkcji:
 \begin{equation}
   y^2 = x^3 + 7 
 \end{equation} 
@@ -133,7 +133,7 @@ lub:
 \label{eq:3}
   y2 \mod p = (x^3 + 7) \mod p
 \end{equation}
-Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako znajdującej się nad skończonym polem pierwszego rzędu p. Można ją również zapisać jako funkcję $F_p$, gdzie $p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$ jest olbrzymią liczbą pierwszą. Oznacza to, że od pewnego momentu krzywa zdefiniowana jest przy pomocy liczb zespolonych, a nie rzeczywistych. Utrudnia to jej wizualizację, gdyż wykres takiej funkcji musiałby zostać przedstawiony w dwóch wymiarach i~składał by się z~wielu pojedynczych punktów w~przestrzeni. Na potrzeby graficznego przedstawienia  uproszczono wykres \ref{fig:krzywaEliptyczna} funkcji ~\ref{eq:2} przedstawiając go tylko w świecie liczb rzeczywistych. Wykres ten został podzielony na dwa obszary przy pomocy pionowej kreski, która nie jest częścią wykresu funkcji. Lewy obszar obejmuje wartości funkcji w świecie liczb zespolonych, który pominięto, natomiast prawa strona wykresu przedstawia funkcję \ref{eq:2}, w świecie liczb rzeczywistych.
+Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako znajdującej się nad skończonym polem pierwszego rzędu p. Można ją również zapisać jako funkcję $F_p$, gdzie $p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$ jest olbrzymią liczbą pierwszą. Oznacza to, że od pewnego momentu krzywa zdefiniowana jest przy pomocy liczb zespolonych, a nie rzeczywistych. Utrudnia to jej wizualizację, gdyż wykres takiej funkcji musiałby zostać przedstawiony w dwóch wymiarach i~składał by się z~wielu pojedynczych punktów w~przestrzeni. Na potrzeby graficznego przedstawienia uproszczono wykres \ref{fig:krzywaEliptyczna} funkcji ~\ref{eq:2} przedstawiając go tylko w świecie liczb rzeczywistych. Wykres ten został podzielony na dwa obszary przy pomocy pionowej kreski, która nie jest częścią wykresu funkcji. Lewy obszar obejmuje wartości funkcji w świecie liczb zespolonych, który pominięto, natomiast prawa strona wykresu przedstawia funkcję \ref{eq:2}, w świecie liczb rzeczywistych.
 
 \indent Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej przez protokół Bitcoina przy użyciu standardu \textit{secp256k1}. Parametr ten jest przypisywany do wszystkich użytkowników sieci. Implikuje to wygenerowanie za każdym razem takiego samego klucza publicznego na podstawie tego samego klucza prywatnego. Klucz prywatny może mieć wartość od $1$ do prawie $2^{256}$, a zależność pomiędzy jego wartością \textit{k} i wartością klucza publicznego \textit{K} jest stała. Oznacza to, że aby przy znajomości stałej wartości \textit{G} odtworzyć wartość klucza publicznego \textit{K} wymagany jest przegląd wszystkich możliwych wartości klucza prywatnego \textit{k}. 
 
@@ -277,7 +277,7 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 
 \indent Ostatnią, ale najważniejszą częścią bloku są transakcje. Zawartość transakcji zostały opisane w osobnym podrozdziale \ref{transakcje}.
 
-\indent Ilustracja \ref{fig:przykladowyBlok} przedstawia rzeczywiste dane jednego z bloków. Dane te zaczerpnięto ze strony blockchain.info pozwalającej na eksplorowanie Bitcoinowego Blockchaina\cite{blockchaininfo}.     
+\indent Ilustracja \ref{fig:przykladowyBlok} przedstawia rzeczywiste dane jednego z bloków. Dane te zaczerpnięto ze strony blockchain.info pozwalającej na eksplorowanie Bitcoinowego Blockchaina\cite{blockchaininfo}.
 
 \begin{figure}
 	\begin{center}	
@@ -310,11 +310,11 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 
 \indent Jednym z najważniejszych elementów w sieci Bitcoin są transakcje, które pozwalają na przekazywanie środków pomiędzy klientami sieci. Jak wspomniano w rozdziale \ref{zawartoscBloku} transakcje są zapisywane w blokach, w łańcuchu bloków. Łańcuch ten jest publicznie dostępny, co implikuje właściwość transakcji jako publicznych. 
 
-\indent Każda nowo powstała transakcja rozgłaszana jest w sieci, gdzie jest weryfikowana przez węzły, a w konsekwencji dodana do nowo tworzonego bloku, który zostaje dołączony do blockchaina. Proces ten jest bardzo pracochłonny i wymaga rozesłania informacji o nowej transakcji w całej sieci. Sieć Bitcoin oparta jest na modelu komunikacji typu P2P (peer-to-peer). Oznacza to, że każdy z węzłów połączony jest z paroma innymi uczestnikami sieci, a z kolei Ci uczestnicy połączeni są z paroma kolejnymi uczestnikami. Powoduje to rozprzestrzenianie się informacji w sieci wykładniczo. Każdy z węzłów sieci po otrzymaniu transakcji weryfikuje ją pod kątem poprawności. W przypadku wykrycia niepoprawnej transakcji jest ona natychmiastowo odrzucana i przestaje być dalej rozpowszechniana. Komunikacja w sieci Bitcoin jest synchroniczna. Oznacza to, że węzeł, który rozgłosił transakcję dostaje informację zwrotną od węzłów z nim połączonymi o poprawności stworzonej transakcji. Kryptografia asymetryczna pozwala na anonimizację węzłów w sieci. Nie muszą się one znać, ani sobie ufać. Wystarczy, że transakcja jest prawidłowo podpisana, a będzie przekazana dalej. Struktura transakcji oraz proces przekazywania Bitcoinów przy pomocy transakcji jest tak skonstruowany, że nie potrzebuje żadnych dodatkowych zabezpieczeń. Może być rozpowszechniany bez jakiegokolwiek szyfrowania, co w porównaniu z walutami fiducjarnymi jest ogromnym zyskiem\cite{Mastering}.
+\indent Każda nowo powstała transakcja rozgłaszana jest w sieci, gdzie jest weryfikowana przez węzły, a w konsekwencji dodana do nowo tworzonego bloku, który zostaje dołączony do blockchaina. Proces ten jest bardzo pracochłonny i wymaga rozesłania informacji o nowej transakcji w całej sieci. Sieć Bitcoin oparta jest na modelu komunikacji typu P2P (peer-to-peer). Oznacza to, że każdy z węzłów połączony jest z paroma innymi uczestnikami sieci, a z kolei Ci uczestnicy połączeni są z paroma kolejnymi uczestnikami. Powoduje to rozprzestrzenianie się informacji w sieci wykładniczo. Każdy z węzłów sieci po otrzymaniu transakcji weryfikuje ją pod kątem poprawności. W przypadku wykrycia niepoprawnej transakcji jest ona natychmiastowo odrzucana i~przestaje być dalej rozpowszechniana. Komunikacja w sieci Bitcoin jest synchroniczna. Oznacza to, że węzeł, który rozgłosił transakcję dostaje informację zwrotną od węzłów z~nim połączonymi o~poprawności stworzonej transakcji. Kryptografia asymetryczna pozwala na anonimizację węzłów w~sieci. Nie muszą się one znać, ani sobie ufać. Wystarczy, że transakcja jest prawidłowo podpisana, a będzie przekazana dalej. Struktura transakcji oraz proces przekazywania Bitcoinów przy pomocy transakcji są skonstruowane w sposób w pełni zabezpieczający środki. Przekaz nie potrzebuje żadnych dodatkowych zabezpieczeń takich jak, np. szyfrowanie łącza. Może być rozpowszechniany bez jakiegokolwiek szyfrowania, co w porównaniu z~walutami fiducjarnymi jest ogromnym zyskiem\cite{Mastering}.
 
 \indent Struktura transakcji składa się elementów zaprezentowanych w tabeli \ref{tab:strukturaTransakcji}, jednakże najważniejsze z nich to:
 \begin{itemize}
-\item adresy kluczy publicznych , reprezentujące źródło środków potrzebnych na pokrycie deklarowanej sumy przekazu,
+\item adresy kluczy publicznych (wejścia do transakcji), reprezentujące źródło środków potrzebnych na pokrycie deklarowanej sumy przekazu,
 \item adresy kluczy publicznych (wyjścia z transakcji), reprezentujące cel przekazu.
 \end{itemize}
 \begin{table}[!h]
@@ -337,15 +337,15 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 \end{center}
 \end{table}
 
-\indent Przekazywane Bitcoiny nie są fizycznie dostępne na adresach wyjściowych, a jedynie są zablokowane kluczem znanym tylko właścicielom tych adresów. Po podpisaniu transakcji środki z adresów wejściowych zostaną zablokowane na rzecz adresów wyjściowych i tylko właściciele tych adresów będą mogli uwierzytelniać kolejne przekazy, używając ich jako adresów wejściowych. 
+\indent Przekazywane Bitcoiny nie są fizycznie dostępne na adresach wejściowych, a jedynie są zablokowane kluczem znanym tylko właścicielom tych adresów. Po podpisaniu transakcji środki z adresów wejściowych zostaną zablokowane na rzecz adresów wyjściowych i tylko właściciele tych adresów będą mogli uwierzytelniać kolejne przekazy, używając ich jako adresów wejściowych. 
 
 \indent W celu określenia aktualnie dostępnych środków na adresie wejściowym zliczane są \textit{niewydatkowane bloki wynikowe transakcji} lub \textit{niewydane wyjścia transakcyjne} zwane UTXO (ang. Unspend Transaction Output). UTXO są to niepodzielne oraz jeszcze nie wydane kawałki bitcoinów. Bitcoiny dzielą się na mniejsze kawałki zwane tzw. Satoshi i UTXO mogą składać się z ich wielokrotności. 
 
-\indent W momencie potwierdzania transakcji weryfikowane są wszystkie UTXO przypisane do adresów wyjściowych, a następnie po wpisaniu jej do łańcucha bloków rejestrowany jest nowy zablokowany UTXO przypisany do adresu wyjściowego. Jak pisano wcześniej UTXO może zostać odblokowany jedynie przez jego właściciela. W sieci Bitcoin nie istnieje jeden główny bilans wszystkich adresów. Podczas realizacji każdej z transakcji sprawdzany jest cały łańcuch bloków i~sumowane są wszystkie UTXO należące do określonego klucza publicznego. Właściciel UTXO podczas jego użycia musi wydać całą zablokowaną sumę Satoshi, dlatego też chęć przelania tylko części środków na UTXO powoduje stworzenie wielu nowych UTXO. Część z nich wskazywać będzie na adresy wyjściowe, a część jako reszta z UTXO będzie wskazywać na adres nadawcy transakcji. Bardzo często zdarza się sytuacja, w której to właściciel wielu UTXO chce przelać środki na jeden adres. W takim przypadku dozwolone jest połączenie tych jednostek w celu osiągnięcia oczekiwanej sumy bitcoinów i przekazania jej na adres odbiorcy. 
+\indent W momencie potwierdzania transakcji weryfikowane są wszystkie UTXO przypisane do adresów wejściowych, a następnie po wpisaniu jej do łańcucha bloków rejestrowany jest nowy zablokowany UTXO przypisany do adresu wyjściowego. Jak pisano wcześniej UTXO może zostać odblokowany jedynie przez jego właściciela. W sieci Bitcoin nie istnieje jeden główny bilans wszystkich adresów. Podczas realizacji każdej z transakcji sprawdzany jest cały łańcuch bloków i~sumowane są wszystkie UTXO należące do określonego klucza publicznego. Właściciel UTXO podczas jego użycia musi wydać całą zablokowaną sumę Satoshi, dlatego też chęć przelania tylko części środków na UTXO powoduje stworzenie wielu nowych UTXO. Część z nich wskazywać będzie na adresy wyjściowe, a część jako reszta z UTXO będzie wskazywać na adres nadawcy transakcji. Bardzo często zdarza się sytuacja, w której to właściciel wielu UTXO chce przelać środki na jeden adres. W takim przypadku dozwolone jest połączenie tych jednostek w celu osiągnięcia oczekiwanej sumy bitcoinów i przekazania jej na adres odbiorcy. 
 
 \indent Każdy z bloków zawiera jedną transakcję stworzoną przez jednego uczestnika sieci - zwycięskiego kopacza, który otrzymuje profity z tytułu podpisania bloku. Jest to zawsze pierwsza transakcja tzw. \textit{coinbase}. Proces ten został krótko opisany w podrozdziale \ref{dolaczanieNowegoBloku}.
 
-\indent Wszystkie adresy wejściowe można traktować jako punktory do wszystkich transakcji wyjściowych, zrealizowanych oraz niezrealizowanych (z nich powstają UTXO). Zrealizowane transakcje zawierają również odblokowane skrypty, co pozwala na przekazanie ich dalej. Należy podkreślić, że adresy wejściowe nie niosą informacji o ilości posiadanych środków, a jedynie informację o miejscu, w którym można się o tym dowiedzieć. Poniżej, w tabeli \ref{tab:strukturaWyjscia}, przedstawiono strukturę wyjścia transakcji.
+\indent Wszystkie adresy wejściowe można traktować jako punktory do transakcji wyjściowych, zrealizowanych oraz niezrealizowanych (z nich powstają UTXO). Zrealizowane transakcje zawierają również odblokowane skrypty, co pozwala na przekazanie ich dalej. Należy podkreślić, że adresy wejściowe nie niosą informacji o ilości posiadanych środków, a jedynie informację o miejscu, w którym można się o tym dowiedzieć. Poniżej, w tabeli \ref{tab:strukturaWyjscia}, przedstawiono strukturę wyjścia transakcji.
 \begin{table}[!h]
 \begin{center}
 \begin{tabular}{{|>{\raggedright\arraybackslash}m{40mm}|m{20mm}|m{80mm}|}}
@@ -383,7 +383,7 @@ Pozwala ona spełnić wszystkie warunki określone w tabeli \ref{tab:strukturaWy
 \label{tab:strukturaTworzeniaTransakcji}
 \end{table}
 
-\indent Za każdą przeprowadzaną transakcję trzeba ponieść koszty operacyjne. W przypadku Bitcoina jest to opłata dla górników mająca zachęcać do kopania. Wielkość opłaty nie zależy od ilość przekazywanych Bitcoinów, a od wielkości stworzonej transakcji. Oznacza to, że osoba, która posiada wiele UTXO i chce je skonsumować w jednej transakcji musi zapłacić wyższą opłatę. Wynika to z faktu, że górnik w celu weryfikacji posiadanych UTXO musi wykonać dużo więcej pracy, niż gdyby transfer odbywał się z jednego UTXO. Górnicy bardzo często ustalają kryteria i tworzą priorytety transakcji, które chcą przetwarzać. W~niektórych przypadkach może się okazać, że przez zbyt niską opłatę żaden z górników nie będzie podejmował się wyzwania sprawdzenia i podpisania konkretnej transakcji. Jeżeli transakcja nie zostanie podpisana przez górnika nie znajdzie się w~wytwarzanym bloku. Transakcja ta \textit{wisieć} będzie w sieci do czasu przetworzenia przez któregoś z kopaczy.
+\indent Za każdą przeprowadzaną transakcję trzeba ponieść koszty operacyjne. W przypadku Bitcoina jest to opłata dla górników mająca zachęcać do kopania. Wielkość opłaty nie zależy od ilość przekazywanych Bitcoinów, a od wielkości stworzonej transakcji. Oznacza to, że osoba, która posiada wiele UTXO i chce je skonsumować w jednej transakcji musi zapłacić wyższą opłatę. Wynika to z faktu, że górnik w celu weryfikacji posiadanych UTXO musi wykonać dużo więcej pracy, niż gdyby transfer odbywał się z jednego UTXO. Górnicy bardzo często ustalają kryteria i tworzą priorytety transakcji, które chcą przetwarzać. W~niektórych przypadkach może się okazać, że przez zbyt niską opłatę żaden z~górników nie będzie podejmował się wyzwania sprawdzenia i~podpisania konkretnej transakcji. Jeżeli transakcja nie zostanie podpisana przez górnika nie znajdzie się w~wytwarzanym bloku. Transakcja ta \textit{wisieć} będzie w sieci do czasu przetworzenia przez któregoś z kopaczy.
 
 \section{Proces tworzenia kolejnego bloku z transakcjami i dołączania go do łańcucha bloków}
 \label{dolaczanieNowegoBloku}
