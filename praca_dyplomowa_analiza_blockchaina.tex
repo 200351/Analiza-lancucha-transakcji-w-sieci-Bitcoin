@@ -3,12 +3,13 @@
 \usepackage[polish]{babel}
 \usepackage[UTF8]{inputenc}
 \usepackage{lmodern}
-\usepackage{indentfirst}
+%\usepackage{indentfirst}
 \usepackage{pbox}
+\usepackage{courier}
 
 %pakiety do grafiki
 \usepackage{graphicx}
-\usepackage{subfigure}
+\usepackage{subcaption}
 \usepackage{psfrag}
 
 %pakiety dodające dużo dodatkowych poleceń matematycznych
@@ -27,7 +28,6 @@
 %definicje własnych poleceń
 \newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, działa tylko w trybie matematycznym
 \renewcommand*\descriptionlabel[1]{\hspace\leftmargin$#1$}
-
 \newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do
                                            %składania twierdzeń
 %dane do złożenia strony tytułowej
@@ -68,9 +68,9 @@ Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy.
 \section{Definicja} \label{sec:definicjaKryptowaluty}
 \indent Krypotowaluta to cyfrowy zasób mogący odpowiadać pewnej wartości środków finansowych. Zasób ten został zaprojektowany w sposób pozwalający określać go jako medium wymiany przy użyciu kryptografii, z którą jest ściśle powiązany. Kryptografia pozwala na zabezpieczenie transakcji, kontrolowanie tworzenia nowych jednostek kryptowaluty oraz weryfikację ilości posiadanych jej jednostek. Aktualnie krypotwaluty klasyfikowane są do trzech grup:
 \begin{itemize}
-\item walut cyfrowych
-\item walut alternatywnych
-\item walut wirtualnych
+\item[--] walut cyfrowych,
+\item[--] walut alternatywnych,
+\item[--] walut wirtualnych.
 \end{itemize}
 
 \section{Bezpieczeństwo w walutach i kryptowalutach} \label{sec:bezpieczenstwoWwalutach}
@@ -81,11 +81,11 @@ Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy.
 
 \indent Kryptografię można sklasyfikować jako dziedzinę wiedzy o zabezpieczeniach przed nieautoryzowanym dostępem do informacji. W dzisiejszych czasach uważa się ją nie tylko za gałąź matematyki, ale i informatyki. Kryptografię można podzielić na:
 \begin{itemize}
-\item symetryczną - polega na możliwości odczytania wiadomości przy pomocy tego samego klucza, którym została podpisana. Znaczącym problemem bezpieczeństwa w~tym podejściu jest przekazanie odbiorcy klucza. 
-\item niesymetryczną - polega na istnieniu co najmniej dwóch kluczy:
+\item[A.] Symetryczną - polega na możliwości odczytania wiadomości przy pomocy tego samego klucza, którym została podpisana. Znaczącym problemem bezpieczeństwa w~tym podejściu jest przekazanie odbiorcy klucza. 
+\item[B.] Niesymetryczną - polega na istnieniu co najmniej dwóch kluczy:
 \begin{itemize}
-\item prywatny - nazwa klucza pochodzi od faktu, iż klucz ten nie powinien być nigdy nikomu udostępniony. Przy pomocy klucza prywatnego można odszyfrować wiadomość podpisaną kluczem publicznym. Pozwala również na podpisanie wiadomości, która może być później zweryfikowana za pomocą klucza publicznego.
-\item publiczny - nazwa klucza pochodzi od faktu, iż klucz ten może zostać bez żadnych zastrzeżeń upubliczniony. Klucz publiczny tworzy się na podstawie klucza prywatnego, jednakże odtworzenie klucza prywatnego z klucza publicznego jest bardzo trudne. Klucz publiczny używany jest do szyfrowania wiadomości oraz weryfikacji wiadomości podpisanej kluczem prywatnym.
+\item[--] Prywatny - nazwa klucza pochodzi od faktu, iż klucz ten nie powinien być nigdy nikomu udostępniony. Przy pomocy klucza prywatnego można odszyfrować wiadomość podpisaną kluczem publicznym. Pozwala również na podpisanie wiadomości, która może być później zweryfikowana za pomocą klucza publicznego.
+\item[--] Publiczny - nazwa klucza pochodzi od faktu, iż klucz ten może zostać bez żadnych zastrzeżeń upubliczniony. Klucz publiczny tworzy się na podstawie klucza prywatnego, jednakże odtworzenie klucza prywatnego z klucza publicznego jest bardzo trudne. Klucz publiczny używany jest do szyfrowania wiadomości oraz weryfikacji wiadomości podpisanej kluczem prywatnym.
 \end{itemize}
 \end{itemize} 
 
@@ -96,9 +96,9 @@ Do napisania na końcu. Ma zawierać informacje o motywacji i celu pracy.
 
 \indent Właściciele Bitcoinów ustalani są na podstawie kluczy cyfrowych, adresów Bitcoin oraz podpisów cyfrowych. Klucze cyfrowe nie są przechowywane w sieci, jednakże są tworzone przez użytkowników oraz przetrzymywane w ich portfelach w plikach lub bazie danych. Klucz cyfrowy jest całkowicie niezależny od protokołu sieci Bitcoin, dlatego też może być tworzony przez różnie oprogramowania. Oprogramowanie to musi zapewniać użycie bezpiecznego źródła entropii w celu wygenerowania unikalnego klucza\cite{Mastering}. Wygenerowanie istniejącego lub zbyt słabego klucza może spowodować, iż w przyszłości użytkownik utraci zebrane środki. Klucze zapewniają w sieci Bitcoin:
 \begin{itemize}
-\item zdecentralizowane zaufanie
-\item zaświadczenie o własności
-\item odporny na kryptografię model bezpieczeństwa
+\item[--] zdecentralizowane zaufanie,
+\item[--] zaświadczenie o własności,
+\item[--] odporny na kryptografię model bezpieczeństwa.
 \end{itemize}
 Transakcje w sieci Bitcoin wymagają dodania prawidłowego podpisu do łańcucha bloków, co dokładniej zostało opisane w rozdziale ~\ref{blockchain}. Podpis ten może być wygenerowany przy pomocy ważnych kluczy cyfrowych. Każdy kto posiada kopię tych kluczy może kontrolować środki dostępne na koncie. Protokół sieci Bitcoin korzysta z szyfrowania asymetrycznego, a co za tym idzie w transakcji klucz publiczny odbiorcy jest prezentowy przez jego odcisk palca, zwany adresem Bitcoin. Adresy te są ogólnodostępne i widoczne przez wszystkich\cite{blockchaininfo}. 
 
@@ -135,7 +135,7 @@ lub:
 \end{equation}
 Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako znajdującej się nad skończonym polem pierwszego rzędu p. Można ją również zapisać jako funkcję $F_p$, gdzie $p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$ jest olbrzymią liczbą pierwszą. Oznacza to, że od pewnego momentu krzywa zdefiniowana jest przy pomocy liczb zespolonych, a nie rzeczywistych. Utrudnia to jej wizualizację, gdyż wykres takiej funkcji musiałby zostać przedstawiony w dwóch wymiarach i~składał by się z~wielu pojedynczych punktów w~przestrzeni. Na potrzeby graficznego przedstawienia uproszczono wykres \ref{fig:krzywaEliptyczna} funkcji ~\ref{eq:2} przedstawiając go tylko w świecie liczb rzeczywistych. Wykres ten został podzielony na dwa obszary przy pomocy pionowej kreski, która nie jest częścią wykresu funkcji. Lewy obszar obejmuje wartości funkcji w świecie liczb zespolonych, który pominięto, natomiast prawa strona wykresu przedstawia funkcję \ref{eq:2}, w świecie liczb rzeczywistych.
 
-\indent Parametr \textit{G} został wybrany na podstawie powyższej krzywej eliptycznej przez protokół Bitcoina przy użyciu standardu \textit{secp256k1}. Parametr ten jest przypisywany do wszystkich użytkowników sieci. Implikuje to wygenerowanie za każdym razem takiego samego klucza publicznego na podstawie tego samego klucza prywatnego. Klucz prywatny może mieć wartość od $1$ do prawie $2^{256}$, a zależność pomiędzy jego wartością \textit{k} i wartością klucza publicznego \textit{K} jest stała. Oznacza to, że aby przy znajomości stałej wartości \textit{G} odtworzyć wartość klucza publicznego \textit{K} wymagany jest przegląd wszystkich możliwych wartości klucza prywatnego \textit{k}. 
+\indent Parametr \textit{G} został wybrany na podstawie krzywej eliptycznej - przedstawionej na wykresie \ref{fig:krzywaEliptyczna} - przez protokół Bitcoina przy użyciu standardu \textit{secp256k1}. Parametr ten jest przypisywany do wszystkich użytkowników sieci. Implikuje to wygenerowanie za każdym razem takiego samego klucza publicznego na podstawie tego samego klucza prywatnego. Klucz prywatny może mieć wartość od $1$ do prawie $2^{256}$, a zależność pomiędzy jego wartością \textit{k} i wartością klucza publicznego \textit{K} jest stała. Oznacza to, że aby przy znajomości stałej wartości \textit{G} odtworzyć wartość klucza publicznego \textit{K} wymagany jest przegląd wszystkich możliwych wartości klucza prywatnego \textit{k}. 
 
 \newpage
 \vfill
@@ -172,19 +172,19 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 	\begin{center}
   	\begin{tabular}{ | l  c | }
 		\hline    
-     	Hash bloku & 000000000000000000a7b47a1e58e456 \\
-    			    & fd54ae5a30cb92a35ca3e5acee065287 \\ 
-    	Wysokość bloku & 496201 \\ 
-    	Rozmiar: & 1071.607 kB \\
-   	 	Liczba transakcji: & 2032 \\ \hline
+     	Hash bloku & \texttt{000000000000000000a7b47a1e58e456} \\
+    			    & \texttt{fd54ae5a30cb92a35ca3e5acee065287} \\ 
+    	Wysokość bloku & \texttt{496201} \\ 
+    	Rozmiar: & \texttt{1071.607 kB} \\
+   	 	Liczba transakcji: & \texttt{2032} \\ \hline
 		\textbf{Nagłówek bloku}  &  \\  	 	
-   	 	Wersja: & 0x20000000 \\   	 	
-   	 	Hash poprzedniego bloku: &  000000000000000000c6dd215947b569 \\
-    							 &  fa06de2cb856dec643daf5a7e8efc72e \\ 
-		Markle root: 			 & b96da6d09865e36e4862b5a612fb1893 \\
-								 & 275d889989feb5a7a217503fd84019e3 \\
-   		Czas wykopania: & 2017-11-26 13:51:02 \\
-   		Trudność: & 1,347,001,430,558.57\\
+   	 	Wersja: & \texttt{0x20000000} \\   	 	
+   	 	Hash poprzedniego bloku: &  \texttt{000000000000000000c6dd215947b569} \\
+    							 &  \texttt{fa06de2cb856dec643daf5a7e8efc72e} \\ 
+		Markle root: 			 & \texttt{b96da6d09865e36e4862b5a612fb1893} \\
+								 & \texttt{275d889989feb5a7a217503fd84019e3} \\
+   		Czas wykopania: & \texttt{2017-11-26 13:51:02} \\
+   		Trudność: & \texttt{1,347,001,430,558.57}\\
    		\hline
    		Transakcje &\\
    		\hline 
@@ -200,19 +200,19 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 	\begin{center}	
 	\begin{tabular}{ | l  c | }
 		\hline    
-     	Hash bloku & 000000000000000000c6dd215947b569 \\
-    			    & fa06de2cb856dec643daf5a7e8efc72e \\ 
-    	Wysokość bloku & 496200 \\
-    	Rozmiar: & 1062.264 kB \\
-		Liczba transakcji: & 1036\\ \hline
+     	Hash bloku & \texttt{000000000000000000c6dd215947b569} \\
+    			    & \texttt{fa06de2cb856dec643daf5a7e8efc72e} \\ 
+    	Wysokość bloku & \texttt{496200} \\
+    	Rozmiar: & \texttt{1062.264 kB} \\
+		Liczba transakcji: & \texttt{1036}\\ \hline
 		\textbf{Nagłówek bloku} & \\
-   	 	Wersja: & 0x20000000 \\   	 
-   	 	Hash poprzedniego bloku: & 000000000000000000c645c295fbd91d\\
-   	 							 & f2f53e0346a4ecf8821abc8cc18fa4b1\\
-		Markle root: 			 & c6be2f384d7fa195dfac1ce367ee3a9f\\
-								 & 9ccfaf9cd337b261be1a0ff0e5d73bc4\\
-   		Czas wykopania: & 2017-11-26 13:43:52\\
-   		Trudność: & 1,347,001,430,558.57\\
+   	 	Wersja: & \texttt{0x20000000} \\   	 
+   	 	Hash poprzedniego bloku: & \texttt{000000000000000000c645c295fbd91d}\\
+   	 							 & \texttt{f2f53e0346a4ecf8821abc8cc18fa4b1}\\
+		Markle root: 			 & \texttt{c6be2f384d7fa195dfac1ce367ee3a9f}\\
+								 & \texttt{9ccfaf9cd337b261be1a0ff0e5d73bc4}\\
+   		Czas wykopania: & \texttt{2017-11-26 13:43:52}\\
+   		Trudność: & \texttt{1,347,001,430,558.57}\\
    		\hline
    		Transakcje &\\
    		\hline 
@@ -228,19 +228,19 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
  	\begin{center}
 	\begin{tabular}{ | l  c | }
 		\hline   
-     	Hash bloku & 000000000000000000c645c295fbd91d \\
-    			    & f2f53e0346a4ecf8821abc8cc18fa4b1 \\ 
-    	Wysokość bloku & 496199 \\ 
-    	Rozmiar: & 1059.467 kB \\
-    	Liczba transakcji: & 1758 \\ \hline
+     	Hash bloku &\texttt{000000000000000000c645c295fbd91d} \\
+    			    & \texttt{f2f53e0346a4ecf8821abc8cc18fa4b1} \\ 
+    	Wysokość bloku & \texttt{496199} \\ 
+    	Rozmiar: & \texttt{1059.467 kB} \\
+    	Liczba transakcji: & \texttt{1758} \\ \hline
 		\textbf{Nagłówek bloku} & \\
-		Wersja: & 0x20000000 \\
-   	 	Hash poprzedniego bloku: & 0000000000000000004f4c7ee2fad2a6\\
-   	 							 & 51b5bc1e7ce4254fe48490f7a1640dde\\
-		Markle root: 			 & 20e56ffedbf72d4d729d668037ac1a18 \\
-								 & 70ef937e4ae9491eb7ac7c69f7792447 \\
-   		Czas wykopania: & 2017-11-26 13:43:59 \\
-   		Trudność: & 1,347,001,430,558.57\\
+		Wersja: & \texttt{0x20000000} \\
+   	 	Hash poprzedniego bloku: & \texttt{0000000000000000004f4c7ee2fad2a6}\\
+   	 							 & \texttt{51b5bc1e7ce4254fe48490f7a1640dde}\\
+		Markle root: 			 & \texttt{20e56ffedbf72d4d729d668037ac1a187} \\
+								 & \texttt{0ef937e4ae9491eb7ac7c69f77924407} \\
+   		Czas wykopania: & \texttt{2017-11-26 13:43:59} \\
+   		Trudność: & \texttt{1,347,001,430,558.57}\\
    		\hline
    		Transakcje &\\
    		\hline 
@@ -254,10 +254,10 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 \label{zawartoscBloku}
 \indent Każdy blok ma ściśle określoną strukturę, która zawsze jest taka sama i składa się z:
 \begin{itemize}
-\item rozmiaru bloku
-\item nagłówka bloku
-\item licznika transakcji
-\item transakcji 
+\item[--] rozmiaru bloku,
+\item[--] nagłówka bloku,
+\item[--] licznika transakcji,
+\item[--] transakcji.
 \end{itemize}
 
 \indent Pierwsze trzy elementy maja stały lub ograniczony rozmiar. Rozmiar potrzebny na zapis transakcji w bloku zależy od ich ilości i jest zmienny. Poniżej przedstawiono bardziej szczegółowo każdy z elementów bloku. 
@@ -266,12 +266,12 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 
 \indent Nagłówek bloku ma zawsze rozmiar 80 bajtów i zawiera informacje dotyczące:
 \begin{itemize}
-\item wersji protokołu sieci użytej do wygenerowania bloku - 4~bajty
-\item bloku poprzedniego, tzn. jego hash - 32~bajty
-\item podsumowania transakcji reprezentowanej przy pomocy drzewa Merkle - 32~bajty
-\item szacowany czas wykopania bloku - 4 bajty
-\item trudność wykopania bloku przy pomocy określonego algorytmu proof-of-work - 4~bajty
-\item licznik potrzebny dla algorytmu proof-of-work kopania bloku - 4~bajty
+\item[--] wersji protokołu sieci użytej do wygenerowania bloku - 4~bajty;
+\item[--] bloku poprzedniego, tzn. jego hash - 32~bajty;
+\item[--] podsumowania transakcji reprezentowanej przy pomocy drzewa Merkle - 32~bajty;
+\item[--] szacowany czas wykopania bloku - 4 bajty;
+\item[--] trudność wykopania bloku przy pomocy określonego algorytmu proof-of-work - 4~bajty;
+\item[--] licznik potrzebny dla algorytmu proof-of-work kopania bloku - 4~bajty.
 \end{itemize} 
 
 \indent Licznik transakcji wskazuje na ilość transakcji zapisanych w rejestrze bloku i zajmuje od 1 do 9 bajtów.
@@ -285,19 +285,19 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 	\scalebox{1}{
   	\begin{tabular}{ | l  c | }
 		\hline    
-     	Hash bloku & 000000000000000000a7b47a1e58e456 \\
-    			    & fd54ae5a30cb92a35ca3e5acee065287 \\ 
-    	Wysokość bloku & 496201 \\
-    	Rozmiar: & 1071.607 kB \\
-    	Liczba transakcji: & 2032 \\  \hline
+     	Hash bloku & \texttt{000000000000000000a7b47a1e58e456} \\
+    			    & \texttt{fd54ae5a30cb92a35ca3e5acee065287} \\ 
+    	Wysokość bloku & \texttt{496201} \\
+    	Rozmiar: & \texttt{1071.607 kB} \\
+    	Liczba transakcji: & \texttt{2032} \\  \hline
 		\textbf{Nagłówek bloku}  &  \\ 
-   	 	Wersja: & 0x20000000 \\
-   	 	Hash poprzedniego bloku: & 000000000000000000c6dd215947b569 \\
-    							 & fa06de2cb856dec643daf5a7e8efc72e \\ 
-		Markle root: 			 & b96da6d09865e36e4862b5a612fb1893 \\
-								 & 275d889989feb5a7a217503fd84019e3 \\
-   		Czas wykopania: & 2017-11-26 13:51:02 \\
-   		Trudność: & 1,347,001,430,558.57\\
+   	 	Wersja: & \texttt{0x20000000} \\
+   	 	Hash poprzedniego bloku: & \texttt{000000000000000000c6dd215947b569} \\
+    							 & \texttt{fa06de2cb856dec643daf5a7e8efc72e} \\ 
+		Markle root: 			 & \texttt{b96da6d09865e36e4862b5a612fb1893} \\
+								 & \texttt{275d889989feb5a7a217503fd84019e3} \\
+   		Czas wykopania: & \texttt{2017-11-26 13:51:02} \\
+   		Trudność: & \texttt{1,347,001,430,558.57}\\
    		\hline
    		Transakcje &\\
    		\hline 
@@ -315,11 +315,13 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 
 \indent Struktura transakcji składa się elementów zaprezentowanych w tabeli \ref{tab:strukturaTransakcji}, jednakże najważniejsze z nich to:
 \begin{itemize}
-\item adresy kluczy publicznych (wejścia do transakcji), reprezentujące źródło środków potrzebnych na pokrycie deklarowanej sumy przekazu,
-\item adresy kluczy publicznych (wyjścia z transakcji), reprezentujące cel przekazu.
+\item[--] adresy kluczy publicznych (wejścia do transakcji), reprezentujące źródło środków potrzebnych na pokrycie deklarowanej sumy przekazu;
+\item[--] adresy kluczy publicznych (wyjścia z transakcji), reprezentujące cel przekazu.
 \end{itemize}
 \begin{table}[!h]
 \begin{center}
+\caption{Struktura transakcji.}
+\label{tab:strukturaTransakcji}
 \begin{tabular}{{|>{\raggedright\arraybackslash}m{40mm}|m{20mm}|m{80mm}|}}
 \hline
 	\multicolumn{1}{|>{\centering\arraybackslash}m{40mm}|}{\textbf{Element}} 
@@ -333,8 +335,6 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 	czas blokady & \centering{4} & określa czas, kiedy transakcja może zostać wykonana, zazwyczaj ustawiana na 0 w celu jak najszybszego podpisania\\ 
 \hline
 \end{tabular}
-\caption{Struktura transakcji.}
-\label{tab:strukturaTransakcji}
 \end{center}
 \end{table}
 
@@ -349,6 +349,8 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 \indent Wszystkie adresy wejściowe można traktować jako punktory do transakcji wyjściowych, zrealizowanych oraz niezrealizowanych (z nich powstają UTXO). Zrealizowane transakcje zawierają również odblokowane skrypty, co pozwala na przekazanie ich dalej. Należy podkreślić, że adresy wejściowe nie niosą informacji o ilości posiadanych środków, a jedynie informację o miejscu, w którym można się o tym dowiedzieć. Poniżej, w tabeli \ref{tab:strukturaWyjscia}, przedstawiono strukturę wyjścia transakcji.
 \begin{table}[!h]
 \begin{center}
+\caption{Struktura wyjścia transakcji.}
+\label{tab:strukturaWyjscia}
 \begin{tabular}{{|>{\raggedright\arraybackslash}m{40mm}|m{20mm}|m{80mm}|}}
 \hline
 	\multicolumn{1}{|>{\centering\arraybackslash}m{40mm}|}{\textbf{Element}} 
@@ -359,8 +361,6 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 	skrypt blokujący & \centering{zmienna} & skrypt określający warunki do spełnienia w celu odblokowania wyjścia \\ \hline
 \end{tabular}
 \end{center}
-\caption{Struktura wyjścia transakcji.}
-\label{tab:strukturaWyjscia}
 \end{table}
 
 \indent Transakcje zazwyczaj tworzone za pomocą klienta Bitcoin, co jest wygodnym i bezpiecznym sposobem przekazywania środków. Podczas tworzenia transakcji aplikacja ta dba, aby w transakcji znalazły się wszystkie wymagane informacje. W tabeli \ref{tab:strukturaTworzeniaTransakcji} przedstawiono strukturę tworzenia transakcji.
@@ -368,6 +368,8 @@ Pozwala ona spełnić wszystkie warunki określone w tabeli \ref{tab:strukturaWy
 
 \begin{table}[!h]
 \begin{center}
+\caption{Struktura wyjścia transakcji.}
+\label{tab:strukturaTworzeniaTransakcji}
 \begin{tabular}{{|>{\raggedright\arraybackslash}m{40mm}|m{20mm}|m{80mm}|}}
 \hline
 	\multicolumn{1}{|>{\centering\arraybackslash}m{40mm}|}{\textbf{Element}} 
@@ -380,13 +382,11 @@ Pozwala ona spełnić wszystkie warunki określone w tabeli \ref{tab:strukturaWy
 	numer sekwencji & \centering{4} & aktualnie nieużywana funkcjonalność wymiany Tx \\ \hline
 \end{tabular}
 \end{center}
-\caption{Struktura wyjścia transakcji.}
-\label{tab:strukturaTworzeniaTransakcji}
 \end{table}
 
 \indent Za każdą przeprowadzaną transakcję trzeba ponieść koszty operacyjne. W przypadku Bitcoina jest to opłata dla górników mająca zachęcać do kopania. Wielkość opłaty nie zależy od ilość przekazywanych Bitcoinów, a od wielkości stworzonej transakcji. Oznacza to, że osoba, która posiada wiele UTXO i chce je skonsumować w jednej transakcji musi zapłacić wyższą opłatę. Wynika to z faktu, że górnik w celu weryfikacji posiadanych UTXO musi wykonać dużo więcej pracy, niż gdyby transfer odbywał się z jednego UTXO. Górnicy bardzo często ustalają kryteria i tworzą priorytety transakcji, które chcą przetwarzać. W~niektórych przypadkach może się okazać, że przez zbyt niską opłatę żaden z~górników nie będzie podejmował się wyzwania sprawdzenia i~podpisania konkretnej transakcji. Jeżeli transakcja nie zostanie podpisana przez górnika nie znajdzie się w~wytwarzanym bloku. Transakcja ta \textit{wisieć} będzie w sieci do czasu przetworzenia przez któregoś z kopaczy.
 
-\section{Proces tworzenia kolejnego bloku z transakcjami i dołączania go do łańcucha bloków}
+\section{Proces tworzenia i dołączania kolejnego bloku z transakcjami}
 \label{dolaczanieNowegoBloku}
 
 \indent Wszystkie transakcje rozsyłane po sieci trafiają do górników, którzy gromadzą je w~celu zbudowania nowego bloku. Transakcje te są jedynie kandydatami do znalezienia się w~bloku, a które z nich znajdą się w zbudowanym bloku zależy od priorytetów górnika. 
@@ -408,11 +408,152 @@ Pozwala ona spełnić wszystkie warunki określone w tabeli \ref{tab:strukturaWy
 \indent Konkludując Blockchain jest strukturą zbudowaną z bloków wstecznie połączonych. Każdy blok z łańcucha zawiera informacje o zrealizowanych transakcjach oraz o hashu bloku poprzedniego. Transakcje składają się z wejść do transakcji oraz wyjść z transakcji. Wejścia są punktorami do niewydanych wyjść transakcji z poprzednich bloków, a wyjścia transakcji wskazują na adresy uczestników sieci, do których mają trafić bitcoiny. Bloki generowane są z transakcji przez górników, którzy walczą w wyścigu o nagrodę w postaci nowych bitcoinów oraz opłat transakcyjnych. Nowo wygenerowane bloki dołączane są do łańcucha bloków w procesie znajdowania globalnego consensusu w sieci.
 
 \chapter{Przegląd metod analiz sieci złożonych (też temporalnych) oraz analiz blockchaina}
+Czym jest analiza sieci, jakie były analizy, metody analiz grafów.
+Nie tylko analizuje się sieci statyczne, ale temporalne i wielowarstwowe.
+Jak analizować blockchain, co zostało zrobione w kontekście jego analizy?
 
-\chapter{Część eksperymentalna}
+
+\chapter{Analiza blockchaina Bitcoin}
 \section{Plan badań}
-\section{Analiza blockchaina Bitcoin}
+\section{Eksperyment}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_hm.png}
+   \caption{}
+   \label{fig:sds1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_sda.png}
+   \caption{}
+   \label{fig:sds2}
+\end{subfigure}
+\caption[Średnia długość scieżki]{(a) mapa cieplna średniej długości scieżki w sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej długości scieżki sieci dla 10 okresów z odchyleniem standardowym}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/srednica/srednica_hm.png}
+   \caption{}
+   \label{fig:s1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/srednica/srednica_sda.png}
+   \caption{}
+   \label{fig:s2}
+\end{subfigure}
+\caption[Średnia średnica sieci]{(a) mapa cieplna średniej średnicy sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej średnicy sieci dla 10 okresów z odchyleniem standardowym}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_hm.png}
+   \caption{}
+   \label{fig:sw1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_sda.png}
+   \caption{}
+   \label{fig:sw2}
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_hist.png}
+   \caption{}
+   \label{fig:sw3}
+\end{subfigure}
+\caption[Średni stopień węzła]{(a) mapa cieplna średniego stopnia węzła sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniego stopnia węzła sieci dla 10 okresów z odchyleniem standardowym (c) histogram średniego stopnia węzła sieci dla 10 transakcji w 10 okresach}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_hm.png}
+   \caption{}
+   \label{fig:sc1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_sda.png}
+   \caption{}
+   \label{fig:sc2}
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_hist.png}
+   \caption{}
+   \label{fig:sc3}
+\end{subfigure}
+\caption[Średnia centralność sieci]{(a) mapa cieplna średniej centralności sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej centralności sieci dla 10 okresów z odchyleniem standardowym (c) histogram średniej centralności sieci dla 10 transakcji w 10 okresach}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/wartosc_transakcji/wartosc_transakcji_hm.png}
+   \caption{}
+   \label{fig:wt1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/wartosc_transakcji/wartosc_transakcji_sda.png}
+   \caption{}
+   \label{fig:wt2}
+\end{subfigure}
+\caption[Średnia wartość transakcji]{(a) mapa cieplna średniej wartości transakcji sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej wartości transakcji sieci dla 10 okresów z odchyleniem standardowym}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_hm.png}
+   \caption{}
+   \label{fig:rc1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_sda.png}
+   \caption{}
+   \label{fig:rc2}
+\end{subfigure}
+\caption[Średni czas różnic kolejnych transakcji]{(a) mapa cieplna średniego czasu różnic kolejnych transakcji sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniego czasu różnic kolejnych transakcji sieci dla 10 okresów z odchyleniem standardowym}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/ilosc_blokow/ilosc_blokow_hm.png}
+   \caption{}
+   \label{fig:ib1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/ilosc_blokow/ilosc_blokow_sda.png}
+   \caption{}
+   \label{fig:ib2}
+\end{subfigure}
+\caption[Średnia ilość bloków potrzebna na znalezienie 100000 połączeń]{(a) mapa cieplna średniej ilości bloków sieci potrzebnych na znalezienie 100000 połączeń dla 10 transakcji w 10 okresach (b) regresja liniowa średniej ilości bloków sieci potrzebnych na znalezienie 100000 połączeń dla 10 okresów z odchyleniem standardowym}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_hm.png}
+   \caption{}
+   \label{fig:cg1} 
+\end{subfigure}
+\begin{subfigure}[b]{0.85\textwidth}
+   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_sda.png}
+   \caption{}
+   \label{fig:cg2}
+\end{subfigure}
+\caption[Średni czas różnic granicznych transakcji]{(a) mapa cieplna średniego czasu różnic granicznych transakcji dla 10 transakcji w 10 okresach (b) regresja liniowa średniego czasu różnic granicznych transakcji dla 10 okresów z odchyleniem standardowym}
+\end{figure}
+
 \section{Wnioski}
+
+\chapter{Klasyfikacja w sieci Bitcoin}
 
 
 \chapter*{Podsumowanie}
@@ -426,3 +567,5 @@ Pozwala ona spełnić wszystkie warunki określone w tabeli \ref{tab:strukturaWy
 \listoftables
 \end{document}
 
+% kropka za numeracja
+% 

@@ -187,14 +187,14 @@
       \markboth {%
         \ifnum \c@secnumdepth >\m@ne
           \if@mainmatter
-            \thechapter. \ %
+            \thechapter \ %
           \fi
         \fi
         ##1}{}}%
     \def\sectionmark##1{%
       \markright {%
         \ifnum \c@secnumdepth >\z@
-          \thesection. \ %
+          \thesection \ %
         \fi
         ##1}}}
 \else
@@ -207,7 +207,7 @@
       \markright {%
         \ifnum \c@secnumdepth >\m@ne
           \if@mainmatter
-            \thechapter. \ %
+            \thechapter \ %
           \fi
         \fi
         ##1}}}
@@ -599,12 +599,13 @@
 \newcounter {paragraph}[subsubsection]
 \newcounter {subparagraph}[paragraph]
 \renewcommand \thepart {\@Roman\c@part}
-\renewcommand \thechapter {\@arabic\c@chapter}
-\renewcommand \thesection {\thechapter.\@arabic\c@section}
-\renewcommand\thesubsection   {\thesection.\@arabic\c@subsection}
-\renewcommand\thesubsubsection{\thesubsection .\@arabic\c@subsubsection}
-\renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
-\renewcommand\thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
+
+\renewcommand \thechapter {\@arabic\c@chapter.}
+\renewcommand \thesection {\thechapter\@arabic\c@section.}
+\renewcommand\thesubsection   {\thesection\@arabic\c@subsection.}
+\renewcommand\thesubsubsection{\thesubsection\@arabic\c@subsubsection.}
+\renewcommand\theparagraph    {\thesubsubsection\@arabic\c@paragraph.}
+\renewcommand\thesubparagraph {\theparagraph1\@arabic\c@subparagraph.}
 \newcommand\@chapapp{\chaptername}
 \newcommand\frontmatter{%
     \cleardoublepage
@@ -680,7 +681,7 @@
 \def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
                        \if@mainmatter
                          \refstepcounter{chapter}%
-                         \typeout{\@chapapp\space\thechapter.}%
+                         \typeout{\@chapapp\space\thechapter}%
                          \addcontentsline{toc}{chapter}%
                                    {\protect\numberline{\thechapter}#1}%
                        \else
@@ -836,10 +837,10 @@
 \setlength\fboxrule{.4\p@}
 \@addtoreset {equation}{chapter}
 \renewcommand\theequation
-  {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@equation}
+  {\ifnum \c@chapter>\z@ \thechapter\fi \@arabic\c@equation.}
 \newcounter{figure}[chapter]
 \renewcommand \thefigure
-     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@figure}
+     {\ifnum \c@chapter>\z@ \thechapter\fi \@arabic\c@figure.}
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
@@ -852,7 +853,7 @@
                {\end@dblfloat}
 \newcounter{table}[chapter]
 \renewcommand \thetable
-     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@table}
+     {\ifnum \c@chapter>\z@ \thechapter\fi \@arabic\c@table.}
 \def\fps@table{tbp}
 \def\ftype@table{2}
 \def\ext@table{lot}

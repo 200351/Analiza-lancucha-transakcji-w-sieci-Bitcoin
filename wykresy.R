@@ -12,3 +12,14 @@ plot.function(eq2,
               ylim=c(-4, 4), xlim=c(-4, 4), panel.first=grid())
 abline(v=-1.911, col="black", lwd=4)
 
+
+library(plotly)
+
+
+m <- matrix(rnorm(9), nrow = 3, ncol = 3)
+p <- plot_ly(
+  x = c("a", "b", "c"), y = c("d", "e", "f"),
+  z = m, type = "heatmap"
+)
+p
+
