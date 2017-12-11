@@ -156,7 +156,7 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 \section{Wprowadzenie}
 \indent W tym rozdziale przedstawiono oraz wyjaśniono ideę rejestru transakcji, tzw. blockchaina. Opisano strukturę bloku, transakcji oraz wejść i wyjść w transakcji. Rozdział ten opisuje również w jaki sposób tworzone są transakcje, jak są weryfikowane i jakie koszty ponosi się za przekazanie Bitcoinów innemu uczestnikowi sieci. Dodatkowo przedstawiono proces tworzenia oraz dodawania nowego bloku do blockchaina. 
 
-\section{Definicja Blockchain'a. Czym jest łańcuch bloków?}
+\section{Definicja Blockchain'a}
 \label{definicjaBlockchaina}
 \indent Łancuch bloków (ang. Blockchain) jest uporządkowaną strukturą zwaną jednokierunkową listą składającą się z bloków transakcji. Listę tę charakteryzuje połączenie wsteczne co oznacza, że blok następny wskazuje na blok poprzedni. Każdy kolejny blok ma przypisaną swoją wysokość w łańcuchu bloków. Wysokość ta ustalana jest na podstawie odległości bloku od pierwszego bloku w łańcuchu. Blok ten, zwany blokiem genezy, stanowi pierwszego \textit{rodzica} oraz wspólnego przodka dla wszystkich bloków w całym łańcuchu\cite{BitcoinAndCryptocurrencyTechnologies}. Idea łańcucha bloków przedstawiona jest na ilustracji \ref{blockchain}.
 
@@ -168,7 +168,7 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 
 \indent Im blok znajduje się dalej w łańcuchu tym jest stabilniejszy i pewniejszy, natomiast ostatnie bloki, tzn. najświeższe, mogą ulegać zmianom w wyścigu prowadzonym przez kopaczy. W tym samym momencie na ostatni blok może wskazywać wiele nowych bloków wyprodukowanych w trakcie kopania. Taka sytuacja prowadzi do rozgałęzienia się łańcucha bloków. Jest to nieakceptowalne~w opisywanej strukturze, dlatego ostatecznie do łańcucha bloków dołączany zostaje jeden~z wygenerowanych bloków, a reszta bloków zostaje odrzucona. Bardziej szczegółowo problem ten został opisany w podrozdziale \ref{dolaczanieNowegoBloku}.
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
   	\begin{tabular}{ | l  c | }
 		\hline    
@@ -280,7 +280,7 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 
 \indent Ilustracja \ref{fig:przykladowyBlok} przedstawia rzeczywiste dane jednego z bloków. Dane te zaczerpnięto ze strony blockchain.info pozwalającej na eksplorowanie Bitcoinowego Blockchaina\cite{blockchaininfo}.
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}	
 	\scalebox{1}{
   	\begin{tabular}{ | l  c | }
@@ -386,7 +386,7 @@ Pozwala ona spełnić wszystkie warunki określone w tabeli \ref{tab:strukturaWy
 
 \indent Za każdą przeprowadzaną transakcję trzeba ponieść koszty operacyjne. W przypadku Bitcoina jest to opłata dla górników mająca zachęcać do kopania. Wielkość opłaty nie zależy od ilość przekazywanych Bitcoinów, a od wielkości stworzonej transakcji. Oznacza to, że osoba, która posiada wiele UTXO i chce je skonsumować w jednej transakcji musi zapłacić wyższą opłatę. Wynika to z faktu, że górnik w celu weryfikacji posiadanych UTXO musi wykonać dużo więcej pracy, niż gdyby transfer odbywał się z jednego UTXO. Górnicy bardzo często ustalają kryteria i tworzą priorytety transakcji, które chcą przetwarzać. W~niektórych przypadkach może się okazać, że przez zbyt niską opłatę żaden z~górników nie będzie podejmował się wyzwania sprawdzenia i~podpisania konkretnej transakcji. Jeżeli transakcja nie zostanie podpisana przez górnika nie znajdzie się w~wytwarzanym bloku. Transakcja ta \textit{wisieć} będzie w sieci do czasu przetworzenia przez któregoś z kopaczy.
 
-\section{Proces tworzenia i dołączania kolejnego bloku z transakcjami}
+\section{Dołączania kolejnego bloku z transakcjami}
 \label{dolaczanieNowegoBloku}
 
 \indent Wszystkie transakcje rozsyłane po sieci trafiają do górników, którzy gromadzą je w~celu zbudowania nowego bloku. Transakcje te są jedynie kandydatami do znalezienia się w~bloku, a które z nich znajdą się w zbudowanym bloku zależy od priorytetów górnika. 
@@ -414,142 +414,252 @@ Jak analizować blockchain, co zostało zrobione w kontekście jego analizy?
 
 
 \chapter{Analiza blockchaina Bitcoin}
+
+\section{Wprowadzenie}
+
+\indent W niniejszym rozdziale przedstawiono część eksperymentalną pracy. Sformułowano cel badawczy oraz określono zakres przeprowadzanych analiz. Przybliżono również sposób tworzenia sieci oraz określono związek pomiędzy węzłami sieci. Następie opisano przeprowadzone analizy wraz z wnioskami.
+
 \section{Plan badań}
+
+\indent Celem przeprowadzanego eksperymentu jest analiza rejestru transakcji w~sieci Bitcoin. Podjęto próbę określania cech sieci, które pozwalają na stworzenie charakterystyki jej rozwoju. Przy pomocy metod analizy sieci złożonych zbadano trendy zmian zachodzących w sieci oraz zaobserwowano zdarzenia nietypowe, odbiegające od wyznaczonego trendu. 
+
+\indent Na potrzeby realizacji eksperymentu wyznaczono po dziesięć węzłów startowych w~sieci w dziesięciu okresach. Wybrano bloki z~łańcucha bloków dołączone jako ostatnie w dziesięciu kwartałach w~okresie od \textit{2015-03-31} do \textit{2017-06-30}. Następnie z~każdego z~bloków dla każdego okresu wybrano po dziesięć transakcji, które stały się węzłami startowymi dla badanej sieci. Oznacza to, że analizę przeprowadzono na stu próbach po sto tysięcy węzłów każda. Ilość oraz wielkość prób zmniejsza ryzyko natrafienia na próbę  niereprezentacyjną.
+
+\indent Każdą próbę stworzono zaczynając od węzła startowego wstecz. Każdy węzeł reprezentuje transakcję wskazując na jej adres. Jak opisano w podrozdziale \ref{transakcje} transakcje zawierają adresy wejściowe oraz adresy wyjściowe. W~podrozdziale \ref{transakcje} podkreślono również fakt, że adresy wejściowe są jedynie referencjami na adresy wyjściowe, co implikuje właściwość związków pomiędzy transakcjami. Można to zauważyć na przykładzie zapisanym w tabeli \ref{tab:zwiazekTransakcji}, gdzie transakcja $N-1$ zawiera adres wyjściowy identyczny jak jeden z adresów wejściowych transakcji $N$. Wykorzystując tę zależność każdą próbkę stworzono poprzez znalezienie sto tysięcy połączeń pomiędzy transakcjami na podstawie adresów wejściowych i adresów wyjściowych zaczynając od początkowego adresu transakcji. Na ilustracji \ref{fig:siec} przedstawiono przykładowy generyczny wycinek każdej z stworzonych sieci zaczynając od węzła $N$. 
+
+\begin{table}[H]
+\begin{center}
+\caption{Związek pomiędzy transakcjami.}
+\label{tab:zwiazekTransakcji}
+\begin{tabular}{|l|l|l|l|}
+\hline
+	\multicolumn{2}{|c|}{Transakcja N-1} 
+   &\multicolumn{2}{|c|}{Transakcja N}  \\
+\hline
+Adresy wejściowe & Adresy wyjściowe &Adresy wejściowe & Adresy wyjściowe\\
+\hline
+W4 & W2 & W2 & W1 \\
+&& W3 & \\
+\hline 
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+\begin{center}
+\centering
+\includegraphics[width=1\linewidth]{pictures/visio/siec.png}
+\caption{Przykładowy wycinek próbki sieci.}
+\label{fig:siec}
+\end{center}
+\end{figure}
+
+
+
+\indent Przeprowadzone badania podzielono na dwie grupy pod względem reprezentowanych cech sieci. Pierwsza grupa reprezentuje analizę sieci przy pomocy algorytmów generycznych dla sieci złożonych. Algorytmy te nie silnie związane z problematyką fachową sieci, jednakże pozwalają na zbadanie podstawowych własności każdej z sieci. W~ramach analizy dla każdej próbki zbadano:
+\begin{itemize}
+\item[--] średnicę sieci,
+\item[--] średnią długość ścieżek,
+\item[--] średni stopień węzłów,
+\item[--] średnią centralność węzłów.
+\end{itemize}
+Druga grupa przeprowadzonych badań pozwoliła na analizę sieci pod kątem jej specyficznych własności, które są bardzo mocno związane z jej problematyką. W ramach analizy dla każdej próbki zbadano:
+\begin{itemize}
+\item[--] średnią wartość transakcji,
+\item[--] liczbę bloków potrzebnych do stworzenia próbki,
+\item[--] średnią różnicę czasów kolejnych transakcji,
+\item[--] różnice czasu granicznych transakcji.
+\end{itemize}
+
+\indent Badania z grupy pierwszej przeprowadzono przy pomocy biblioteki \textit{Igraph}, natomiast algorytmy potrzebne do przeprowadzenia badań z grupy drugiej zostały przygotowane samodzielnie.
+
 \section{Eksperyment}
+W ramach przeprowadzonych badań dla każdej z metryk stworzono mapę cieplną przedstawiającą wartości poszczególnych właściwości sieci. Na wykresie zaprezentowano również średnią wartość dla każdego z okresu wraz z odchyleniem standardowym, z którego stworzono regresję liniową. Na podstawie tych danych przeprowadzono analizę oraz określono trend zmian w sieci.  
 
-\begin{figure}
+\subsection{Badanie średnicy sieci}
+\label{srednica_sieci}
+\indent Średnica sieci jest długością $max_{u,v}d(u,v)$ najdłuższej ścieżki znalezionej wśród najkrótszych ścieżek pomiędzy którymikolwiek dwoma węzłami sieci $(u,v)$, gdzie $d(u,v)$ jest długością grafu. Długość grafu jest minimalną długością ścieżki (stworzonej z węzłów) potrzebnej do połączenia dwóch określonych węzłów. Inaczej mówiąc średnica grafu jest maksymalną ilością węzłów jakie trzeba pokonać by przejść z jednego węzła do drugiego.
+
+\indent Dla badanej sieci oznacza to maksymalną ścieżkę połączonych transakcji, a co za tym idzie, maksymalną ilość adresów publicznych na które kolejno przekazywane były Bitcoiny.
+
+\indent Na rysunku \ref{fig:s1} przedstawiono mapę ciepła średnicy sieci dla każdej z próbek. Na jej podstawie można wnioskować, że dla większości przypadków próbki w poszczególnych okresach są zbliżone. Jedyną zaobserwowana anomalią jest średnica sieci dla próbki zaczynającej się od transakcji szóstej, która została zrealizowana \textit{2017-03-31}. Prawdopodobnie jest to transakcja realizowana w ramach wielokrotnego przesyłania Bitcoinów przez jednego właściciela pomiędzy własnymi adresami w celu próby ukrycia ich źródła. 
+
+\begin{figure}[h]
 \centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_hm.png}
-   \caption{}
-   \label{fig:sds1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_sda.png}
-   \caption{}
-   \label{fig:sds2}
-\end{subfigure}
-\caption[Średnia długość scieżki]{(a) mapa cieplna średniej długości scieżki w sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej długości scieżki sieci dla 10 okresów z odchyleniem standardowym}
+  \includegraphics[width=0.75\linewidth]{pictures/srednica/srednica_hm.png}
+  \caption{Mapa cieplna średnicy sieci dla 10 transakcji w 10 okresach.}
+  \label{fig:s1} 
 \end{figure}
 
 
-\begin{figure}
-\centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/srednica/srednica_hm.png}
-   \caption{}
-   \label{fig:s1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/srednica/srednica_sda.png}
-   \caption{}
-   \label{fig:s2}
-\end{subfigure}
-\caption[Średnia średnica sieci]{(a) mapa cieplna średniej średnicy sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej średnicy sieci dla 10 okresów z odchyleniem standardowym}
-\end{figure}
+\indent Na wykresie \ref{fig:s2} przedstawiono regresję liniową na podstawie średniej średnicy dla okresu z odchyleniem standardowym. Z~wykresu wynika, że gęstość sieci rośnie w czasie, o czy świadczy trend spadkowy średnicy sieci. Wzrost gęstości oznacza, że w sieci występuje coraz więcej krawędzi w stosunku do ilości węzłów. Dla sieci Bitcoin wzrost gęstości sieci oznacza większą ilość transakcji realizowanych na pojedyncze adresy publiczne. Można zatem wnioskować, że w czasie Bitcoiny coraz częściej gromadzone są na pojedynczych adresach.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_hm.png}
-   \caption{}
-   \label{fig:sw1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_sda.png}
-   \caption{}
-   \label{fig:sw2}
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_hist.png}
-   \caption{}
-   \label{fig:sw3}
-\end{subfigure}
-\caption[Średni stopień węzła]{(a) mapa cieplna średniego stopnia węzła sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniego stopnia węzła sieci dla 10 okresów z odchyleniem standardowym (c) histogram średniego stopnia węzła sieci dla 10 transakcji w 10 okresach}
+  \includegraphics[width=0.75\linewidth]{pictures/srednica/srednica_sda.png}
+  \caption{Regresja liniowa średniej średnicy sieci dla 10 okresów z odchyleniem standardowym.}
+  \label{fig:s2}
 \end{figure}
 
 
-\begin{figure}
+\subsection{Badanie średniej długość ścieżki}
+
+\indent Średnia długość ścieżki w sieci jest średnią wartością $\sum_{i \ne j}^{} d(u_i,v_j)\frac{1}{n(n-1)}$ wszystkich możliwych par węzłów $(u_j,v_j)$ w grafie, gdzie $d(u_i,v_j)$ jest najkrótszą długością ścieżki pomiędzy pomiędzy węzłami $(u_i,v_j)$, a $n$ jest ilością węzłów. Długość ścieżki została zdefiniowana w \ref{srednica_sieci}. 
+
+\indent Sieć Bitcoin jest siecią skierowaną, a każda z transakcji posiada niepowtarzalny adres. Eliminuje to możliwość pojawienia się cyklu w grafie, dlatego też ilość możliwych ścieżek w badanej sieci jest ograniczona. W badanej sieci średnia długość ścieżki oznacza średnią ilość transakcji, przy pomocy których przekazywano kolejno Bitcoiny.
+
+\indent Na podstawie mapy cieplnej \ref{fig:sds1} reprezentującej średnią długość ścieżki dla prób zaobserwowano pojedyncze przypadku odchyleń wartości badanej cechy. W przypadku transakcji szóstej zrealizowanej \textit{2017-03-31}, przyczyna prawdopodobnie jest analogiczna do przypadku analizy średnicy sieci, tzn. wielokrotne przesyłanie środków jednej osoby przez wiele adresów publicznych w~sieci.
+
+\begin{figure}[H]
 \centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_hm.png}
-   \caption{}
-   \label{fig:sc1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_sda.png}
-   \caption{}
-   \label{fig:sc2}
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_hist.png}
-   \caption{}
-   \label{fig:sc3}
-\end{subfigure}
-\caption[Średnia centralność sieci]{(a) mapa cieplna średniej centralności sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej centralności sieci dla 10 okresów z odchyleniem standardowym (c) histogram średniej centralności sieci dla 10 transakcji w 10 okresach}
+  \includegraphics[width=0.75\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_hm.png}
+  \caption{Mapa cieplna średniej długości scieżki w sieci dla 10 transakcji w 10 okresach.}
+  \label{fig:sds1}
 \end{figure}
 
+\indent Na wykresie \ref{fig:sds2} reprezentującym regresję liniową średniej wartości z okresów zaobserwowano trend spadkowy, z którego wynika, że średnia długość sieci zmienia się analogicznie do jej średnicy. Determinuje to zmniejszającą się średnią liczbę kolejnych transakcji w badanych próbach. Może to oznaczać coraz większą ilość transakcji rejestrowanych w~sieci.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/wartosc_transakcji/wartosc_transakcji_hm.png}
-   \caption{}
-   \label{fig:wt1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/wartosc_transakcji/wartosc_transakcji_sda.png}
-   \caption{}
-   \label{fig:wt2}
-\end{subfigure}
-\caption[Średnia wartość transakcji]{(a) mapa cieplna średniej wartości transakcji sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej wartości transakcji sieci dla 10 okresów z odchyleniem standardowym}
+  \includegraphics[width=0.75\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_sda.png}
+  \caption{Regresja liniowa średniej długości scieżki sieci dla 10 okresów z odchyleniem standardowym.}
+  \label{fig:sds2}
 \end{figure}
 
-\begin{figure}
-\centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_hm.png}
-   \caption{}
-   \label{fig:rc1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_sda.png}
-   \caption{}
-   \label{fig:rc2}
-\end{subfigure}
-\caption[Średni czas różnic kolejnych transakcji]{(a) mapa cieplna średniego czasu różnic kolejnych transakcji sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniego czasu różnic kolejnych transakcji sieci dla 10 okresów z odchyleniem standardowym}
-\end{figure}
+\subsection{Badanie średniego stopnia węzła}
+
+\indent Stopień węzła $v$ grafu oznacza liczbę krawędzi w grafie, które bezpośrednio dotykają węzła $v$. W grafach skierowanych wyróżnia się wejściowy stopień węzła (ilość krawędzi skierowanych w stronę węzła) oraz wyjściowy stopień węzła (ilość krawędzi skierowanych od strony węzła). Suma wejściowego stopnia węzła oraz wyjściowego stopnia wejścia daje wynikowy stopień węzła. Średni stopień węzła obliczany jest jako $\frac{\sum_i^n\deg(v_i)}{n}$, gdzie $deg(v_i)$ to stopień i-tego węzła, a $n$ to ilość węzłów. W celu zapewnienia autentyczności obliczanej średniej badana próba musi być mieć rozkład normalny. W przeciwnym przypadku należy przedstawić dodatkowe źródło informacji o próbie, które zobrazuje minima oraz maksima lokalne, np. histogram. 
 
 
-\begin{figure}
-\centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/ilosc_blokow/ilosc_blokow_hm.png}
-   \caption{}
-   \label{fig:ib1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/ilosc_blokow/ilosc_blokow_sda.png}
-   \caption{}
-   \label{fig:ib2}
-\end{subfigure}
-\caption[Średnia ilość bloków potrzebna na znalezienie 100000 połączeń]{(a) mapa cieplna średniej ilości bloków sieci potrzebnych na znalezienie 100000 połączeń dla 10 transakcji w 10 okresach (b) regresja liniowa średniej ilości bloków sieci potrzebnych na znalezienie 100000 połączeń dla 10 okresów z odchyleniem standardowym}
-\end{figure}
 
-\begin{figure}
-\centering
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_hm.png}
-   \caption{}
-   \label{fig:cg1} 
-\end{subfigure}
-\begin{subfigure}[b]{0.85\textwidth}
-   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_sda.png}
-   \caption{}
-   \label{fig:cg2}
-\end{subfigure}
-\caption[Średni czas różnic granicznych transakcji]{(a) mapa cieplna średniego czasu różnic granicznych transakcji dla 10 transakcji w 10 okresach (b) regresja liniowa średniego czasu różnic granicznych transakcji dla 10 okresów z odchyleniem standardowym}
-\end{figure}
+%\begin{figure}
+%\centering
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_hm.png}
+%   \caption{}
+%   \label{fig:sw1} 
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_sda.png}
+%   \caption{}
+%   \label{fig:sw2}
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/sredni_stopien_wezla/sredni_stopien_wezla_hist.png}
+%   \caption{}
+%   \label{fig:sw3}
+%\end{subfigure}
+%
+%\caption[Średni stopień węzła]{(a) mapa cieplna średniego stopnia węzła sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniego stopnia węzła sieci dla 10 okresów z odchyleniem standardowym (c) histogram średniego stopnia węzła sieci dla 10 transakcji w 10 okresach}
+%
+%\end{figure}
+%
+%
+%\begin{figure}
+%\centering
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_hm.png}
+%   \caption{}
+%   \label{fig:sc1} 
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_sda.png}
+%   \caption{}
+%   \label{fig:sc2}
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/srednia_centralnosc/srednia_centralnosc_hist.png}
+%   \caption{}
+%   \label{fig:sc3}
+%\end{subfigure}
+%
+%\caption[Średnia centralność sieci]{(a) mapa cieplna średniej centralności sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej centralności sieci dla 10 okresów z odchyleniem standardowym (c) histogram średniej centralności sieci dla 10 transakcji w 10 okresach}
+%
+%\end{figure}
+%
+%
+%\begin{figure}
+%\centering
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/wartosc_transakcji/wartosc_transakcji_hm.png}
+%   \caption{}
+%   \label{fig:wt1} 
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/wartosc_transakcji/wartosc_transakcji_sda.png}
+%   \caption{}
+%   \label{fig:wt2}
+%\end{subfigure}
+%
+%\caption[Średnia wartość transakcji]{(a) mapa cieplna średniej wartości transakcji sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej wartości transakcji sieci dla 10 okresów z odchyleniem standardowym}
+%
+%\end{figure}
+%
+%\begin{figure}
+%\centering
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/ilosc_blokow/ilosc_blokow_hm.png}
+%   \caption{}
+%   \label{fig:ib1} 
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/ilosc_blokow/ilosc_blokow_sda.png}
+%   \caption{}
+%   \label{fig:ib2}
+%\end{subfigure}
+%
+%\caption[Średnia ilość bloków potrzebna na znalezienie 100000 połączeń]{(a) mapa cieplna ilości bloków sieci potrzebnych na znalezienie 100000 połączeń dla 10 transakcji w 10 okresach (b) regresja liniowa ilości bloków sieci potrzebnych na znalezienie 100000 połączeń dla 10 okresów z odchyleniem standardowym}
+%
+%\end{figure}
+%
+%\begin{figure}
+%\centering
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_hm.png}
+%   \caption{}
+%   \label{fig:rc1} 
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_sda.png}
+%   \caption{}
+%   \label{fig:rc2}
+%\end{subfigure}
+%
+%\caption[Średni czas różnic kolejnych transakcji]{(a) mapa cieplna średniej różnicy czasu kolejnych transakcji sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej różnicy czasu kolejnych transakcji sieci dla 10 okresów z odchyleniem standardowym}
+%
+%\end{figure}
+%
+%
+%\begin{figure}
+%\centering
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_hm.png}
+%   \caption{}
+%   \label{fig:cg1} 
+%\end{subfigure}
+%
+%\begin{subfigure}[b]{0.85\textwidth}
+%   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_sda.png}
+%   \caption{}
+%   \label{fig:cg2}
+%\end{subfigure}
+%
+%\caption[Średni czas różnic granicznych transakcji]{(a) mapa cieplna różnic czasu  granicznych transakcji dla 10 transakcji w 10 okresach (b) regresja liniowa średniego różnic czasu granicznych transakcji dla 10 okresów z odchyleniem standardowym}
+%
+%\end{figure}
 
 \section{Wnioski}
 
