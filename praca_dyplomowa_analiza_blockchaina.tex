@@ -425,7 +425,7 @@ Jak analizować blockchain, co zostało zrobione w kontekście jego analizy?
 
 \indent Na potrzeby realizacji eksperymentu wyznaczono po dziesięć węzłów startowych w~sieci w dziesięciu okresach. Wybrano bloki z~łańcucha bloków dołączone jako ostatnie w dziesięciu kwartałach w~okresie od \textit{2015-03-31} do \textit{2017-06-30}. Następnie z~każdego z~bloków dla każdego okresu wybrano po dziesięć transakcji, które stały się węzłami startowymi dla badanej sieci. Oznacza to, że analizę przeprowadzono na stu próbach po sto tysięcy węzłów każda. Ilość oraz wielkość prób zmniejsza ryzyko natrafienia na próbę  niereprezentacyjną.
 
-\indent Każdą próbę stworzono zaczynając od węzła startowego wstecz. Każdy węzeł reprezentuje transakcję wskazując na jej adres. Jak opisano w podrozdziale \ref{transakcje} transakcje zawierają adresy wejściowe oraz adresy wyjściowe. W~podrozdziale \ref{transakcje} podkreślono również fakt, że adresy wejściowe są jedynie referencjami na adresy wyjściowe, co implikuje właściwość związków pomiędzy transakcjami. Można to zauważyć na przykładzie zapisanym w tabeli \ref{tab:zwiazekTransakcji}, gdzie transakcja $N-1$ zawiera adres wyjściowy identyczny jak jeden z adresów wejściowych transakcji $N$. Wykorzystując tę zależność każdą próbkę stworzono poprzez znalezienie sto tysięcy połączeń pomiędzy transakcjami na podstawie adresów wejściowych i adresów wyjściowych zaczynając od początkowego adresu transakcji. Na ilustracji \ref{fig:siec} przedstawiono przykładowy generyczny wycinek każdej z stworzonych sieci zaczynając od węzła $N$. 
+\indent Każdą sieć, która stanowi próbę do badań, stworzono zaczynając od węzła startowego wstecz. Każdy węzeł reprezentuje transakcję wskazując na jej adres. Jak opisano w~podrozdziale \ref{transakcje} transakcje zawierają adresy wejściowe oraz adresy wyjściowe. W~podrozdziale \ref{transakcje} podkreślono również fakt, że adresy wejściowe są jedynie referencjami na adresy wyjściowe, co implikuje właściwość związków pomiędzy transakcjami. W celu łatwiejszego zrozumienia sposobu budowania sieci w tabeli \ref{tab:zwiazekTransakcji} przedstawiono dwie połączone transakcje, na przykładzie których zauważyć można, że transakcja $N-1$ zawiera adres wyjściowy identyczny jak jeden z adresów wejściowych transakcji $N$. Oznacz to, że transakcje te są połączone i stanowią dwa węzły sieci połączone krawędzią. Wykorzystując tę zależność każdą próbkę stworzono poprzez znalezienie sto tysięcy połączeń pomiędzy transakcjami na podstawie adresów wejściowych i adresów wyjściowych zaczynając od początkowego adresu transakcji. Na ilustracji \ref{fig:siec} przedstawiono przykładowy generyczny wycinek każdej z stworzonych sieci zaczynając od węzła $N$, natomiast na ilustracji \ref{fig:graf} przedstawiono rzeczywisty graf jednej z próbek.
 
 \begin{table}[H]
 \begin{center}
@@ -454,8 +454,16 @@ W4 & W2 & W2 & W1 \\
 \end{center}
 \end{figure}
 
+\begin{figure}[H]
+\begin{center}
+\centering
+\includegraphics[width=1\linewidth]{pictures/graph/graph.png}
+\caption{Wizualizacja grafu składającego się ze stu tysięcy połączeń.}
+\label{fig:graf}
+\end{center}
+\end{figure}
 
-
+\newpage
 \indent Przeprowadzone badania podzielono na dwie grupy pod względem reprezentowanych cech sieci. Pierwsza grupa reprezentuje analizę sieci przy pomocy algorytmów generycznych dla sieci złożonych. Algorytmy te nie silnie związane z problematyką fachową sieci, jednakże pozwalają na zbadanie podstawowych własności każdej z sieci. W~ramach analizy dla każdej próbki zbadano:
 \begin{itemize}
 \item[--] średnicę sieci,
@@ -480,23 +488,22 @@ W ramach przeprowadzonych badań dla każdej z metryk stworzono mapę cieplną p
 \label{srednica_sieci}
 \indent Średnica sieci jest długością $max_{u,v}d(u,v)$ najdłuższej ścieżki znalezionej wśród najkrótszych ścieżek pomiędzy którymikolwiek dwoma węzłami sieci $(u,v)$, gdzie $d(u,v)$ jest długością grafu. Długość grafu jest minimalną długością ścieżki (stworzonej z węzłów) potrzebnej do połączenia dwóch określonych węzłów. Inaczej mówiąc średnica grafu jest maksymalną ilością węzłów jakie trzeba pokonać by przejść z jednego węzła do drugiego.
 
-\indent Dla badanej sieci oznacza to maksymalną ścieżkę połączonych transakcji, a co za tym idzie, maksymalną ilość adresów publicznych na które kolejno przekazywane były Bitcoiny.
+\indent Dla badanej sieci oznacza to maksymalną ścieżkę połączonych transakcji, a co za tym idzie, maksymalną krotność przekazywania pomiędzy adresami publicznymi Bitcoinów. Na podstawie wartość długość ścieżki można wnioskować o własnościach sieci, takich jak na przykład jej gęstości.
 
-\indent Na rysunku \ref{fig:s1} przedstawiono mapę ciepła średnicy sieci dla każdej z próbek. Na jej podstawie można wnioskować, że dla większości przypadków próbki w poszczególnych okresach są zbliżone. Jedyną zaobserwowana anomalią jest średnica sieci dla próbki zaczynającej się od transakcji szóstej, która została zrealizowana \textit{2017-03-31}. Prawdopodobnie jest to transakcja realizowana w ramach wielokrotnego przesyłania Bitcoinów przez jednego właściciela pomiędzy własnymi adresami w celu próby ukrycia ich źródła. 
+\indent Na rysunku \ref{fig:s1} przedstawiono mapę ciepła średnicy sieci dla każdej z próbek. Na jej podstawie można wnioskować, że dla większości przypadków próbki w poszczególnych okresach są zbliżone. Zaobserwować można również, że w każdym z okresów istnieją pojedyncze sieci mocno odbiegające od reszty. Jedyną z tych anomalii jest średnica sieci dla próbki zaczynającej się od transakcji szóstej, która została zrealizowana \textit{2017-03-31}. Istnieje prawdopodobieństwo, że jest to transakcja realizowana w ramach wielokrotnego przesyłania Bitcoinów przez jednego właściciela pomiędzy własnymi adresami w celu próby ukrycia ich źródła.
 
-\begin{figure}[h]
+\indent Na wykresie \ref{fig:s2} przedstawiono regresję liniową na podstawie średniej średnicy dla okresu z odchyleniem standardowym. Z~wykresu wynika, że gęstość sieci rośnie w czasie, o czy świadczy trend spadkowy średnicy sieci. Wzrost gęstości oznacza, że w sieci występuje coraz więcej krawędzi w stosunku do ilości węzłów. Dla sieci Bitcoin wzrost gęstości sieci oznacza wzrost ilość transakcji realizowanych na pojedyncze adresy publiczne, w krótszym czasie. Można zatem wnioskować, że w czasie Bitcoiny coraz częściej gromadzone są na pojedynczych adresach. Odchylenia standardowe widoczne na \ref{fig:s2} wynikają z pojedynczych próbek mocno odbiegających od średniej. Odrzucenie po dwie z próbek (najwyżej oraz najniżej wartościowanych) z każdego okresu zniwelowałoby znacząco rozpiętość odcyhlenia standardowego. Przykładem może być wcześniej omawiana próbka zaczynająca się od transakcji $T6$ z okresu \textit{2017-03-31}. 
+
+\begin{figure}[H]
 \centering
-  \includegraphics[width=0.75\linewidth]{pictures/srednica/srednica_hm.png}
+  \includegraphics[width=0.9\linewidth]{pictures/srednica/srednica_hm.png}
   \caption{Mapa cieplna średnicy sieci dla 10 transakcji w 10 okresach.}
   \label{fig:s1} 
 \end{figure}
 
-
-\indent Na wykresie \ref{fig:s2} przedstawiono regresję liniową na podstawie średniej średnicy dla okresu z odchyleniem standardowym. Z~wykresu wynika, że gęstość sieci rośnie w czasie, o czy świadczy trend spadkowy średnicy sieci. Wzrost gęstości oznacza, że w sieci występuje coraz więcej krawędzi w stosunku do ilości węzłów. Dla sieci Bitcoin wzrost gęstości sieci oznacza większą ilość transakcji realizowanych na pojedyncze adresy publiczne. Można zatem wnioskować, że w czasie Bitcoiny coraz częściej gromadzone są na pojedynczych adresach.
-
 \begin{figure}[H]
 \centering
-  \includegraphics[width=0.75\linewidth]{pictures/srednica/srednica_sda.png}
+  \includegraphics[width=0.9\linewidth]{pictures/srednica/srednica_sda.png}
   \caption{Regresja liniowa średniej średnicy sieci dla 10 okresów z odchyleniem standardowym.}
   \label{fig:s2}
 \end{figure}
@@ -510,26 +517,29 @@ W ramach przeprowadzonych badań dla każdej z metryk stworzono mapę cieplną p
 
 \indent Na podstawie mapy cieplnej \ref{fig:sds1} reprezentującej średnią długość ścieżki dla prób zaobserwowano pojedyncze przypadku odchyleń wartości badanej cechy. W przypadku transakcji szóstej zrealizowanej \textit{2017-03-31}, przyczyna prawdopodobnie jest analogiczna do przypadku analizy średnicy sieci, tzn. wielokrotne przesyłanie środków jednej osoby przez wiele adresów publicznych w~sieci.
 
+\indent Na wykresie \ref{fig:sds2} reprezentującym regresję liniową średniej wartości długości sieci z okresów zaobserwowano trend spadkowy. W przypadku badanych próbek średnia długość sieci zmienia się analogicznie do jej średnicy. Determinuje to zmniejszającą się średnią liczbę kolejnych transakcji w badanych próbach. Może to oznaczać coraz większą ilość transakcji rejestrowanych w~sieci. Potwierdza to wzrastającą gęstość sieci.
+
+\indent Można przypuścić, że uszczegółowienie informacji dotyczących przypadków znaczących odchyleń standardowych poprzez wykonanie dodatkowych badań pozwoliłoby jednoznacznie stwierdzić ich przyczynę. Jednak że istnieje prawdopodobieństwo, że właściwości sieci nie są stałe w jednym okresie czasu, a zmieniają się dynamicznie w~zależności od aktywności poszczególnych uczestników sieci.
+
 \begin{figure}[H]
 \centering
-  \includegraphics[width=0.75\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_hm.png}
+  \includegraphics[width=0.9\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_hm.png}
   \caption{Mapa cieplna średniej długości scieżki w sieci dla 10 transakcji w 10 okresach.}
   \label{fig:sds1}
 \end{figure}
 
-\indent Na wykresie \ref{fig:sds2} reprezentującym regresję liniową średniej wartości z okresów zaobserwowano trend spadkowy, z którego wynika, że średnia długość sieci zmienia się analogicznie do jej średnicy. Determinuje to zmniejszającą się średnią liczbę kolejnych transakcji w badanych próbach. Może to oznaczać coraz większą ilość transakcji rejestrowanych w~sieci.
-
 \begin{figure}[H]
 \centering
-  \includegraphics[width=0.75\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_sda.png}
+  \includegraphics[width=0.9\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_sda.png}
   \caption{Regresja liniowa średniej długości scieżki sieci dla 10 okresów z odchyleniem standardowym.}
   \label{fig:sds2}
 \end{figure}
 
 \subsection{Badanie średniego stopnia węzła}
 
-\indent Stopień węzła $v$ grafu oznacza liczbę krawędzi w grafie, które bezpośrednio dotykają węzła $v$. W grafach skierowanych wyróżnia się wejściowy stopień węzła (ilość krawędzi skierowanych w stronę węzła) oraz wyjściowy stopień węzła (ilość krawędzi skierowanych od strony węzła). Suma wejściowego stopnia węzła oraz wyjściowego stopnia wejścia daje wynikowy stopień węzła. Średni stopień węzła obliczany jest jako $\frac{\sum_i^n\deg(v_i)}{n}$, gdzie $deg(v_i)$ to stopień i-tego węzła, a $n$ to ilość węzłów. W celu zapewnienia autentyczności obliczanej średniej badana próba musi być mieć rozkład normalny. W przeciwnym przypadku należy przedstawić dodatkowe źródło informacji o próbie, które zobrazuje minima oraz maksima lokalne, np. histogram. 
+\indent Stopień węzła $v$ grafu oznacza liczbę krawędzi w grafie, które bezpośrednio dotykają węzła $v$. W grafach skierowanych wyróżnia się wejściowy stopień węzła (ilość krawędzi skierowanych w stronę węzła) oraz wyjściowy stopień węzła (ilość krawędzi skierowanych od strony węzła). Suma wejściowego stopnia węzła oraz wyjściowego stopnia wejścia daje wynikowy stopień węzła. Średni stopień węzła obliczany jest jako $\frac{\sum_i^n\deg(v_i)}{n}$, gdzie $deg(v_i)$ to stopień i-tego węzła, a $n$ to ilość węzłów. W celu zmniejszenia popełnienia błędu podczas interpretacji autentyczności obliczanej średniej badana próba powinna mieć rozkład normalny. W przeciwnym przypadku należy przedstawić dodatkowe źródło informacji o próbie, które zobrazuje częstotliwość występowania poszczególnych wartości, np. histogram. 
 
+\indent W trakcie budowania sieci procesowanie każdej pojedynczej transakcji polega na sprawdzeniu jej adresów wyjściowych z adresami wejściowymi każdej transakcji do tej pory dołączonej do sieci. W przypadku wykrycia tego samego adresu w tych dwóch zbiorach adresów transakcji powstaje krawędź, która je łączy. W przypadku badania stopnia węzła transakcji w łańcucha transakcji sieci bitcoin określana jest ilość transakcji, z którymi dana transakcja dzieli adres w danej próbce. 
 
 
 %\begin{figure}
