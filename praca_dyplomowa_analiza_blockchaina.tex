@@ -515,7 +515,7 @@ najdłuższej ścieżki znalezionej wśród najkrótszych ścieżek pomiędzy kt
 
 
 \subsection{Badanie średniej długość ścieżki}
-
+\label{dlugosc_sciezki}
 \indent Średnia długość ścieżki w sieci jest średnią wartością 
 \begin{equation}
 \label{eq:dlugosc_sciezki}
@@ -544,8 +544,9 @@ wszystkich możliwych par węzłów $(u_j,v_j)$ w grafie, gdzie $d(u_i,v_j)$ jes
   \label{fig:sds2}
 \end{figure}
 
+\newpage
 \subsection{Badanie średniego stopnia węzła}
-
+\label{stopien_wezla}
 \indent Stopień węzła $v$ grafu oznacza liczbę krawędzi w grafie, które bezpośrednio dotykają węzła~$v$. W grafach skierowanych wyróżnia się wejściowy stopień węzła (ilość krawędzi skierowanych w stronę węzła) oraz wyjściowy stopień węzła (ilość krawędzi skierowanych od strony węzła). Suma wejściowego stopnia węzła oraz wyjściowego stopnia wejścia daje wynikowy stopień węzła. Średni stopień węzła obliczany jest jako 
 \begin{equation}
 \label{eq:stopien_wezla}
@@ -555,7 +556,7 @@ gdzie $deg(v_i)$ to stopień i-tego węzła, a $n$ to ilość węzłów. W celu 
 
 \indent W trakcie budowania sieci procesowanie każdej pojedynczej transakcji polega na sprawdzeniu jej adresów wyjściowych z adresami wejściowymi każdej transakcji do tej pory dołączonej do sieci. W przypadku wykrycia tego samego adresu w tych dwóch zbiorach adresów transakcji powstaje krawędź, która je łączy. W przypadku badania stopnia węzła transakcji w łańcucha transakcji sieci bitcoin określana jest ilość transakcji, z którymi dana transakcja dzieli adresy w danej próbce. Średni stopień węzła w próbce oznacza, średnią ilość transakcji, z którymi połączona jest każda transakcja w próbce. 
 
-\indent Na podstawie mapy cieplnej \ref{fig:sw1} badanej właściwości wywnioskowano, że średnia ilość transakcji, z którymi połączona jest każda transakcja jest bardzo zróżnicowana. Wynika to z różnego poziomu aktywności właścicieli adresów biorących udział w~transakcjach w~danych okresach czasu oraz ilości nowych adresów generowanych przez uczestników sieci. Prezentowane wyniki można interpretować na trzy kolejno wymienione sposoby. Wysoka wartość średniego stopnia węzła może świadczyć o wzmożonej działalność właściciela adresu jako odbiorcy, czy jako nadawcy zleceń. Niska wartość średniego stopnia węzła nie wyklucza dużej aktywności pojedynczych klientów sieci, a oznaczać może dużą ilość nowo generowanych adresów, na które przekazywane były środki. Trzecią prawdopodobną sytuacją jest mało dynamiczny fragment sieci, w którym tworzone było mało nowych adresów, a środki przekazywane były kolejno do lub od ograniczonej ilości uczestników sieci.
+\indent Na podstawie mapy cieplnej \ref{fig:sw1} badanej właściwości wywnioskowano, że średnia ilość transakcji, z którymi połączona jest każda transakcja jest bardzo zróżnicowana. Wynika to z różnego poziomu aktywności właścicieli adresów biorących udział w~transakcjach w~danych okresach czasu oraz ilości nowych adresów generowanych przez uczestników sieci. Prezentowane wyniki można interpretować na trzy kolejno wymienione sposoby. Wysoka wartość średniego stopnia węzła może świadczyć o wzmożonej działalność właściciela adresu jako odbiorcy, czy jako nadawcy zleceń. Niska wartość średniego stopnia węzła nie wyklucza dużej aktywności pojedynczych klientów sieci, a oznaczać może dużą ilość nowo generowanych adresów, na które przekazywane były środki. Trzecią prawdopodobną sytuacją jest mało dynamiczny fragment sieci, w którym tworzone było mało nowych adresów, a środki przekazywane były kolejno pomiędzy ograniczoną ilości uczestników sieci.
 
 \indent Duże zróżnicowania badanej cechy zaobserwowano również na podstawie wykresu \ref{fig:sw2}, który przedstawia regresję liniową stworzoną na podstawie wartości średnich z odchyleniami standardowymi dla okresu. Wykres ten wskazuje na tendencję do wzrostu analizowanej własności, jednakże z powodów wskazanych w akapicie pierwszym oraz dużych odchyleń standardowych zaobserwowanych na prezentowanych wykresach postanowiono przeprowadzić dodatkową analizę.
 
@@ -580,7 +581,7 @@ gdzie $deg(v_i)$ to stopień i-tego węzła, a $n$ to ilość węzłów. W celu 
 \end{figure}
 
 \subsection{Badanie średniej centralności węzła}
-
+\label{srednia_centralnosc}
 \indent Centralność węzła $v$ jest miara bazującą na własności grafu polegającej na znalezieniu \textit{najkrótszych ścieżek w~grafie}. Centralność węzła opiera się na znalezieniu wszystkich możliwych najkrótszych ścieżek w grafie pomiędzy połączonymi węzłami, które następnie grupowane są na ścieżki przechodzące przez węzeł $v$. Średnia centralność węzła dana jest wzorem 
 \begin{equation}
 \label{eq:centralnosc}
@@ -616,7 +617,7 @@ gdzie $\sigma_{st}$ jest liczbą wszystkich najkrótszych ścieżek przechodząc
 \end{figure}
 
 \subsection{Badanie średniej wartości transakcji}
-
+\label{wartosc_transakcji}
 \indent Średnia wartości transakcji jest miarą bezpośrednio związaną z typem badanej sieci. Oznacza średnią wartości bitcoinów, która wiąże ze sobą węzły reprezentujące transakcje, tworząc graf ważony. Wartość bitcoinów pomiędzy dwoma węzłami stanowią wagę krawędzi przejścia pomiędzy nimi. Średnia wartość transakcji można zapisać jako
 \begin{equation}
 \label{eq:wartosc_transakcji}
@@ -627,7 +628,7 @@ gdzie $\omega(e_i)$ oznacza wagę przejścia(ilość bitcoinów) przez krawędź
 \indent Przeprowadzone badanie wykazało, że w różnych okresach wartość mierzona pojedynczych próbek znacząco odbiega od pozostałych, co może znacząco wpływać na ogólny wynik badania.
 Na mapie cieplnej \ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe jest, że odbiegające próbki stanowią przekazy środków pomiędzy adresami giełd lub giełdą, a~ innymi uczestnikami sieci. Wskazują na to olbrzymie sumy łączące transakcje. Chwilowe pominiecie tych wyników pozwala na stwierdzenie, że ilości przekazywanych środków we wszystkich okresach są bardzo porównywalne. Niedużą tendencją wzrostową można zauważyć w ostatnich trzech okresach, co potwierdza wykres \ref{fig:wt2} przedstawiający rosnący trend średniej wartości transakcji. 
 
-\indent Transakcje do badań wybierane było kolejno z bloków, a priorytety kolejno podpisywanych transakcji zależą między innymi od wniesionej opłaty przez zleceniodawców. Przy zauważalnym szybkim wzroście wartości Bitcoina oraz założeniu, że giełdy lub uczestnicy sieci prowadzący duże wymiany wnoszą większe opłaty w celu zapewnia jak najszybszego przekaz środków, można również wnioskować wzrost zainteresowania w stosunku do okresów poprzednich bogatych instytucji prowadzących interesy w sieci Bitcoin. Niestety z powodu dużej anonimowości uczestników sieci wyciągnięty wniosek nie jest niepodważalny.
+\indent Transakcje do badań wybierane było kolejno z bloków, a priorytety kolejno podpisywanych transakcji zależą między innymi od wniesionej opłaty przez zleceniodawców. Przy zauważalnym szybkim wzroście wartości Bitcoina oraz założeniu, że giełdy lub uczestnicy sieci prowadzący duże wymiany wnoszą większe opłaty w celu zapewnia jak najszybszego przekaz środków, można również wnioskować wzrost zainteresowania w stosunku do okresów poprzednich bogatych instytucji prowadzących interesy w sieci Bitcoin. Niestety z~powodu dużej anonimowości uczestników sieci wyciągnięty wniosek nie jest niepodważalny.
 
 \begin{figure}[H]
 \centering
@@ -644,12 +645,12 @@ Na mapie cieplnej \ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe je
 
 \newpage
 \subsection{Badanie ilości bloków}
-
+\label{ilosc_blokow}
 \indent Ilość bloków jest kolejną miarą związaną stricte z rodzajem badanej sieci. Polega na zliczeniu wszystkich bloków, w których znajdują się transakcje dołączone do próbki sieci. Każda transakcja może być zawarta jedynie w jednym bloku, natomiast jeden blok może zawierać wiele transakcji, które zostały połączone w procesie budowania sieci. Informacje o przynależności węzłów(transakcji) do poszczególnych bloku zostały wyekstrahowane podczas budowania próbek sieci i stanowią w niniejszym badaniu metadane węzła. 
 
 \indent Zliczenie ilość bloków, w których znajdują się wszystkie powiązane ze sobą węzły zostało zrealizowane poprzez znalezienie wszystkich unikalnych adresów bloków z transakcji.
 
-\indent Na mapie cieplnej \ref{fig:ib1} zaprezentowano ilość bloków potrzebną na znalezienie stu tysięcy połączeń pomiędzy transakcjami. Na podstawie przebadanych prób zaobserwowano zróżnicowanie badanej wartości w okresach. Duża ilość bloków oznacza małą aktywność uczestników sieci rozciągnięta w czasie, natomiast mała ilość bloków oznacza dużą aktywność uczestników sieci w określonych momentach czasu. Należy zauważyć, że prezentowana ilość bloków nie oznacza, że bloki te generowane były kolejno jeden po drugim. Aktywność uczestników zlecających transakcje pozwalająca na budowę  poszczególnych prób sieci mogła być nagła w~różnych momentach czasu. Zakładając jednak sytuację, w~której bloki budujące każdą z~prób występowały kolejno po sobie, a ilość bloków generowana w~sieci dziennie waha się w okolicy 170 bloków, stwierdzić można, że sieć składającą się ze sto tysięcy połączeń, zaczynającą się od pojedynczej transakcji można zbudować w~nie dłużej niż w~przeciągu pół dnia. Prezentuje to ogrom badanej sieci, a zaprezentowany na wykresie \ref{fig:ib2} trend spadkowy wskazuje na coraz szybszy jej rozwój. 
+\indent Na mapie cieplnej \ref{fig:ib1} zaprezentowano ilość bloków potrzebną na znalezienie stu tysięcy połączeń pomiędzy transakcjami. Na podstawie przebadanych prób zaobserwowano zróżnicowanie badanej wartości w okresach. Duża ilość bloków oznacza małą aktywność uczestników sieci rozciągnięta w czasie, natomiast mała ilość bloków oznacza dużą aktywność uczestników sieci w określonych momentach czasu. Należy zauważyć, że prezentowana ilość bloków nie oznacza, że bloki te generowane były kolejno po sobie. Aktywność uczestników zlecających transakcje pozwalająca na budowę  poszczególnych prób sieci mogła być nagła w~różnych momentach czasu. Zakładając jednak sytuację, w~której bloki budujące każdą z~prób występowały kolejno po sobie, a ilość bloków generowana w~sieci dziennie waha się w okolicy 170 bloków, stwierdzić można, że sieć składającą się ze sto tysięcy połączeń, zaczynającą się od pojedynczej transakcji można zbudować w~nie dłużej niż w~przeciągu pół dnia. Prezentuje to ogrom badanej sieci, a zaprezentowany na wykresie \ref{fig:ib2} trend spadkowy wskazuje na coraz szybszy jej rozwój. 
 
 \begin{figure}[H]
 \centering
@@ -664,49 +665,82 @@ Na mapie cieplnej \ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe je
    \label{fig:ib2}
 \end{figure}
 
+\subsection{Badanie średniej różnicy czasów kolejnych transakcji}
+\label{roznice_czasow}
+\indent Badanie różnicy czasów kolejnych transakcji to własność badanej sieci ściśle związana z~jej fachową stroną. Polega na zliczeniu różnic czasów realizowania kolejnych transakcji wstecz. Oparta jest na przeglądzie wszystkich możliwych ścieżek w sieci z~jednoczesnym ekstrahowaniem czasu $t(v_i)$ ich wykonania. W~konsekwencji pozwala to na wyliczenie różnic czasu pomiędzy transakcjami $v_i$ i $v_{i-1}$ w~ścieżkach. Średnia wartość różnic wykonywania kolejnych transakcji w~ścieżce jest ilorazem sumy wszystkich różnic w ścieżce i~ich ilości, co można zapisać jako
+\begin{equation}
+\label{eq:rckt}
+M(\sigma) = \frac{\sum_{i=1}^{n-1} t(\sigma(v_{i+1})) - t(\sigma(v_{i}))}{n-1}
+\end{equation}
+gdzie $M$ to średnia wartość różnic czasu kolejnych transakcji w~ścieżce $\sigma$, $t(\sigma(v_i))$ to czas wykonania i-tej transakcji w ścieżce $\sigma$, $t(\sigma(v_{i+1}))$ to czas $t$ wykonania transakcji $v_{i+1}$ w ścieżce $\sigma$, a $n$~to ilość połączeń pomiędzy transakcjami w ścieżce. 
+\\ Średnią wartości różnic wykonania kolejnych transakcji w całej sieci można zapisać zatem jako
+\begin{equation}
+\label{eq:rckt}
+\frac{\sum_{s \ne t}^{} M(\sigma_{st})}{m}
+\end{equation}
+gdzie $\sigma_{st}$ to ścieżka prowadząca od węzła $s$ do węzła $t$, a~$m$~to liczba wszystkich ścieżek.
 
-%\begin{figure}
-%\centering
-%
-%\begin{subfigure}[b]{0.85\textwidth}
-%   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_hm.png}
-%   \caption{}
-%   \label{fig:rc1} 
-%\end{subfigure}
-%
-%\begin{subfigure}[b]{0.85\textwidth}
-%   \includegraphics[width=1\linewidth]{pictures/roznica_czasow/roznica_czasow_sda.png}
-%   \caption{}
-%   \label{fig:rc2}
-%\end{subfigure}
-%
-%\caption[Średni czas różnic kolejnych transakcji]{(a) mapa cieplna średniej różnicy czasu kolejnych transakcji sieci dla 10 transakcji w 10 okresach (b) regresja liniowa średniej różnicy czasu kolejnych transakcji sieci dla 10 okresów z odchyleniem standardowym}
-%
-%\end{figure}
-%
-%
-%\begin{figure}
-%\centering
-%
-%\begin{subfigure}[b]{0.85\textwidth}
-%   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_hm.png}
-%   \caption{}
-%   \label{fig:cg1} 
-%\end{subfigure}
-%
-%\begin{subfigure}[b]{0.85\textwidth}
-%   \includegraphics[width=1\linewidth]{pictures/czas_graniczny/czas_graniczny_sda.png}
-%   \caption{}
-%   \label{fig:cg2}
-%\end{subfigure}
-%
-%\caption[Średni czas różnic granicznych transakcji]{(a) mapa cieplna różnic czasu  granicznych transakcji dla 10 transakcji w 10 okresach (b) regresja liniowa średniego różnic czasu granicznych transakcji dla 10 okresów z odchyleniem standardowym}
-%
-%\end{figure}
+\indent Różnica czasów kolejnych transakcji pozwala określić 
+częstotliwość ich wykonywania. Im mniejsza wartość, tym transakcje wykonywane były częściej, co w konsekwencji pozwala określić dynamikę sieci.
+
+\indent Na podstawie mapy cieplne badanej właściwości \ref{fig:rc1} wywnioskowano, że połączenia pomiędzy transakcjami dla większości prób zostały odnalezione już w kilku poprzedzających blokach. Wskazują na to bardzo małe wartości badanej cechy. Sądzić można zatem, że sieć Bitcoin jest bardzo dynamiczna, a jej uczestnicy przekazują środki pomiędzy adresami w~bardzo krótkich odstępach czasu. Może to również oznaczać ciągłą, wzmożoną aktywność posiadaczy badanych adresów.
+
+\indent Istnieje również ograniczona liczba prób, w których różnica czasu wykonania połączonych transakcji bliska jest kilkunastu minut, co przy wielkości badanej sieci sumarycznie oznaczać może kilkanaście miesięcy. Mogą to być transakcje wykonywane przez klientów sporadycznie korzystających z~sieci Bitcoin, którzy rzadko przekazują środki na inne adresy lub przekazują je pomiędzy ich ograniczoną liczbą. Utrudnia to budowę sieci, gdyż w celu odnalezienia połączeń wymagany jest długi przegląd łańcucha bloków.  Podstawą niniejszego wnioskowania mogą być próby z okresu \textit{2016-06-30}, dla których wartość zdecydowanie odbiega od reszty okresów. 
+
+\indent Na wykresie \ref{fig:rc2} zauważyć można okresy, w których wartości średniej dla próbek lokalnie odbiegają od średniej. W~kontekście całego badania nie mają one jednak dużego wpływu na wynik końcowy tworzący linię trendu badanej właściwości. Na jej podstawie można wnioskować o zmniejszającym się średnim czasie rejestrowania kolejnych transakcji, co w konsekwencji oznacza wzrastającą ilości wykonywanych transakcji i większe zaangażowanie użytkowników sieci. 
+ 
+\begin{figure}[H]
+\centering
+   \includegraphics[width=\chartsWidth\linewidth]{pictures/roznica_czasow/roznica_czasow_hm.png}
+   \caption{Mapa cieplna średniej różnicy czasu kolejnych transakcji sieci dla 10 transakcji w 10 okresach.}
+   \label{fig:rc1} 
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+   \includegraphics[width=\chartsWidth\linewidth]{pictures/roznica_czasow/roznica_czasow_sda.png}
+   \caption{Regresja liniowa średniej różnicy czasu kolejnych transakcji sieci dla 10 okresów z odchyleniem standardowym.}
+   \label{fig:rc2}
+\end{figure}
+
+\subsection{Badanie różnicy czasów granicznych transakcji}
+\label{graniczne_transakcje}
+\indent Badanie różnicy czasów granicznych transakcji jest właściwością sieci bezpośrednio związaną z jej specyfiką. Polega na odnalezieniu wśród wszystkich możliwych ścieżek takiej ścieżki, której różnica czasów pierwszej oraz ostatniej transakcji jest największa. Jako że próby przygotowane w celu przeprowadzenia serii badań powstały od określonych transakcji $t$, czasem wykonania pierwszej transakcji będzie zawsze czas wykonania transakcji początkowej $t$. Różnica czasu wykonania transakcji początkowej $t$ oraz ostatniej transakcji dołączonej do danej ścieżki stanowi podstawę omawianego badania i może zostać przedstawiona jako
+\begin{equation}
+D(\sigma) = t(\sigma(v_1)) - t(\sigma(v_l))
+\end{equation}
+gdzie $D(\sigma)$ to różnica czasów wykonania transakcji, $t(\sigma(v_1))$ to czas wykonania pierwszej transakcji ścieżki, a $t(\sigma(v_l))$ to czas wykonania ostatniej transakcji ścieżki.
+\\ Różnicę czasów granicznych transakcji można zatem zapisać jako
+\begin{equation}
+ \max_{\sigma_{st},s \ne t} D(\sigma_{st})
+\end{equation}
+gdzie $\sigma_{st}$ to ścieżka prowadząca od węzła $s$ do węzła $t$.
+
+\indent Wyniki przeprowadzonego badania zaprezentowano na mapie cieplnej \ref{fig:cg1}. Potwierdza ona wnioski opisane w~podrozdziale \ref{roznice_czasow} opisującym badanie różnic czasów kolejnych transakcji. Dla większości prób we wszystkich okresach zaobserwowano wykrycie wszystkich stu tysięcy połączenia pomiędzy transakcjami w bardzo krótkim czasie, determinując przegląd tylko kilku poprzedzających bloków. Różnica czasów granicznych transakcji dla próbek w okresach, których średni czas kolejnych transakcji znacząco odbiegał od średniej, jest największa. Potwierdza to sporadyczne realizowanie transakcji właścicieli adresów w~danych próbkach w okresie \textit{2016-06-30}. Na podstawie ostatnich czterech okresów wnioskować można, że aktualnie podobne sytuacje są rzadkością i~większość uczestników sieci realizuje znacząco więcej transakcji niż wcześniej, co potwierdza również wykres \ref{fig:cg2}. Pozwala to na stwierdzenie, że sieć Bitcoin w przeciągu ostatnich czterech badanych okresów bardzo urosła i zyskała zaufanie większej liczby użytkowników.
+
+\begin{figure}[H]
+\centering
+   \includegraphics[width=\chartsWidth\linewidth]{pictures/czas_graniczny/czas_graniczny_hm.png}
+   \caption{Mapa cieplna różnic czasu  granicznych transakcji dla 10 transakcji w 10 okresach.}
+   \label{fig:cg1} 
+\end{figure}
+
+\begin{figure}[H]
+\centering
+   \includegraphics[width=\chartsWidth\linewidth]{pictures/czas_graniczny/czas_graniczny_sda.png}
+   \caption{Regresja liniowa średniego różnic czasu granicznych transakcji dla 10 okresów z odchyleniem standardowym.}
+   \label{fig:cg2}
+\end{figure}
+
+\newpage
 
 \section{Wnioski}
 
-\chapter{Klasyfikacja w sieci Bitcoin}
+Sieć Bitcoin jest bardzo złożoną, dynamiczną i szybko rozwijającą się siecią. Na podstawie przeprowadzonych badań wywnioskowano ciągle rosnącą gęstość sieci, co w odniesieniu do jej specyfiki oznacza coraz większą ilość zlecanych transakcji, powstawanie dużej ilości nowych adresów oraz wzrost realizowanych transakcji pomiędzy różnymi uczestnikami sieci. W podrozdziale \ref{srednica_sieci}  zjawisko to został przedstawione bardziej szczegółowo. Badanie centralności węzłów opisane w~podrozdziale \ref{srednia_centralnosc} pozwoliło na zarejestrowanie znaczącego spadku istotności pojedynczej transakcji w całej sieci, co ponownie potwierdza fakt rosnącej ilości zlecanych transakcji. Zaobserwowano również, że właściwości sieci nie są stałe w~jednym okresie, a zależeć mogą od aktywności poszczególnych uczestników, dlatego też ilość połączeń pomiędzy transakcjami może być bardzo zróżnicowana, co zaprezentowano w podrozdziałach \ref{dlugosc_sciezki} i \ref{stopien_wezla}. 
+
+\indent W~trakcie badania poszczególnych próbek zauważono wzmożoną działalność  pojedynczych właścicieli adresów, którzy zlecali lub odbierali znaczne sumy bitcoinów. Z~powodu dużej anonimowości w~sieci nie da się wprost określić właścicieli użytych adresów w tych transakcjach. Przypuszczać można jednak, że mogą to być adresy należące do giełd lub dużych instytucji. Dodatkowo na podstawie analizy średniej wartości transakcji zauważono, że wartość większości transakcji nie przekracza 100 bitcoinów, a zazwyczaj są to małe przekazy środków pomiędzy klientami sieci. Porównanie wyników średnich wartości transakcji dla okresów w podrozdziale \ref{wartosc_transakcji} pozwala stwierdzić, że ilość przekazywanych bitcoinów w transakcjach cały czas rośnie. Badanie ilości bloków potrzebnych do odnalezienia 100 tysięcy połączeń w~powiązaniu z~analizą średniej różnicy czasów kolejnych transakcji oraz różnicy czasów transakcji granicznych(opisane kolejno w podrozdziałach \ref{ilosc_blokow}, \ref{roznice_czasow}, \ref{graniczne_transakcje}) ilustruje wielkość oraz tempo rozwój badanej sieci. W~ostatnich okresach transakcje do prób zostały odnalezione w~kilku blokach, a~różnice czasów granicznych transakcji zawartych w~próbach nie przekraczają kilkudziesięciu minut. W~rezultacie pozwala to na wywnioskowanie o~kolejności występowania po sobie bloków, w~których odnaleziono połączenia pomiędzy transakcjami. Odnalezienie tak olbrzymiej ilości powiązanych transakcji w~paru kolejnych blokach potwierdza rosnącą ilość realizowanych transakcji pomiędzy różnymi uczestnikami sieci w bardzo ograniczonym czasie.
+
+\indent Reasumując, sieć Bitcoin jest siecią bardzo dynamicznie się rozwijającą. Można wnioskować, że coraz więcej użytkowników używa jej jako codziennego medium transmisyjnego środków, a z uwagi na rosnącą gęstość sieci można wnioskować również o rosnącej ilości samych użytkowników. 
 
 
 \chapter*{Podsumowanie}
