@@ -31,7 +31,7 @@
 \renewcommand*\descriptionlabel[1]{\hspace\leftmargin$#1$}
 \newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do
                                            %składania twierdzeń
-\newcommand{\chartsWidth}{0.8}
+\newcommand{\chartsWidth}{0.80}
 %dane do złożenia strony tytułowej
 \title{Analiza łańcucha transakcji w sieci Bitcoin}
 \engtitle{The analysis of Bitcoin transactions blockchain}
@@ -450,9 +450,6 @@ W4 & W2 & W2 & W1 \\
 \end{center}
 \end{table}
 
-\indent Zastosowanie transakcji do stworzenia łańcucha transakcji pozwala na agregację wielu adresów w jeden komponent, który reprezentuje pojedynczy węzeł sieci. Taki sposób budowy sieci  daje możliwość szybszego wyszukiwania połączonych transakcji oraz możliwość efektywnego badania jej właściwości. Zauważyć jednak należy, że wybrane rozwiązanie próbkowania sieci nie jest jedyną możliwą metodą jej konstruowania. Przykładowo, rejestr bloków, który stanowi jeden z podstawowych mechanizmów zabezpieczania kryptowaluty Bitcoin, rozumiany być może jako sieć. Innym przykładem może być zastosowanie adresów zawartych w~transakcjach, jako pojedynczych węzłów sieci, które poprzez transakcje łączone są krawędziami. Takie podejście wymaga badania właściwości podstawowej jednostki na najniższym możliwym poziomie w sieci~Bitcoin, co jest bardzo czasochłonne i~ kosztowne. Metoda tworzenia sieci zastosowana w niniejszej pracy gwarantuje globalne spojrzenie na opisywany problem badawczy. 
-
-\newpage
 \begin{figure}[H]
 \begin{center}
 \centering
@@ -472,6 +469,8 @@ W4 & W2 & W2 & W1 \\
 \end{figure}
 
 \newpage
+\indent Zastosowanie transakcji do stworzenia łańcucha transakcji pozwala na agregację wielu adresów w jeden komponent, który reprezentuje pojedynczy węzeł sieci. Taki sposób budowy sieci  daje możliwość szybszego wyszukiwania połączonych transakcji oraz możliwość efektywnego badania jej właściwości. Zauważyć jednak należy, że wybrane rozwiązanie próbkowania sieci nie jest jedyną możliwą metodą jej konstruowania. Przykładowo, rejestr bloków, który stanowi jeden z podstawowych mechanizmów zabezpieczania kryptowaluty Bitcoin, rozumiany być może jako sieć. Innym przykładem może być zastosowanie adresów zawartych w~transakcjach, jako pojedynczych węzłów sieci, które poprzez transakcje łączone są krawędziami. Takie podejście wymaga badania właściwości podstawowej jednostki na najniższym możliwym poziomie w sieci~Bitcoin, co jest bardzo czasochłonne i~ kosztowne. Metoda tworzenia sieci zastosowana w niniejszej pracy gwarantuje globalne spojrzenie na opisywany problem badawczy. 
+
 \indent Przeprowadzone badania podzielono na dwie grupy pod względem reprezentowanych cech sieci. Pierwsza grupa reprezentuje analizę sieci przy pomocy algorytmów generycznych dla sieci złożonych. Algorytmy te nie są związane z problematyką fachową sieci, jednakże pozwalają na zbadanie podstawowych własności każdej z sieci. W~ramach analizy dla każdej próbki zbadano:
 \begin{itemize}
 \item[--] średnicę sieci,
@@ -507,6 +506,7 @@ najdłuższej ścieżki znalezionej wśród najkrótszych ścieżek pomiędzy dw
 
 \indent Na wykresie~\ref{fig:s2} przedstawiono regresję liniową na podstawie średniej średnicy dla okresu z odchyleniem standardowym. Z~wykresu wynika, że gęstość sieci rośnie w czasie, o czy świadczy trend spadkowy średnicy sieci. Wzrost gęstości oznacza, że w sieci występuje coraz więcej krawędzi w stosunku do ilości węzłów. Dla sieci Bitcoin wzrost gęstości sieci oznacza wzrost ilość transakcji realizowanych na pojedyncze adresy publiczne, w~krótszym czasie. Można zatem wnioskować, że bitcoiny coraz częściej gromadzone są na pojedynczych adresach. Odchylenia standardowe widoczne na~\ref{fig:s2} wynikają z pojedynczych próbek mocno odbiegających od średniej. Odrzucenie próbek (najwyżej oraz najniżej wartościowanych) z każdego okresu zniwelowałoby znacząco rozpiętość odchylenia standardowego. Przykładem może być wcześniej omawiana próbka zaczynająca się od transakcji $T6$ z okresu \textit{2017-03-31}. 
 
+\newpage
 \begin{figure}[H]
 \centering
   \includegraphics[width=\chartsWidth\linewidth]{pictures/srednica/srednica_hm.png}
@@ -521,6 +521,7 @@ najdłuższej ścieżki znalezionej wśród najkrótszych ścieżek pomiędzy dw
 \end{figure}
 
 
+\newpage
 \subsection{Badanie średniej długość ścieżki}
 \label{dlugosc_sciezki}
 \indent Średnia długość ścieżki w sieci jest średnią wartością 
@@ -538,6 +539,7 @@ wszystkich możliwych par węzłów $(u_j,v_j)$ w grafie, gdzie $d(u_i,v_j)$ jes
 
 \indent Można przypuścić, że uszczegółowienie informacji dotyczących przypadków znaczących odchyleń standardowych poprzez wykonanie dodatkowych badań pozwoliłoby jednoznacznie stwierdzić ich przyczynę. Jednakże istnieje prawdopodobieństwo, że właściwości sieci nie są stałe w jednym okresie czasu, a zmieniają się dynamicznie w~zależności od aktywności poszczególnych uczestników sieci.
 
+\newpage
 \begin{figure}[H]
 \centering
   \includegraphics[width=\chartsWidth\linewidth]{pictures/srednia_dlugosc_sciezki/srednia_dlugosc_sciezki_hm.png}
@@ -636,8 +638,8 @@ gdzie $\omega(e_i)$ oznacza wagę przejścia (ilość bitcoinów) przez krawęd�
 Na mapie cieplnej~\ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe jest, że odbiegające próbki stanowią przekazy środków pomiędzy adresami giełd lub giełdą, a~innymi uczestnikami sieci. Wskazują na to znacząco wyższe sumy łączące transakcje. Chwilowe pominiecie tych wyników pozwala na stwierdzenie, że ilości przekazywanych środków we wszystkich okresach są bardzo porównywalne. Niedużą tendencję wzrostową można zauważyć w ostatnich trzech okresach, co potwierdza wykres~\ref{fig:wt2} przedstawiający rosnący trend średniej wartości transakcji. 
 
 \indent Transakcje do badań wybierane było kolejno z bloków, a priorytety kolejno podpisywanych transakcji zależą między innymi od wniesionej opłaty przez zleceniodawców. Przy szybkim wzroście wartości bitcoina oraz założeniu, że giełdy lub uczestnicy sieci prowadzący duże wymiany wnoszą większe opłaty (w celu zapewnia jak najszybszego przekazu środków) można również zauważyć wzrost zainteresowania, w stosunku do okresów poprzednich, bogatych instytucji prowadzących interesy w sieci Bitcoin. Niestety z~powodu dużej anonimowości uczestników sieci wyciągnięty wniosek nie jest niepodważalny. 
-
-\indent Przykładem na aktywności giełd w badanych próbach może być transakcja\\\texttt{b0acc2caa54197dd10aa02bef7df8b54a304716f5e0801dca2dd3a9c26f130d8} z bloku\\ \texttt{00000000000000000229200fbabedffc445a4911d1d6603d2962d564c1678f5c} z próby \textit{T8}, przy pomocy której przekazano \texttt{541.79706464} bitcoinów. Wśród adresów wejściowych jak i adresów wejściowych tej transakcji odnaleziono adresy jednej z dużych giełd \textit{Poloniex.com}\cite{poloniex}:
+\newpage
+\indent Przykładem na aktywności giełd w badanych próbach może być transakcja\\\texttt{b0acc2caa54197dd10aa02bef7df8b54a304716f5e0801dca2dd3a9c26f130d8} z bloku\\ \texttt{00000000000000000229200fbabedffc445a4911d1d6603d2962d564c1678f5c} z próby \textit{T8}, przy pomocy której przekazano \texttt{541.79706464} bitcoinów. Wśród adresów wyjściowych jak i adresów wejściowych tej transakcji odnaleziono adresy jednej z dużych giełd \textit{Poloniex.com}\cite{poloniex}:
 \begin{itemize}
 \item[--] \texttt{12cgpFdJViXbwHbhrA3TuW1EGnL25Zqc3P}
 \item[--] \texttt{17A16QmavnUfCW11DAApiJxp7ARnxN5pGX}
