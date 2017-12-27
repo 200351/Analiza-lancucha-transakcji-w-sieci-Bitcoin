@@ -430,7 +430,7 @@ Jak analizować blockchain, co zostało zrobione w kontekście jego analizy?
 
 \indent Na potrzeby realizacji eksperymentu wyznaczono po dziesięć węzłów startowych w~sieci w dziesięciu okresach. Wybrano bloki z~łańcucha bloków dołączone jako ostatnie w dziesięciu kwartałach w~okresie od \textit{2015-03-31} do \textit{2017-06-30}. Następnie z~każdego z~bloków, dla każdego okresu, wybrano po dziesięć transakcji, które stały się węzłami startowymi dla badanej sieci. Oznacza to, że analizę przeprowadzono na stu próbach po sto tysięcy węzłów każda. Ilość oraz wielkość prób zmniejsza ryzyko natrafienia na próbę niereprezentatywną.
 
-\indent Każdą sieć, która stanowi próbę do badań, stworzono zaczynając od węzła startowego wstecz. Każdy węzeł reprezentuje transakcję wskazując na jej adres. Jak opisano w~podrozdziale~\ref{transakcje} transakcje zawierają adresy wejściowe oraz adresy wyjściowe. W~podrozdziale~\ref{transakcje} podkreślono również fakt, że adresy wejściowe są jedynie referencjami na adresy wyjściowe, co implikuje właściwość związków pomiędzy transakcjami. W celu łatwiejszego zrozumienia sposobu budowania sieci w tabeli~\ref{tab:zwiazekTransakcji} przedstawiono dwie połączone transakcje, na przykładzie których zauważyć można, że transakcja $N-1$ zawiera adres wyjściowy identyczny jak jeden z adresów wejściowych transakcji $N$. Oznacza to, że~transakcje te są połączone i stanowią dwa węzły sieci połączone krawędzią. Wykorzystując tę zależność każdą próbkę stworzono poprzez znalezienie stu tysięcy połączeń pomiędzy transakcjami na podstawie adresów wejściowych i adresów wyjściowych zaczynając od początkowego adresu transakcji. Na ilustracji~\ref{fig:siec} przedstawiono przykładowy generyczny wycinek każdej z stworzonych sieci zaczynając od węzła $N$, natomiast na ilustracji~\ref{fig:graf} przedstawiono rzeczywisty graf jednej z próbek.
+\indent Każdą sieć, która stanowi próbę do badań, stworzono zaczynając od węzła startowego wstecz. Każdy węzeł reprezentuje transakcję wskazując na jej adres. Jak opisano w~podrozdziale~\ref{transakcje} transakcje zawierają adresy wejściowe oraz adresy wyjściowe. W~podrozdziale~\ref{transakcje} podkreślono również fakt, że adresy wejściowe są jedynie referencjami na adresy wyjściowe, co implikuje właściwość związków pomiędzy transakcjami. W celu łatwiejszego zrozumienia sposobu budowania sieci w tabeli~\ref{tab:zwiazekTransakcji} przedstawiono dwie połączone transakcje, na przykładzie których zauważyć można, że transakcja $N-1$ zawiera adres wyjściowy identyczny jak jeden z adresów wejściowych transakcji $N$. Oznacza to, że~transakcje te są połączone i stanowią dwa węzły sieci połączone krawędzią. Wykorzystując tę zależność każdą próbkę stworzono poprzez znalezienie stu tysięcy połączeń pomiędzy transakcjami na podstawie adresów wejściowych i adresów wyjściowych zaczynając od początkowego adresu transakcji. Na ilustracji~\ref{fig:siec} przedstawiono przykładowy generyczny wycinek każdej z stworzonych sieci zaczynając od węzła $N$, natomiast na ilustracji~\ref{fig:graf} przedstawiono rzeczywisty graf jednej z próbek. 
 
 \begin{table}[H]
 \begin{center}
@@ -450,6 +450,9 @@ W4 & W2 & W2 & W1 \\
 \end{center}
 \end{table}
 
+\indent Zastosowanie transakcji do stworzenia łańcucha transakcji pozwala na agregację wielu adresów w jeden komponent, który reprezentuje pojedynczy węzeł sieci. Taki sposób budowy sieci  daje możliwość szybszego wyszukiwania połączonych transakcji oraz możliwość efektywnego badania jej właściwości. Zauważyć jednak należy, że wybrane rozwiązanie próbkowania sieci nie jest jedyną możliwą metodą jej konstruowania. Przykładowo, rejestr bloków, który stanowi jeden z podstawowych mechanizmów zabezpieczania kryptowaluty Bitcoin, rozumiany być może jako sieć. Innym przykładem może być zastosowanie adresów zawartych w~transakcjach, jako pojedynczych węzłów sieci, które poprzez transakcje łączone są krawędziami. Takie podejście wymaga badania właściwości podstawowej jednostki na najniższym możliwym poziomie w sieci~Bitcoin, co jest bardzo czasochłonne i~ kosztowne. Metoda tworzenia sieci zastosowana w niniejszej pracy gwarantuje globalne spojrzenie na opisywany problem badawczy. 
+
+\newpage
 \begin{figure}[H]
 \begin{center}
 \centering
@@ -632,7 +635,14 @@ gdzie $\omega(e_i)$ oznacza wagę przejścia (ilość bitcoinów) przez krawęd�
 \indent Przeprowadzone badanie wykazało, że w różnych okresach wartość mierzona pojedynczych próbek znacząco odbiega od pozostałych, co może wpływać na ogólny wynik badań.
 Na mapie cieplnej~\ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe jest, że odbiegające próbki stanowią przekazy środków pomiędzy adresami giełd lub giełdą, a~innymi uczestnikami sieci. Wskazują na to znacząco wyższe sumy łączące transakcje. Chwilowe pominiecie tych wyników pozwala na stwierdzenie, że ilości przekazywanych środków we wszystkich okresach są bardzo porównywalne. Niedużą tendencję wzrostową można zauważyć w ostatnich trzech okresach, co potwierdza wykres~\ref{fig:wt2} przedstawiający rosnący trend średniej wartości transakcji. 
 
-\indent Transakcje do badań wybierane było kolejno z bloków, a priorytety kolejno podpisywanych transakcji zależą między innymi od wniesionej opłaty przez zleceniodawców. Przy szybkim wzroście wartości bitcoina oraz założeniu, że giełdy lub uczestnicy sieci prowadzący duże wymiany wnoszą większe opłaty (w celu zapewnia jak najszybszego przekazu środków) można również zauważyć wzrost zainteresowania, w stosunku do okresów poprzednich, bogatych instytucji prowadzących interesy w sieci Bitcoin. Niestety z~powodu dużej anonimowości uczestników sieci wyciągnięty wniosek nie jest niepodważalny.
+\indent Transakcje do badań wybierane było kolejno z bloków, a priorytety kolejno podpisywanych transakcji zależą między innymi od wniesionej opłaty przez zleceniodawców. Przy szybkim wzroście wartości bitcoina oraz założeniu, że giełdy lub uczestnicy sieci prowadzący duże wymiany wnoszą większe opłaty (w celu zapewnia jak najszybszego przekazu środków) można również zauważyć wzrost zainteresowania, w stosunku do okresów poprzednich, bogatych instytucji prowadzących interesy w sieci Bitcoin. Niestety z~powodu dużej anonimowości uczestników sieci wyciągnięty wniosek nie jest niepodważalny. 
+
+\indent Przykładem na aktywności giełd w badanych próbach może być transakcja\\\texttt{b0acc2caa54197dd10aa02bef7df8b54a304716f5e0801dca2dd3a9c26f130d8} z bloku\\ \texttt{00000000000000000229200fbabedffc445a4911d1d6603d2962d564c1678f5c} z próby \textit{T8}, przy pomocy której przekazano \texttt{541.79706464} bitcoinów. Wśród adresów wejściowych jak i adresów wejściowych tej transakcji odnaleziono adresy jednej z dużych giełd \textit{Poloniex.com}\cite{poloniex}:
+\begin{itemize}
+\item[--] \texttt{12cgpFdJViXbwHbhrA3TuW1EGnL25Zqc3P}
+\item[--] \texttt{17A16QmavnUfCW11DAApiJxp7ARnxN5pGX}
+\end{itemize}
+Obecność transakcji zlecanych przez giełdy zwiększają średnią wartość transakcji w próbach, dlatego też próby, których średnia wartość transakcji znacząco odbiega od reszty może wskazywać na ich aktywność.
 
 \begin{figure}[H]
 \centering
@@ -640,6 +650,7 @@ Na mapie cieplnej~\ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe je
    \caption{Mapa cieplna średniej wartości transakcji w sieci dla 10 prób w 10 okresach.}
    \label{fig:wt1} 
 \end{figure}
+\newpage
 \begin{figure}[H]
 \centering
    \includegraphics[width=\chartsWidth\linewidth]{pictures/wartosc_transakcji/wartosc_transakcji_sda.png}
@@ -647,7 +658,7 @@ Na mapie cieplnej~\ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe je
    \label{fig:wt2}
 \end{figure}
 
-\newpage
+
 \subsection{Badanie ilości bloków}
 \label{ilosc_blokow}
 \indent Ilość bloków jest kolejną miarą związaną z rodzajem badanej sieci. Polega na zliczeniu wszystkich bloków, w których znajdują się transakcje dołączone do próbki sieci. Każda transakcja może być zawarta jedynie w jednym bloku, natomiast jeden blok może zawierać wiele transakcji, które zostały połączone w procesie budowania sieci. Informacje o przynależności węzłów (transakcji) do poszczególnych bloku zostały wyekstrahowane podczas budowania próbek sieci i stanowią w niniejszym badaniu metadane węzła. 
@@ -669,6 +680,7 @@ Na mapie cieplnej~\ref{fig:wt1} przedstawiono rezultat tych badania. Możliwe je
    \label{fig:ib2}
 \end{figure}
 
+\newpage
 \subsection{Badanie średniej różnicy czasów kolejnych transakcji}
 \label{roznice_czasow}
 \indent Badanie różnicy czasów kolejnych transakcji, to własność badanej sieci ściśle związana z~jej fachową stroną. Polega na zliczeniu różnic czasów realizowania kolejnych transakcji wstecz. Oparta jest na przeglądzie wszystkich możliwych ścieżek w sieci z~jednoczesnym ekstrahowaniem czasu $t(v_i)$ ich wykonania. W~konsekwencji pozwala to na wyliczenie różnic czasu pomiędzy transakcjami $v_i$ i $v_{i-1}$ w~ścieżkach. Średnia wartość różnic wykonywania kolejnych transakcji w~ścieżce jest ilorazem sumy wszystkich różnic w ścieżce i~ich ilości, co można zapisać jako
@@ -699,7 +711,6 @@ częstotliwość ich wykonywania. Im mniejsza wartość, tym transakcje wykonywa
    \caption{Mapa cieplna średniej różnicy czasu kolejnych transakcji sieci dla 10 prób w 10 okresach.}
    \label{fig:rc1} 
 \end{figure}
-\newpage
 \begin{figure}[H]
 \centering
    \includegraphics[width=\chartsWidth\linewidth]{pictures/roznica_czasow/roznica_czasow_sda.png}
@@ -707,6 +718,7 @@ częstotliwość ich wykonywania. Im mniejsza wartość, tym transakcje wykonywa
    \label{fig:rc2}
 \end{figure}
 
+\newpage
 \subsection{Badanie różnicy czasów granicznych transakcji}
 \label{graniczne_transakcje}
 \indent Badanie różnicy czasów granicznych transakcji jest właściwością sieci bezpośrednio związaną z jej specyfiką. Polega na odnalezieniu wśród wszystkich możliwych ścieżek takiej ścieżki, której różnica czasów pierwszej oraz ostatniej transakcji jest największa. Jako że próby przygotowane w celu przeprowadzenia serii badań powstały od określonych transakcji $t$, czasem wykonania pierwszej transakcji będzie zawsze czas wykonania transakcji początkowej $t$. Różnica czasu wykonania transakcji początkowej $t$ oraz ostatniej transakcji dołączonej do danej ścieżki stanowi podstawę omawianego badania i może zostać przedstawiona jako
@@ -722,6 +734,7 @@ gdzie $\sigma_{st}$ to ścieżka prowadząca od węzła $s$ do węzła $t$.
 
 \indent Wyniki przeprowadzonego badania zaprezentowano na mapie cieplnej~\ref{fig:cg1}. Potwierdza ona wnioski opisane w~podrozdziale \ref{roznice_czasow} opisującym badanie różnic czasów kolejnych transakcji. Dla większości prób we wszystkich okresach zaobserwowano wykrycie wszystkich stu tysięcy połączeń pomiędzy transakcjami w bardzo krótkim czasie, determinując przegląd tylko kilku poprzedzających bloków. Różnica czasów granicznych transakcji dla próbek w okresach, których średni czas kolejnych transakcji znacząco odbiegał od średniej, jest największa. Potwierdza to sporadyczne realizowanie transakcji właścicieli adresów w~danych próbkach w okresie \textit{2016-06-30}. Na podstawie ostatnich czterech okresów wnioskować można, że aktualnie podobne sytuacje są rzadkością i~większość uczestników sieci realizuje znacząco więcej transakcji niż wcześniej, co potwierdza również wykres~\ref{fig:cg2}. Pozwala to na stwierdzenie, że sieć Bitcoin w przeciągu ostatnich czterech badanych okresów bardzo urosła i zyskała zaufanie większej liczby użytkowników.
 
+\newpage
 \begin{figure}[H]
 \centering
    \includegraphics[width=\chartsWidth\linewidth]{pictures/czas_graniczny/czas_graniczny_hm.png}
@@ -742,7 +755,7 @@ gdzie $\sigma_{st}$ to ścieżka prowadząca od węzła $s$ do węzła $t$.
 
 Sieć Bitcoin jest bardzo złożoną, dynamiczną i szybko rozwijającą się siecią. Na podstawie przeprowadzonych badań wywnioskowano ciągle rosnącą gęstość sieci, co w odniesieniu do jej specyfiki oznacza coraz większą ilość zlecanych transakcji, powstawanie dużej ilości nowych adresów oraz wzrost realizowanych transakcji pomiędzy różnymi uczestnikami sieci. W podrozdziale~\ref{srednica_sieci} zjawisko to zostało przedstawione bardziej szczegółowo. Badanie centralności węzłów opisane w~podrozdziale~\ref{srednia_centralnosc} pozwoliło na zarejestrowanie znaczącego spadku istotności pojedynczej transakcji w całej sieci, co ponownie potwierdza fakt rosnącej ilości zlecanych transakcji. Zaobserwowano również, że właściwości sieci nie są stałe w~jednym okresie, a zależeć mogą od aktywności poszczególnych uczestników, dlatego też ilość połączeń pomiędzy transakcjami może być bardzo zróżnicowana, co zaprezentowano w podrozdziałach~\ref{dlugosc_sciezki}~i~\ref{stopien_wezla}. 
 
-\indent W~trakcie badania poszczególnych próbek zauważono wzmożoną działalność pojedynczych właścicieli adresów, którzy zlecali lub odbierali znaczne sumy bitcoinów. Z~powodu dużej anonimowości w~sieci nie da się wprost określić właścicieli użytych adresów w tych transakcjach. Przypuszczać można jednak, że mogą to być adresy należące do giełd lub dużych instytucji. Dodatkowo na podstawie analizy średniej wartości transakcji zauważono, że wartość większości transakcji nie przekracza 100 bitcoinów, a zazwyczaj są to małe przekazy środków pomiędzy klientami sieci. Porównanie wyników średnich wartości transakcji dla okresów w podrozdziale~\ref{wartosc_transakcji} pozwala stwierdzić, że ilość przekazywanych bitcoinów w transakcjach cały czas rośnie. Badanie ilości bloków potrzebnych do odnalezienia 100 tysięcy połączeń, w~powiązaniu z~analizą średniej różnicy czasów kolejnych transakcji oraz różnicy czasów transakcji granicznych (opisane kolejno w podrozdziałach~\ref{ilosc_blokow},~\ref{roznice_czasow},~\ref{graniczne_transakcje}), ilustruje wielkość oraz tempo rozwoju badanej sieci. W~ostatnich okresach transakcje do prób zostały odnalezione w~kilku blokach, a~różnice czasów granicznych transakcji zawartych w~próbach nie przekraczają kilkudziesięciu minut. W~rezultacie pozwala to na wywnioskowanie o~kolejności występowania po sobie bloków, w~których odnaleziono połączenia pomiędzy transakcjami. Odnalezienie tak olbrzymiej ilości powiązanych transakcji w~paru kolejnych blokach potwierdza rosnącą ilość realizowanych transakcji pomiędzy różnymi uczestnikami sieci w bardzo ograniczonym czasie.
+\indent W~trakcie badania poszczególnych próbek zauważono wzmożoną działalność pojedynczych właścicieli adresów, którzy zlecali lub odbierali znaczne sumy bitcoinów. Z~powodu dużej anonimowości w~sieci nie da się wprost określić właścicieli użytych adresów w tych transakcjach, chyba że są to adresy publiczne, których właściciele przyznają się do ich posiadania. Przypuszczać można jednak, że mogą to być adresy należące do dużych instytucji lub giełd, co potwierdzono w ~\ref{wartosc_transakcji}. Dodatkowo na podstawie analizy średniej wartości transakcji zauważono, że wartość większości transakcji nie przekracza 100 bitcoinów, a zazwyczaj są to małe przekazy środków pomiędzy klientami sieci. Porównanie wyników średnich wartości transakcji dla okresów w podrozdziale~\ref{wartosc_transakcji} pozwala stwierdzić, że ilość przekazywanych bitcoinów w transakcjach cały czas rośnie. Badanie ilości bloków potrzebnych do odnalezienia 100 tysięcy połączeń, w~powiązaniu z~analizą średniej różnicy czasów kolejnych transakcji oraz różnicy czasów transakcji granicznych (opisane kolejno w podrozdziałach~\ref{ilosc_blokow},~\ref{roznice_czasow},~\ref{graniczne_transakcje}), ilustruje wielkość oraz tempo rozwoju badanej sieci. W~ostatnich okresach transakcje do prób zostały odnalezione w~kilku blokach, a~różnice czasów granicznych transakcji zawartych w~próbach nie przekraczają kilkudziesięciu minut. W~rezultacie pozwala to na wywnioskowanie o~kolejności występowania po sobie bloków, w~których odnaleziono połączenia pomiędzy transakcjami. Odnalezienie tak olbrzymiej ilości powiązanych transakcji w~paru kolejnych blokach potwierdza rosnącą ilość realizowanych transakcji pomiędzy różnymi uczestnikami sieci w bardzo ograniczonym czasie.
 
 \indent Reasumując, sieć Bitcoin jest siecią bardzo dynamicznie się rozwijającą. Można przypuszczać, że coraz więcej użytkowników używa jej jako codziennego medium transmisyjnego środków, a rosnącą gęstość sieci świadczy o rosnącej ilości samych użytkowników. 
 
