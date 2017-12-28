@@ -412,7 +412,59 @@ Pozwala ona spełnić wszystkie warunki określone w wyjściu transakcji, które
 
 \indent Konkludując, Blockchain jest strukturą zbudowaną z bloków wstecznie połączonych. Każdy blok z łańcucha zawiera informacje o zrealizowanych transakcjach oraz o hash'u bloku poprzedniego. Transakcje składają się z wejść do transakcji oraz wyjść z transakcji. Wejścia są punktorami do niewydanych wyjść transakcji z poprzednich bloków, a wyjścia transakcji wskazują na adresy uczestników sieci, do których mają trafić bitcoiny. Bloki generowane są z transakcji przez górników, którzy walczą w wyścigu o nagrodę w postaci nowych bitcoinów oraz opłat transakcyjnych. Nowo wygenerowane bloki dołączane są do łańcucha bloków w procesie znajdowania globalnego consensusu w sieci.
 
-\chapter{Przegląd metod analiz sieci złożonych (też temporalnych) oraz analiz blockchaina}
+\chapter{Przegląd metod analiz sieci (też temporalnych) oraz analiz blockchaina}
+
+\section{Wprowadzenie}
+
+\indent Materiał zawarty w tym rozdziale ma służyć jako przegląd istniejących podejść badania sieci. Opisuje historię rozwoju sieci, która ma istotne znaczenie dla podziału sieci ze względu na ich charakterystykę. Przedstawiono możliwą klasyfikację sieci, opartą na zastosowanej w nich teorii oraz topologii. Następnie opisano metody analizy właściwości sieci. W ramach przeglądu istniejących... 
+
+\section{Analiza sieci}
+
+\indent Analiza sieci, z historycznego punktu widzenia, była głównie domeną gałęzi matematyki dyskretnej, zwanej teorią grafów. Uznaje się, że miała ona swój początek w 1736 roku, kiedy to szwajcarski matematyk Leonhard Euler opublikował rozwiązanie problemu \textit{7~mostów~królewieckich}. Problem ten polegał na odnalezieniu drogi przez każdy z mostów pruskich pozwalającej na podroż w obie strony przy założeniu jednokrotnego pokonania każdego z mostów. Teoria grafów pozwoliła również na rozwiązanie wielu innych praktycznych problemów, takich jak na przykład: odnalezienie maksymalnego przepływu na jednostkę czasu od źródła do zlewu w sieci rur, określenie sposobu na pokolorowanie regionów na mapie używając minimalnej ilości kolorów, tak by sąsiadujące regiony miały inne kolory, czy rozwiązanie problemu przydzielenia \textit{n} ludzi do \textit{n} pracy  z możliwie najwyższą użytecznością. Dodatkowo obok rozwój teorii grafów, z matematycznego punktu widzenia, badania nad sieciami pozwoliły na ich zastosowanie w niektórych specjalistycznych kontekstach, jak na przykład w naukach społecznych. \textit{Analiza sieci społecznościowych} rozpoczęła się w latach dwudziestych i skupia się na relacjach pomiędzy jednostkami społecznymi, takimi jak: komunikacja między członkami grupy, handel między narodami, czy transakcje ekonomiczne między korporacjami\cite{BOCCALETTI2006175}.
+
+\indent W ostatnich dwudziestu latach badania sieci złożonych przeżywają swój rozkwit oraz budzą coraz większe zainteresowanie wśród coraz większej liczby naukowców. Szczególnym zainteresowaniem cieszą się sieci posiadające nieregularną, złożoną i dynamicznie ewoluującą w czasie strukturę. Wraz ze wzrostem dostępnej mocy obliczeniowej i możliwości badania właściwości dużych rzeczywistych baz danych, dąży się do analiz coraz większych sieci, które składają się z tysięcy, a czasami nawet milionów węzłów. Za momenty przełomowe dla gwałtownego wzrostu ilości przeprowadzanych badań dużych sieci uznaje się dwie publikacje. Pierwsza z nich dotyczyła sieci typu \textit{small-world} Watts'a i Strogatz'a i została opublikowana w~prestiżowym czasopiśmie naukowym Nature w~1998 roku, natomiast druga publikacja, Barab{\'a}si i~Albert'a dotycząca sieci bezskalowych, powstała w~1999 roku\cite{Watts1998, Barabasi1999}. Przykładami dużych sieci mogą być: sieci transportowe, sieci połączeń telefonicznych, Internet, naukowe współautorstwo i sieci cytowań, czy systemy powiązane z biologią i medycyną (sieci neuronowe, sieci genetyczne, sieci metaboliczne i białkowe). 
+
+\indent Sieć zwana również często grafem jest obiektem czysto matematycznym. Składa się ze zbioru wierzchołków oraz zbioru krawędzi, czyli par wierzchołków, które ze sobą oddziałują. Zaletą modelowania jakiegokolwiek dynamicznego systemu jako grafu jest możliwość badania zachowania systemu bez studiowania jego rzeczywistej dynamiki. Czasami struktura grafu rozszerzana jest o dodatkowe poziomy szczegółowości. Mogą to być wagi krawędzi w sieciach ważonych, położenie wierzchołków w sieciach przestrzennych, czy~dodatkowy wymiar - czas - w sieciach temporalnych.
+
+\indent Początkowo analiza porównawcza sieci z różnych dziedzin dała szereg niespodziewanych wyników. Pojawiło się wiele problemów związanych ze strukturą sieci, która znacząco odbiegała od rzeczywistości. Dlatego też badania nad złożonymi sieciami rozpoczęły się od zdefiniowania koncepcji oraz działań, których celem było scharakteryzowanie topologii rzeczywistych sieci. Głównym celem było stworzenie szeregu ujednolicających zasad i~właściwości statystycznych wspólnych dla większości badanych rzeczywistych sieci. 
+
+\indent Analiza sieci nie ogranicza się do badań sieci statycznych. Coraz częściej analizuje się sieci, które charakteryzują się dodatkowymi specyficznymi cechami odbiegającymi od klasycznej teorii grafów. Różnice pomiędzy sieciami nie sprowadzają się wyłącznie do zmiany topologii sieci, a bardzo często wymagają dostosowania wykorzystywanej teorii oraz metod badania. Sieci można klasyfikować według określonych kategorii\cite{BOCCALETTI2006175, HOLME201297}, na przykład:
+\begin{itemize}
+\item[A.] zastosowanej teorii sieci:
+	\begin{itemize}
+	\item[--] graf - klasyczna sieć statyczna mogąca posiadać dodatkowe cechy, takie jak na przykład: waga, kierunek lub jego brak, możliwość wystąpienia cyklu; 
+	\item[--] złożone - graf o nietrywialnych cechach topologicznych, które nie występują w prostych sieciach, takich jak graf kratowy, czy \textit{Random} graf, a pojawią się bardzo często w dużych rzeczywistych sieciach;
+	\item[--] bezskalowe - graf połączony lub sieci z właściwością rozkładu stopnia węzłów odpowiadającym prawu mocy (ang. power law), mówiącym, że liczba krawędzi $k$ pochodzących z danego węzła wykazuje rozkład prawa mocy $P(k) \sim k^{-\gamma}$;
+	\item[--] typu \textit{small-world} - graf, którego większość węzłów nie sąsiaduje ze sobą, ale sąsiedzi danego węzła prawdopodobnie sąsiadują ze sobą, a większość węzłów może być osiągnięta z każdego innego węzła poprzez niewielką liczbę węzłów;
+	\item[--] wpływu społecznego - graf, którego krawędzie wyrażają wpływ węzłów (osób) na emocje, opinie lub zachowania na inne węzły (osoby), wpływ może przybierać wiele form np. socjalizacja, presja rówieśników, posłuszeństwo;
+	\item[--] temporalne - graf, który w przeciwieństwie do klasycznego grafu nie agreguje aktywności pomiędzy węzłami, lecz prezentuje również informacje o czasie tych aktywności; oznacza to istnienie dodatkowego wymiaru - czasu, przy pomocy którego uszczegóławiać można informacje o tymczasowych sekwencjach interakcji pomiędzy węzłami;   
+	\end{itemize}
+\item[B.] typu sieci:
+	\begin{itemize}
+	\item[--] komputerowe - reprezentują udostępnianie zasobów w Internecie; 
+	\item[--] telekomunikacyjne - reprezentują wykonywanie transmisji;
+	\item[--] społeczne - reprezentują relacje międzyludzkie;
+	\item[--] biologiczne - reprezentują sieci genetyczne, neuronowe oraz metaboliczne;
+	\item[--] transportowe/przepływu - skupiają się na sieciach dróg, ulic oraz sieciach energetycznych;
+	\item[--] przestrzenne - wszystkie sieci, które mogą być reprezentowane wielowymiarowo od urbanistyki po epidemiologię;
+	\item[--] zależności - reprezentują zależności przyczynowo-skutkowe, np. finansowe, układ odpornościowy, czy sieci semantyczne.	
+	\end{itemize}
+\end{itemize}
+
+\indent Dla większości z wymienionych sieci wypracowano bardzo szczegółowe, innowacyjne i wąsko sprecyzowane metody badań. Prace badawcze, których tematem są różnego rodzaju sieci często skupiają się, obok badań związanych z typem reprezentowanej sieci, na podstawowych uniwersalnych metodach analizy grafów. Metody te pozwalają na zbadanie sieci każdego rodzaju, gdyż są one związane wyłączanie z wykorzystaną strukturą reprezentacji danych, a pozwalają na wyciągnięcie daleko idących wniosków. Do najczęściej badanych metryk należą\cite{barabasi2016network, wasserman1994social, Watts1998}:
+\begin{itemize}
+\item[--] długość najkrótszej ścieżki w sieci - długość ścieżki $\min_{v_i, v_j} d_{v_iv_j, i \ne j}$, która dla grafu ważonego wymaga przejście od węzła $v_i$ do węzła $v_j$ przez najmniejszą sumarycznie wartość wag $\omega$ przypisanych do krawędzi, gdzie węzły $v_i$ i $v_j$ są węzłami skrajnymi ścieżki, natomiast dla grafu bez wag oznacza długość ścieżki $\min_{v_i, v_j} d_{v_iv_j, i \ne j}$, w~której liczba krawędzi pomiędzy węzłami $v_i$ i $v_j$ jest najmniejsza, a węzły $v_i$ i $v_j$ są węzłami skrajnymi ścieżki;
+\item[--] średnica sieci - szerzej opisana w rozdziale \ref{srednica_sieci};
+\item[--] średnia długość ścieżek - szerzej opisana w rozdziale \ref{dlugosc_sciezki};
+\item[--] średni stopnie węzłów - szerzej opisana w rozdziale \ref{stopien_wezla};
+\item[--] średnia centralność węzłów - szerzej opisana w rozdziale \ref{srednia_centralnosc};
+\item[--] klasteryzacja - znana również jako przechodniość, jest typową właściwością sieci znajomości, gdzie dwa węzły (osoby) $v_i$ i $v_j$ połączone ze wspólnym węzłem (znajomym) $v_k$ prawdopodobnie się znają, pod względem generycznego grafu $G$ przechodniość oznacza obecność dużej ilości trójkątów w sieci, co może zostać określone ilościowo jako względną ilość przechodnich trójek węzłów $T$, tj. ułamek połączonych potrójnych węzłów, które również tworzą trójkąty $T = \frac{3\; *\; ilość \; trójkątów \; w \; grafie \; G}{ilość \; połączonych \; trójek \; węzłów \; w \; grafie \; G}$;
+\end{itemize}
+
+\section{Analizy blockchaina}
+
+\section{Podsumowanie}
+
 Czym jest analiza sieci, jakie były analizy, metody analiz grafów.
 Nie tylko analizuje się sieci statyczne, ale temporalne i wielowarstwowe.
 Jak analizować blockchain, co zostało zrobione w kontekście jego analizy?
