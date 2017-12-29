@@ -12,6 +12,8 @@
 \usepackage{subcaption}
 \usepackage{psfrag}
 \usepackage{textcomp}
+%do pierwszej strony
+\usepackage{pdfpages}
 
 %pakiety dodające dużo dodatkowych poleceń matematycznych
 \usepackage{amsmath}
@@ -33,26 +35,26 @@
                                            %składania twierdzeń
 \newcommand{\chartsWidth}{0.80}
 %dane do złożenia strony tytułowej
-\title{Analiza łańcucha transakcji w sieci Bitcoin}
-\engtitle{The analysis of Bitcoin transactions blockchain}
-\author{Bartosz Zychal}
-\supervisor{dr inż. Radosław Michalski} %\Prof. PWr, I-6
+%\title{Analiza łańcucha transakcji w sieci Bitcoin}
+%\engtitle{The analysis of Bitcoin transactions blockchain}
+%\author{Bartosz Zychal}
+%\supervisor{dr inż. Radosław Michalski} %\Prof. PWr, I-6
 %\guardian{dr hab. inż. Imię Nazwisko Prof. PWr, I-6} %nie używać
 %jeśli opiekun jest tą samą osobą co prowadzący pracę
-
-\date{2018} %standardowo u dołu strony tytułowej umieszczany jest
+%\date{2018} %standardowo u dołu strony tytułowej umieszczany jest
 %bieżący rok, to polecenie pozwala wstawić dowolny rok
-
 %poniżej jest lista kierunków i specjalności na wydziale elektroniki,
 %należy wybrać właściwe lub dopisać jeśli nie ma odpowiednich
-\field{Informatyka (INF)}
-\specialisation{Systemy Baz Danych (SBD)}
+%\field{Informatyka (INF)}
+%\specialisation{Systemy Baz Danych (SBD)}
 
 %tutaj zaczyna się właściwa treść dokumentu
 \begin{document}
 \def\listtablename{Spis tabel. }
 \def\tablename{Tabela. }
-\maketitle %polecenie generujące stronę tytułową 
+%\maketitle %polecenie generujące stronę tytułową 
+\includepdf[scale=1,pages=1]{pictures/title.pdf}
+
 
 \tableofcontents{2} 
 %spis treści
@@ -156,7 +158,7 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 \label{blockchain}
 
 \section{Wprowadzenie}
-\indent W tym rozdziale przedstawiono oraz wyjaśniono ideę rejestru transakcji, tzw. blockchaina. Opisano strukturę bloku, transakcji oraz wejść i wyjść w transakcji. Rozdział ten opisuje również w jaki sposób tworzone są transakcje, jak są weryfikowane i jakie koszty ponosi się za przekazanie Bitcoinów innemu uczestnikowi sieci. Dodatkowo przedstawiono proces tworzenia oraz dodawania nowego bloku do blockchaina. 
+\indent W tym rozdziale przedstawiono oraz wyjaśniono ideę rejestru transakcji, tzw. Blockchain'a. Opisano strukturę bloku, transakcji oraz wejść i wyjść w transakcji. Rozdział ten opisuje również w jaki sposób tworzone są transakcje, jak są weryfikowane i jakie koszty ponosi się za przekazanie Bitcoinów innemu uczestnikowi sieci. Dodatkowo przedstawiono proces tworzenia oraz dodawania nowego bloku do Blockchain'a. 
 
 \section{Definicja Blockchain'a}
 \label{definicjaBlockchaina}
@@ -316,7 +318,7 @@ Moduł liczby pierwszej \textit{mod p} implikuje właściwość krzywej jako zna
 
 \indent Jednym z najważniejszych elementów w sieci Bitcoin są transakcje, które pozwalają na przekazywanie środków pomiędzy klientami sieci. Jak wspomniano w rozdziale~\ref{zawartoscBloku} transakcje są zapisywane w blokach, w łańcuchu bloków. Łańcuch ten jest publicznie dostępny, co implikuje właściwość transakcji jako publicznych. 
 
-\indent Każda nowo powstała transakcja rozgłaszana jest w sieci, gdzie jest weryfikowana przez węzły, a w konsekwencji dodawana do nowo tworzonego bloku, który zostaje dołączony do blockchaina. Proces ten jest bardzo pracochłonny i wymaga rozesłania informacji o nowej transakcji w całej sieci. Sieć Bitcoin oparta jest na modelu komunikacji typu P2P (peer-to-peer). Oznacza to, że każdy z węzłów połączony jest z paroma innymi uczestnikami sieci, a z kolei ci uczestnicy połączeni są z paroma kolejnymi uczestnikami. Powoduje to rozprzestrzenianie się informacji w sieci wykładniczo. Każdy z węzłów sieci po otrzymaniu transakcji weryfikuje ją pod kątem poprawności. W przypadku wykrycia niepoprawnej transakcji jest ona natychmiastowo odrzucana i~przestaje być dalej rozpowszechniana. Komunikacja w sieci Bitcoin jest synchroniczna, co oznacza, że węzeł, który rozgłosił transakcję dostaje informację zwrotną od węzłów z~nim połączonymi o~poprawności stworzonej transakcji. Kryptografia asymetryczna pozwala na anonimizację węzłów w~sieci. Nie muszą się one znać, ani sobie ufać - wystarczy, że transakcja jest prawidłowo podpisana, a~będzie przekazana dalej. Struktura transakcji oraz proces przekazywania bitcoinów przy pomocy transakcji są skonstruowane w sposób w pełni zabezpieczający środki. Przekaz nie potrzebuje żadnych dodatkowych zabezpieczeń takich jak, np. szyfrowanie łącza. Może być rozpowszechniany bez jakiegokolwiek szyfrowania, co w porównaniu z~walutami fiducjarnymi jest ogromnym zyskiem\cite{Mastering}.
+\indent Każda nowo powstała transakcja rozgłaszana jest w sieci, gdzie jest weryfikowana przez węzły, a w konsekwencji dodawana do nowo tworzonego bloku, który zostaje dołączony do Blockchain'a. Proces ten jest bardzo pracochłonny i wymaga rozesłania informacji o nowej transakcji w całej sieci. Sieć Bitcoin oparta jest na modelu komunikacji typu P2P (peer-to-peer). Oznacza to, że każdy z węzłów połączony jest z paroma innymi uczestnikami sieci, a z kolei ci uczestnicy połączeni są z paroma kolejnymi uczestnikami. Powoduje to rozprzestrzenianie się informacji w sieci wykładniczo. Każdy z węzłów sieci po otrzymaniu transakcji weryfikuje ją pod kątem poprawności. W przypadku wykrycia niepoprawnej transakcji jest ona natychmiastowo odrzucana i~przestaje być dalej rozpowszechniana. Komunikacja w sieci Bitcoin jest synchroniczna, co oznacza, że węzeł, który rozgłosił transakcję dostaje informację zwrotną od węzłów z~nim połączonymi o~poprawności stworzonej transakcji. Kryptografia asymetryczna pozwala na anonimizację węzłów w~sieci. Nie muszą się one znać, ani sobie ufać - wystarczy, że transakcja jest prawidłowo podpisana, a~będzie przekazana dalej. Struktura transakcji oraz proces przekazywania bitcoinów przy pomocy transakcji są skonstruowane w sposób w pełni zabezpieczający środki. Przekaz nie potrzebuje żadnych dodatkowych zabezpieczeń takich jak, np. szyfrowanie łącza. Może być rozpowszechniany bez jakiegokolwiek szyfrowania, co w porównaniu z~walutami fiducjarnymi jest ogromnym zyskiem\cite{Mastering}.
 
 \indent Struktura transakcji składa się z elementów zaprezentowanych w tabeli~\ref{tab:strukturaTransakcji}, jednakże najważniejsze z nich to:
 \begin{itemize}
@@ -412,11 +414,11 @@ Pozwala ona spełnić wszystkie warunki określone w wyjściu transakcji, które
 
 \indent Konkludując, Blockchain jest strukturą zbudowaną z bloków wstecznie połączonych. Każdy blok z łańcucha zawiera informacje o zrealizowanych transakcjach oraz o hash'u bloku poprzedniego. Transakcje składają się z wejść do transakcji oraz wyjść z transakcji. Wejścia są punktorami do niewydanych wyjść transakcji z poprzednich bloków, a wyjścia transakcji wskazują na adresy uczestników sieci, do których mają trafić bitcoiny. Bloki generowane są z transakcji przez górników, którzy walczą w wyścigu o nagrodę w postaci nowych bitcoinów oraz opłat transakcyjnych. Nowo wygenerowane bloki dołączane są do łańcucha bloków w procesie znajdowania globalnego consensusu w sieci.
 
-\chapter{Przegląd metod analiz sieci (też temporalnych) oraz analiz blockchaina}
+\chapter{Przegląd metod analiz sieci (też temporalnych) oraz analiz Blockchain'a}
 
 \section{Wprowadzenie}
 
-\indent Materiał zawarty w tym rozdziale ma służyć jako przegląd istniejących podejść badania sieci. Opisuje historię rozwoju sieci, która ma istotne znaczenie dla podziału sieci ze względu na ich charakterystykę. Przedstawiono możliwą klasyfikację sieci, opartą na zastosowanej w nich teorii oraz topologii. Następnie opisano metody analizy właściwości sieci. W ramach przeglądu istniejących... 
+\indent Materiał zawarty w tym rozdziale ma służyć jako przegląd istniejących podejść badania sieci. Opisuje historię rozwoju sieci, która ma istotne znaczenie dla podziału sieci ze względu na ich charakterystykę. Przedstawiono możliwą klasyfikację sieci, opartą na zastosowanej w nich teorii oraz topologii. Następnie opisano metody analizy właściwości sieci. Przegląd powstałych publikacji pozwolił na zaprezentowanie różnych podejść dotyczących analizy Blockchain'a.
 
 \section{Analiza sieci}
 
@@ -453,24 +455,57 @@ Pozwala ona spełnić wszystkie warunki określone w wyjściu transakcji, które
 
 \indent Dla większości z wymienionych sieci wypracowano bardzo szczegółowe, innowacyjne i wąsko sprecyzowane metody badań. Prace badawcze, których tematem są różnego rodzaju sieci często skupiają się, obok badań związanych z typem reprezentowanej sieci, na podstawowych uniwersalnych metodach analizy grafów. Metody te pozwalają na zbadanie sieci każdego rodzaju, gdyż są one związane wyłączanie z wykorzystaną strukturą reprezentacji danych, a pozwalają na wyciągnięcie daleko idących wniosków. Do najczęściej badanych metryk należą\cite{barabasi2016network, wasserman1994social, Watts1998}:
 \begin{itemize}
-\item[--] długość najkrótszej ścieżki w sieci - długość ścieżki $\min_{v_i, v_j} d_{v_iv_j, i \ne j}$, która dla grafu ważonego wymaga przejście od węzła $v_i$ do węzła $v_j$ przez najmniejszą sumarycznie wartość wag $\omega$ przypisanych do krawędzi, gdzie węzły $v_i$ i $v_j$ są węzłami skrajnymi ścieżki, natomiast dla grafu bez wag oznacza długość ścieżki $\min_{v_i, v_j} d_{v_iv_j, i \ne j}$, w~której liczba krawędzi pomiędzy węzłami $v_i$ i $v_j$ jest najmniejsza, a węzły $v_i$ i $v_j$ są węzłami skrajnymi ścieżki;
+\item[--] długość najkrótszej ścieżki w sieci - długość ścieżki $\min_{v_iv_j, i \ne j} d(v_i, v_j)$, która dla grafu ważonego wymaga przejście od węzła $v_i$ do węzła $v_j$ przez najmniejszą sumarycznie wartość wag $\omega$ przypisanych do krawędzi, gdzie węzły $v_i$ i $v_j$ są węzłami skrajnymi ścieżki, natomiast dla grafu bez wag oznacza długość ścieżki $\min_{v_iv_j, i \ne j} d(v_i, v_j)$, w~której liczba krawędzi pomiędzy węzłami $v_i$ i $v_j$ jest najmniejsza, a węzły $v_i$ i $v_j$ są węzłami skrajnymi ścieżki;
 \item[--] średnica sieci - szerzej opisana w rozdziale \ref{srednica_sieci};
 \item[--] średnia długość ścieżek - szerzej opisana w rozdziale \ref{dlugosc_sciezki};
 \item[--] średni stopnie węzłów - szerzej opisana w rozdziale \ref{stopien_wezla};
 \item[--] średnia centralność węzłów - szerzej opisana w rozdziale \ref{srednia_centralnosc};
-\item[--] klasteryzacja - znana również jako przechodniość, jest typową właściwością sieci znajomości, gdzie dwa węzły (osoby) $v_i$ i $v_j$ połączone ze wspólnym węzłem (znajomym) $v_k$ prawdopodobnie się znają, pod względem generycznego grafu $G$ przechodniość oznacza obecność dużej ilości trójkątów w sieci, co może zostać określone ilościowo jako względną ilość przechodnich trójek węzłów $T$, tj. ułamek połączonych potrójnych węzłów, które również tworzą trójkąty $T = \frac{3\; *\; ilość \; trójkątów \; w \; grafie \; G}{ilość \; połączonych \; trójek \; węzłów \; w \; grafie \; G}$;
+\item[--] klasteryzacja - znana również jako przechodniość, jest typową właściwością sieci znajomości, gdzie dwa węzły (osoby) $v_i$ i $v_j$ połączone ze wspólnym węzłem (znajomym)~$v_k$ prawdopodobnie się znają; pod względem generycznego grafu $G$ przechodniość oznacza obecność dużej ilości trójkątów w sieci, co może zostać określone ilościowo jako względną ilość przechodnich trójek węzłów $T$, tj. ułamek połączonych potrójnych węzłów, które również tworzą trójkąty $T = \frac{3\; *\; ilość \; trójkątów \; w \; grafie \; G}{ilość \; połączonych \; trójek \; węzłów \; w \; grafie \; G}$;
 \end{itemize}
 
-\section{Analizy blockchaina}
+\newpage
+\section{Analizy Blockchain'a}
 
-\section{Podsumowanie}
+\indent Rejestr transakcji - Blockchain - jest strukturą bardzo młodą, powstałą wraz z opublikowaniem konceptu kryptowaluty przez Satoshi Nakamoto w 2008 roku\cite{nakamoto2008bitcoin}. Bardzo duże zainteresowanie zawdzięcza wielkiemu sukcesowi Bitcoina dopiero w ostatnich latach, dlatego też ilość prac badawczych o tematyce analizy właściwości sieci jest bardzo ograniczona. W~większości Blockchain analizowany jest w odniesieniu do posiadanej struktury i właściwości jakie dzięki niej oferuje. Badania skupiające się na tym zagadnieniu były przeprowadzane najwcześniej. Blockchain jest innowacyjnym podejściem w kwestii bezpieczeństwa, anonimowości, komunikacji i realizacji różnego rodzaju procesów ekonomicznych, gospodarczych oraz produkcyjnych. Prezentuje całkiem nową i konkurencyjną ideologię, która ma szerokie spectrum zastosowań, a kolejne z nich są cały czas odkrywane. Z~tego względu coraz większy nacisk kładzie się na analizowanie istniejących rozwiązań w~celu określenia ich istotnych właściwości oraz wewnętrznych zmian. Można wyróżnić dwa główne kierunki badań: 
+\begin{itemize}
+\item[--] bezpieczeństwo i anonimowość -  badania skupiające się na bezpieczeństwie, nie tylko w kwestii utraty środków, ale również stabilności systemów w różnych sytuacjach; badania koncentrujące się na możliwości identyfikacji uczestników sieci; 
+\item[--] właściwości sieci - badania skupiające się na ekstrakcja możliwych właściwości sieci oraz ich analizie, dodatkowo badana jest ewolucja sieci oraz kierunki ich rozwoju;
+\end{itemize}
 
-Czym jest analiza sieci, jakie były analizy, metody analiz grafów.
+\indent W kolejnych podrozdziałach przedstawiono badania przeprowadzone w ramach wyżej wymienionych kategorii.
+
+\subsection{Bezpieczeństwo i anonimowość}
+
+\indent Jako jeden z pierwszych artykułów badawczych skupiających się na Blockchain'e uważa się artykuł, którego pierwsza wersja została opublikowana w \textit{arXiv} w 2011 roku przez Reid i Harrigan\cite{Reid2013}. Autorzy artykułu skupili się na możliwości identyfikacji użytkowników poprzez powiązanie adresów wyjściowych transakcji z informacjami z zewnętrznych systemów, czy zasobów dostępnych w Internecie takich jak np. posty na twitterze, fora, krany bitcoinowe. Na podstawie Blockchain'a skonstruowana została sieć transakcji oraz sieć użytkowników. Sieć transakcji reprezentowała przepływ bitcoinów pomiędzy transakcjami, gdzie transakcje były węzłami, a krawędzie wskazywały na istnienie łączącego je adresu wejścia/wyjścia. Sieć użytkowników natomiast skonstruowana została poprzez klasteryzację adresów (przy założeniu, że wszystkie adresy wejściowe należą do jednego użytkownika) i przedstawiała przepływ bitcoinów na adresach użytkowników. Następnie powiązano sklasteryzowane adresy z zewnętrznymi informacjami, co pozwoliło na przeprowadzenie: analizy egocentrycznej i wizualizacji, odkrycia kontekstu oraz przepływu dla niektórych transakcji. Przeprowadzone badania dowiodły, że możliwe jest powiązanie wielu adresów bitcoin z  użytkownikami oraz możliwość obserwowania ich aktywności.
+
+\indent Badania przeprowadzone przez Androulaky\cite{Androulaki2013} na temat prywatności użytkowników w~sieci Bitcoin w~2013 rozszerzyły wcześniej opisaną ideę Reid'a i Harrigan'a\cite{Reid2013}. Androulaky przeprowadził klasteryzację adresów poszerzoną o dodatkową heurystykę używając adresów wyjściowych transakcji. Zauważył, że duża część transakcji ma tylko dwa adresy wyjściowe. Pozwoliło to na założenie, że w przypadku, kiedy jeden z~dwóch adresów wyjściowych pojawił się już w~Blockchain'ie, drugi może zostać zgrupowany z~adresami wejściowymi transakcji. W swojej pracy zastosował również dodatkowe techniki ulepszania klasteryzacji, takie jak: klasteryzacja oparta na zachowaniu, K-średnie, hierarchiczne klastrowanie aglomeracyjne. Na potrzeby badań autor stworzył generator syntetycznych danych pozwalających na sprawdzenie poprawności przeprowadzanych badań. Przy pomocy opisywanych technik oraz stworzonego środowiska badawczego autor podkreślił możliwość identyfikacji około $40\%$ użytkowników sieci Bitcoin. 
+
+\indent W celu lepszego zrozumienia przepływu bitcoinów w sieci, Meiklejohn wraz z grupą innych autorów w 2013 roku\cite{meiklejohn2013fistful}, postanowił  przeprowadzić aktywną analizę sieci. Polegała ona na dokonaniu płatności z własnych adresów za znane usługi, np. pule wydobywcze, portfele online, usługi hazardowe, giełdy wymiany waluty. Takie podejście pozwoliło na późniejszą, łatwą identyfikację transakcji płatności za podobne usługi. Ponadto w celu uzyskania informacji o jak największej ilości adresów przeprowadzili eksplorację internetu w celu ich odnalezienia i identyfikacji. Użyte zostały również dwie heurystyki grupowania podobne do zastosowanych w przypadku \cite{Reid2013, Androulaki2013, Ron2013}. Pierwsza z nich dotyczyła adresów wejściowych rozumianych jako adresy jednego użytkownika, natomiast druga nowych adresów w sieci. Drugie podejście było bardzo podobne jak w pracy Androulaky \cite{Androulaki2013}, jednakże pominięto ograniczenie dwóch adresów wyjściowych transakcji. Przeprowadzone przez autorów analizy pozwoliły na dojście do wniosku, że istnieje możliwość śledzenia ruchów dużych transakcji, co oznacza zbyt niską anonimowość w sieci Bitcoin. Autorzy podważyli możliwość anonimowego \textit{prania pieniędzy} bez konsekwencji, a nawet podkreślili, że identyfikowalność jest dużo wyższa dla usług takich jak: pule wydobywcze, dostawcy e-portfeli, czy strony wymiany bitcoinów.
+
+\indent Kolejnej, praktycznej i globalnej analizy sieci transakcji w sieci Bitcoin podjął się Ober w 2013 roku\cite{Ober_2013}, który zbudował sieć z wszystkich możliwych transakcji sprzed 6 stycznia 2013 roku. Wyróżnił on w sieci adresy, które zostały użyte jako adresy płatnicze (zostały użyte jako adresy wejściowe w jakiejś transakcji) oraz zdefiniował aktywne jednostki jako właścicieli tych adresów. Podobnie do innych badań występuje tu założenie przynależności wszystkich adresów wejściowych do jednej jednostki, jednakże heurystyka ta rozszerzona została o rozmiar jednostki, rozumiany jako ilość adresów znajdujących się w jednym klastrze. Przeprowadzane badania anonimowości prowadzone były poprzez miarę \textit{k}-anonimizacji. Autor w~swojej pracy dochodzi do wniosku, że oszacowanie poziomu \textit{k}-anonimizacji oferowanego przez sieć jest niezbędne do oszacowania liczby aktywnych jednostek. Wniosek ten oparty jest na zauważeniu zmniejszającego się poziomu anonimowości nieaktywnych adresów. Dodatkowo autor wskazuje wyraźną poprawę oszacowania \textit{k}-anonimizacji po wprowadzeniu okien czasowych, w których uznaje się podmiot za aktywny i podkreśla fakt, że im mniejsze okno czasowe tym wyższa anonimowość jednostki w sieci. Konkluzją przeprowadzanych przez Ober'a badań był fakt, że spekulacje są dobre dla anonimowości w sieci, gdyż podnoszą wartość bitcoina, i co więcej, zwiększają całkowitą liczbę aktywnych jednostek, co w konsekwencji zwiększa anonimowość.
+
+\indent Oprócz analizy sieci pod kątem anonimowości, w sieci rozumianej jako część bezpieczeństwa, przeprowadzane były badania dotyczące odporności struktury sieci na różne nietypowe sytuacje. Przykładem może być analiza Pass'a, Seeman'a i Shelat'a\cite{Pass2017} skupiająca się na odporności zdecentralizowanego łańcucha transakcji na duże opóźnienia w sieci. Dyskutowana jest koncepcja zaproponowana przez Satoshi Nakamoto\cite{nakamoto2008bitcoin} w kontekście zachowania spójności lokalnych łańcuchów w sieci asynchronicznej. Dodatkowo analizowany jest przykładowy model komunikacji oraz możliwość dołączania nowych uczestników sieci przy zachowaniu konsystencji w Blockchain'ie. Jednym z wniosków autorów jest zmniejszająca się jakość łańcucha bloków wynikająca z dużych opóźnień, którą można wykorzystać do przeprowadzenia ataku na protokół zaproponowany przez Nakamoto.
+
+\newpage
+\subsection{Właściwości sieci}
+
+\indent Odejściem od próby deanonimoazacji informacji o użytkownikach jest praca Ron'a~i~Shamir'a z 2013 roku o~zachowaniach użytkowników sieci Bitcoin\cite{Ron2013}. Autorzy podobnie wykorzystują założenie możliwości o przynależności adresów wejściowych transakcji do jednego użytkownika. Pozwoliło to na podjęcie próby ich scharakteryzowania. Autorzy w~trakcie swoich badań na podstawie obserwacji dochodzą do wniosku, że większość bitcoinów wykopanych przed 13 maja 2012 roku pozostaje na nieużywanych adresach, a cała sieć składa się głównie z olbrzymiej ilości transakcji, w którym przekazywane są jedynie ułamki bitcoinów. Dodatkowo przeanalizowane zostały największe transakcje w sieci, które zostały przedstawione szczegółowo w postaci grafów. 
+
+\indent W publikacji z 2017 roku Kondor i inni autorzy\cite{Kondor2014} skupili się na analizie struktury sieci transakcji oraz przeprowadzili badania dotyczące zmian właściwości sieci w czasie. Zbadali rozkład stopni węzłów, korelację pomiędzy węzłami oraz klasteryzację węzłów. Częścią ich pracy było również określenie możliwości tymczasowych wzorów przepływu pieniędzy oraz znalezienie odpowiedzi na pytanie, czy bogaci stają się coraz bogatsi. Zauważyć należy, że w tym przypadku stworzona sieć różni się całkowicie od dotąd opisywanych. Jej budowa również opiera się na przeprowadzonych transakcjach, lecz węzłami nie są transakcje, a bitcoinowe adresy, między którymi przekazywane były bitcoiny. Autorzy obok badania ewolucji sieci transakcji, badali również akumulację bitcoinów na pojedynczych adresach. Pozwoliło to na wyciągnięcie wniosków dotyczących zależności pomiędzy stopniem węzła, a ilością posiadanych środków. Autorzy podkreślają, że rozkład stopni węzła jest wysoce niejednorodny w~całym okresie istnienia systemu, jednakże zbieżny do rozciągniętej dystrybucji wykładniczej w fazie handlu. Innym ciekawym wnioskiem jest odnalezienie korelacji pomiędzy rozkładem bogactwa, a topologią sieci, na podstawie której zidentyfikowano skalującą się zależność między stopniem bogactwa, a poszczególnymi węzłami.
+
+\indent Meni Rosenfeld\cite{Rosenfeld2014} w swojej pracy z 2014 roku analizuje prawdopodobieństwo udanego ataku typu \textit{double-spending}. Atak ten polega na podwójnym wydaniu tych samych środków, co oznacza podpisanie dwóch transakcji w Blockchain'ie, które podwójnie wydatkują te same środki, z tego samego adresu. Przeprowadzone analizy sieci pod kątem wymaganej częstotliwości hash'owania w celu wykonania udanego ataku pokazują, że przy odpowiednich chwilowych właściwościach sieci udany atak wykonać można z dużo mniejszą częstotliwością, niż powszechnie się uważa. W pracy  Rosenfeld'a przeanalizowano również wpływ ataku typu \textit{double-spending} na ekonomiczną stronę sieci.
+
+\indent W badaniu eksploracyjnym z 2016 roku Matthias Lischke i Benjamin Fabian\cite{Lischke2016} zbadali sieć transakcyjąa w ciągu pierwszych czterech lat jej istnienia. Ciekawym faktem jest zintegrowanie przez autorów dodatkowego źródła danych z Blockchain'em, które pozwala na badanie sieci w kategoriach biznesowych oraz w odniesieniu do lokalizacji geograficznych. Takie podejście pozwala na odnalezienie głównych firm oraz rynków Bitcoina, a co więcej identyfikację sieci hazardu. Autorzy wykorzystali metody analizy grafów, takie jak: klasteryzacja, rozkład stopnia węzłów, czy odnajdowanie najkrótszej ścieżki. Na ich podstawie wywnioskowali o silnej, pozytywnej zależności pomiędzy aktywnością użytkownika, a zachowaniem handlu. Potwierdzili istnienie dużej ilości ułamkowych transakcji oraz określi najbardziej aktywne regiony na świecie i kategorie biznesowe powodujące największy rozwój sieci. Dokonali również interesujących wizualizacji badanych wycinków sieci.
+\newpage
+
+\section{Motywacja}
+
+\indent Czym jest analiza sieci, jakie były analizy, metody analiz grafów.
 Nie tylko analizuje się sieci statyczne, ale temporalne i wielowarstwowe.
 Jak analizować blockchain, co zostało zrobione w kontekście jego analizy?
 
 
-\chapter{Analiza blockchaina Bitcoin}
+\chapter{Analiza Blockchain'a sieci Bitcoin}
 
 \section{Wprowadzenie}
 
